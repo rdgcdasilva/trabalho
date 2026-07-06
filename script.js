@@ -7,6 +7,40 @@
 
   var root = document.documentElement;
   var STORAGE_KEY = 'rs-theme';
+  var LANG_KEY = 'rs-lang';
+
+  /* ---------- Idioma (PT/EN) ---------- */
+  function applyLang(lang) {
+    if (lang !== 'en') lang = 'pt';
+    root.setAttribute('lang', lang === 'en' ? 'en' : 'pt-BR');
+
+    var nodes = document.querySelectorAll('[data-pt][data-en]');
+    Array.prototype.forEach.call(nodes, function (el) {
+      var value = el.getAttribute('data-' + lang);
+      if (value !== null) el.textContent = value;
+    });
+
+    var btn = document.getElementById('lang-toggle');
+    if (btn) {
+      // O botão mostra o idioma para o qual se pode alternar.
+      btn.textContent = lang === 'en' ? 'PT' : 'EN';
+      btn.setAttribute('aria-label',
+        lang === 'en' ? 'Mudar para português' : 'Switch to English');
+    }
+  }
+
+  function initLang() {
+    var saved = null;
+    try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+    applyLang(saved === 'en' ? 'en' : 'pt');
+  }
+
+  function toggleLang() {
+    var current = root.getAttribute('lang') === 'en' ? 'en' : 'pt';
+    var next = current === 'en' ? 'pt' : 'en';
+    applyLang(next);
+    try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
+  }
 
   /* ---------- Tema (claro/escuro) ---------- */
   function applyTheme(theme) {
@@ -93,10 +127,13 @@
   initTheme();
 
   document.addEventListener('DOMContentLoaded', function () {
+    initLang();
     setYear();
     initScrollSpy();
     initMobileMenu();
     var btn = document.getElementById('theme-toggle');
     if (btn) btn.addEventListener('click', toggleTheme);
+    var langBtn = document.getElementById('lang-toggle');
+    if (langBtn) langBtn.addEventListener('click', toggleLang);
   });
 })();

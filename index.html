@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio profissional de Rodrigo da Silva, especialista em hospitalidade e no desenvolvimento de sistemas de avaliação individual e organizacional.">
-  <title>Rodrigo da Silva — Portfólio Profissional</title>
+  <meta name="description" content="Rodrigo Cunha da Silva — Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP, e Especialista de Workforce Design na EDP. Governança, hospitalidade e análise de dados.">
+  <title data-pt="Rodrigo Cunha da Silva — Pesquisa, Hospitalidade &amp; People Analytics" data-en="Rodrigo Cunha da Silva — Research, Hospitality &amp; People Analytics">Rodrigo Cunha da Silva — Pesquisa, Hospitalidade &amp; People Analytics</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
 <body>
   <!-- ==================== NAVBAR ==================== -->
   <header class="navbar" id="topo">
     <nav class="nav-inner" aria-label="Navegação principal">
-      <a href="#topo" class="brand" aria-label="Rodrigo da Silva — início">
+      <a href="#topo" class="brand" aria-label="Rodrigo Cunha da Silva — início">
         <span class="brand-mark" aria-hidden="true">RS</span>
-        <span class="brand-text">Rodrigo da Silva</span>
+        <span class="brand-text">Rodrigo Cunha da Silva</span>
       </a>
 
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
@@ -23,10 +23,15 @@
       </label>
 
       <ul class="nav-links">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#realizacoes">Realizações</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#contato">Contato</a></li>
+        <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+        <li><a href="#formacao" data-pt="Formação" data-en="Education">Formação</a></li>
+        <li><a href="#carreira" data-pt="Carreira" data-en="Career">Carreira</a></li>
+        <li><a href="#pesquisas" data-pt="Projetos" data-en="Projects">Projetos</a></li>
+        <li><a href="#publicacoes" data-pt="Publicações" data-en="Publications">Publicações</a></li>
+        <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
+        <li>
+          <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+        </li>
         <li>
           <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">
             <span class="theme-icon" aria-hidden="true">🌙</span>
@@ -40,17 +45,22 @@
     <!-- ==================== HERO ==================== -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
-        <p class="hero-eyebrow">Portfólio Profissional</p>
-        <h1 id="hero-title">Rodrigo da Silva</h1>
-        <p class="hero-tagline">Especialista em Hospitalidade &amp; Desenvolvimento de Sistemas de Avaliação</p>
-        <p class="hero-intro">
-          Uno a experiência prática em hospitalidade à criação de sistemas de avaliação
-          individuais e organizacionais, transformando percepções de acolhimento em
-          indicadores claros que impulsionam decisões e elevam a experiência das pessoas.
+        <p class="hero-eyebrow" data-pt="Pesquisa · Hospitalidade · People Analytics" data-en="Research · Hospitality · People Analytics">Pesquisa · Hospitalidade · People Analytics</p>
+        <h1 id="hero-title">Rodrigo Cunha da Silva</h1>
+        <p class="hero-tagline"
+           data-pt="Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP, e Especialista de Workforce Design na EDP."
+           data-en="Professor in the Graduate Program in Hospitality (UAM), PhD and Post-Doctorate in Business Administration from USP, and Workforce Design Specialist at EDP.">
+          Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP,
+          e Especialista de Workforce Design na EDP.
+        </p>
+        <p class="hero-intro"
+           data-pt="Meu trabalho integra governança, hospitalidade e análise de dados para revelar o que move as pessoas nas organizações."
+           data-en="My work integrates governance, hospitality, and data analysis to reveal what drives people in organizations.">
+          Meu trabalho integra governança, hospitalidade e análise de dados para revelar o que move as pessoas nas organizações.
         </p>
         <div class="hero-cta">
-          <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
-          <a href="#contato" class="btn btn-ghost">Entrar em Contato</a>
+          <a href="#pesquisas" class="btn btn-primary" data-pt="Ver pesquisas" data-en="View research">Ver pesquisas</a>
+          <a href="#contato" class="btn btn-ghost" data-pt="Entrar em contato" data-en="Get in touch">Entrar em contato</a>
         </div>
       </div>
     </section>
@@ -58,163 +68,471 @@
     <!-- ==================== SOBRE ==================== -->
     <section id="sobre" class="section" aria-labelledby="sobre-title">
       <div class="container">
-        <p class="section-eyebrow">Sobre</p>
-        <h2 id="sobre-title" class="section-title">Quem sou eu</h2>
+        <p class="section-eyebrow" data-pt="Sobre" data-en="About">Sobre</p>
+        <h2 id="sobre-title" class="section-title"
+            data-pt="Da gestão de pessoas à hospitalidade organizacional"
+            data-en="From people management to organizational hospitality">Da gestão de pessoas à hospitalidade organizacional</h2>
         <div class="about-grid">
           <div class="about-text">
-            <p>
-              Sou um profissional dedicado a compreender e mensurar a hospitalidade em suas
-              múltiplas dimensões. Ao longo da minha trajetória, desenvolvi metodologias e
-              sistemas de avaliação capazes de captar tanto o desempenho individual quanto a
-              maturidade organizacional no acolhimento de pessoas.
+            <p data-pt="Sou especialista em workforce design e professor pesquisador em hospitalidade organizacional. Minha trajetória é marcada pela integração entre rigor acadêmico e aplicação prática."
+               data-en="I am a workforce design specialist and a research professor in organizational hospitality. My career is marked by the integration of academic rigor and practical application.">
+              Sou especialista em workforce design e professor pesquisador em hospitalidade
+              organizacional. Minha trajetória é marcada pela integração entre rigor acadêmico e
+              aplicação prática.
             </p>
-            <p>
-              Acredito que dados bem estruturados e uma escuta atenta são a base para
-              transformar boas intenções em resultados consistentes. Por isso, combino olhar
-              humano, gestão organizacional e desenvolvimento de sistemas para entregar
-              ferramentas práticas, acessíveis e orientadas à melhoria contínua.
+            <p data-pt="Como Professor Titular do PPG em Hospitalidade da Universidade Anhembi Morumbi, oriento mestrandos e doutorandos que investigam como as organizações acolhem — ou excluem — seus funcionários e clientes. Minha tese central: a hospitalidade não é ornamento, é estrutura. No contexto empresarial lidero projetos de Workforce Design e Data Governance na EDP."
+               data-en="As a Full Professor in the Graduate Program in Hospitality at Universidade Anhembi Morumbi, I supervise master's and doctoral students investigating how organizations welcome — or exclude — their employees and customers. My central thesis: hospitality is not ornament, it is structure. In the corporate world, I lead Workforce Design and Data Governance projects at EDP.">
+              Como Professor Titular do PPG em Hospitalidade da Universidade Anhembi Morumbi, oriento
+              mestrandos e doutorandos que investigam como as organizações acolhem — ou excluem — seus
+              funcionários e clientes. Minha tese central: a hospitalidade não é ornamento, é estrutura.
+              No contexto empresarial lidero projetos de Workforce Design e Data Governance na EDP.
             </p>
           </div>
           <div class="about-skills" aria-labelledby="skills-title">
-            <h3 id="skills-title" class="skills-title">Áreas de Atuação</h3>
+            <h3 id="skills-title" class="skills-title" data-pt="Áreas de Atuação" data-en="Areas of Expertise">Áreas de Atuação</h3>
             <ul class="tags">
-              <li class="tag">Avaliação de Hospitalidade</li>
-              <li class="tag">Gestão Organizacional</li>
-              <li class="tag">Análise de Dados</li>
-              <li class="tag">Desenvolvimento de Sistemas</li>
-              <li class="tag">Experiência do Cliente</li>
-              <li class="tag">Metodologias de Avaliação</li>
+              <li class="tag" data-pt="Hospitalidade Organizacional" data-en="Organizational Hospitality">Hospitalidade Organizacional</li>
+              <li class="tag" data-pt="People Analytics" data-en="People Analytics">People Analytics</li>
+              <li class="tag" data-pt="Machine Learning" data-en="Machine Learning">Machine Learning</li>
+              <li class="tag" data-pt="NLP" data-en="NLP">NLP</li>
+              <li class="tag" data-pt="Workforce Design" data-en="Workforce Design">Workforce Design</li>
+              <li class="tag" data-pt="Gestão de Pessoas" data-en="People Management">Gestão de Pessoas</li>
+              <li class="tag" data-pt="Comportamento Organizacional" data-en="Organizational Behavior">Comportamento Organizacional</li>
+              <li class="tag" data-pt="Gerações" data-en="Generations">Gerações</li>
+              <li class="tag" data-pt="Remuneração" data-en="Compensation">Remuneração</li>
+              <li class="tag" data-pt="Cultura Organizacional" data-en="Organizational Culture">Cultura Organizacional</li>
             </ul>
           </div>
         </div>
+
+        <figure class="about-video">
+          <video class="about-video-player" controls preload="metadata" playsinline>
+            <source src="assets/video-rodrigo.mp4" type="video/mp4">
+            <span data-pt="Seu navegador não suporta vídeo." data-en="Your browser does not support video.">Seu navegador não suporta vídeo.</span>
+          </video>
+          <figcaption class="about-video-caption" data-pt="Apresentação" data-en="Introduction">Apresentação</figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- ==================== REALIZAÇÕES ==================== -->
-    <section id="realizacoes" class="section section-alt" aria-labelledby="realizacoes-title">
+    <!-- ==================== FORMAÇÃO ==================== -->
+    <section id="formacao" class="section section-alt" aria-labelledby="formacao-title">
       <div class="container">
-        <p class="section-eyebrow">Realizações</p>
-        <h2 id="realizacoes-title" class="section-title">Resultados e conquistas</h2>
+        <p class="section-eyebrow" data-pt="Formação" data-en="Education">Formação</p>
+        <h2 id="formacao-title" class="section-title" data-pt="Formação acadêmica" data-en="Academic background">Formação acadêmica</h2>
+
+        <ol class="timeline" aria-label="Formação acadêmica">
+          <li class="timeline-item">
+            <div class="timeline-period">2016–2018</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Pós-Doutorado em Administração" data-en="Postdoctoral Research in Business Administration">Pós-Doutorado em Administração</h3>
+              <p class="timeline-org">FEA — Universidade de São Paulo (USP)</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-period">2010–2013</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Doutorado Direto em Administração" data-en="Direct Doctorate in Business Administration">Doutorado Direto em Administração</h3>
+              <p class="timeline-org">FEA — USP</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-period">2004–2007</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Graduação em Administração" data-en="Bachelor's Degree in Business Administration">Graduação em Administração</h3>
+              <p class="timeline-org">Universidade Cidade de São Paulo (UNICID)</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="cert-block">
+          <h3 class="skills-title" data-pt="Extensão &amp; Certificações" data-en="Extension &amp; Certifications">Extensão &amp; Certificações</h3>
+          <ul class="tags">
+            <li class="tag" data-pt="People Analytics — FIA (2019)" data-en="People Analytics — FIA (2019)">People Analytics — FIA (2019)</li>
+            <li class="tag" data-pt="Análise de Big Data via ML — FIA (2018)" data-en="Big Data Analysis via ML — FIA (2018)">Análise de Big Data via ML — FIA (2018)</li>
+            <li class="tag" data-pt="Python para Data Science — Udemy (2019)" data-en="Python for Data Science — Udemy (2019)">Python para Data Science — Udemy (2019)</li>
+            <li class="tag" data-pt="Power BI — Udemy (2020)" data-en="Power BI — Udemy (2020)">Power BI — Udemy (2020)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CARREIRA ==================== -->
+    <section id="carreira" class="section" aria-labelledby="carreira-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Carreira" data-en="Career">Carreira</p>
+        <h2 id="carreira-title" class="section-title" data-pt="Trajetória profissional" data-en="Professional path">Trajetória profissional</h2>
+
+        <ol class="timeline" aria-label="Trajetória profissional">
+          <li class="timeline-item">
+            <div class="timeline-period">2023 — atual</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Especialista em Workforce Design" data-en="Workforce Design Specialist">Especialista em Workforce Design</h3>
+              <p class="timeline-org">EDP Energias do Brasil · São Paulo</p>
+              <p class="timeline-desc"
+                 data-pt="Foco na otimização de estratégias de força de trabalho por meio de governança e análise de dados. Minha atuação inclui o desenvolvimento de soluções que ampliam a eficiência e causam impacto estratégico na companhia."
+                 data-en="I focus on optimizing workforce strategies through data governance and analysis. My work includes developing solutions that enhance efficiency and deliver strategic impact to the company.">
+                Foco na otimização de estratégias de força de trabalho por meio de governança e análise
+                de dados. Minha atuação inclui o desenvolvimento de soluções que ampliam a eficiência e
+                causam impacto estratégico na companhia.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag">Python</li>
+                <li class="tag">ML</li>
+                <li class="tag">Looker Studio</li>
+                <li class="tag">Azure</li>
+                <li class="tag">People Analytics</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-period">mar/2022 — atual</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Professor Titular" data-en="Full Professor">Professor Titular</h3>
+              <p class="timeline-org">PPG Hospitalidade (Mestrado &amp; Doutorado) · UAM</p>
+              <p class="timeline-desc"
+                 data-pt="Pesquisa e orientação em hospitalidade organizacional. Orientador de 5 dissertações/teses ativas."
+                 data-en="Research and supervision in organizational hospitality. Advisor of 5 active dissertations/theses.">
+                Pesquisa e orientação em hospitalidade organizacional. Orientador de 5 dissertações/teses
+                ativas.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag" data-pt="Pesquisa" data-en="Research">Pesquisa</li>
+                <li class="tag">HospGap</li>
+                <li class="tag">NLP</li>
+                <li class="tag" data-pt="Orientação" data-en="Advising">Orientação</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-period">mar/2013 — 2024</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Professor Convidado" data-en="Guest Professor">Professor Convidado</h3>
+              <p class="timeline-org">FIA — MBA RH &amp; Gestão Estratégica de Pessoas</p>
+              <p class="timeline-desc"
+                 data-pt="People Analytics e métodos quantitativos em RH para executivos e gestores em formação. Mais de 11 anos de docência — encerrado em 2024."
+                 data-en="People Analytics and quantitative methods in HR for executives and managers in training. Over 11 years of teaching — concluded in 2024.">
+                People Analytics e métodos quantitativos em RH para executivos e gestores em formação.
+                Mais de 11 anos de docência — encerrado em 2024.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag">People Analytics</li>
+                <li class="tag" data-pt="Docência" data-en="Teaching">Docência</li>
+                <li class="tag">MBA</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-period">mar/2022 — set/2023</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Analista de People Analytics Sênior" data-en="Senior People Analytics Analyst">Analista de People Analytics Sênior</h3>
+              <p class="timeline-org">Grupo Soma · marca Hering · São Paulo</p>
+              <p class="timeline-desc"
+                 data-pt="Dashboards de turnover, absenteísmo, horas extras, cotas PCD, orçamento RH, NPS. Pesquisa de engajamento GPTW. Modelos preditivos de absenteísmo e turnover."
+                 data-en="Dashboards for turnover, absenteeism, overtime, disability (PCD) quotas, HR budget, and NPS. GPTW engagement survey. Predictive models for absenteeism and turnover.">
+                Dashboards de turnover, absenteísmo, horas extras, cotas PCD, orçamento RH, NPS.
+                Pesquisa de engajamento GPTW. Modelos preditivos de absenteísmo e turnover.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag">Power BI</li>
+                <li class="tag">Turnover</li>
+                <li class="tag">GPTW</li>
+                <li class="tag" data-pt="Varejo" data-en="Retail">Varejo</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-period">mar/2021 — mar/2022</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Cientista de Dados Sênior" data-en="Senior Data Scientist">Cientista de Dados Sênior</h3>
+              <p class="timeline-org">Meta Serviços em Informática · cliente BRF Foods</p>
+              <p class="timeline-desc"
+                 data-pt="Sugestões de inovação de produtos por cliente, previsão de demanda de vendas, sugestão de metas para vendedores, alerta de feriados em rotas e indicação de produtos substitutos."
+                 data-en="Product innovation suggestions per client, sales demand forecasting, target suggestions for salespeople, holiday alerts on routes, and substitute product recommendations.">
+                Sugestões de inovação de produtos por cliente, previsão de demanda de vendas, sugestão
+                de metas para vendedores, alerta de feriados em rotas e indicação de produtos substitutos.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag">Python</li>
+                <li class="tag">ML</li>
+                <li class="tag" data-pt="Previsão de Demanda" data-en="Demand Forecasting">Previsão de Demanda</li>
+                <li class="tag" data-pt="Alimentos" data-en="Food Industry">Alimentos</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-period">ago/2011 — mar/2013</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Estatístico" data-en="Statistician">Estatístico</h3>
+              <p class="timeline-org">ABRH Brasil · São Paulo</p>
+              <p class="timeline-desc"
+                 data-pt="Análises estatísticas para pesquisas e publicações da Associação Brasileira de Recursos Humanos."
+                 data-en="Statistical analyses for research and publications of the Brazilian Association of Human Resources.">
+                Análises estatísticas para pesquisas e publicações da Associação Brasileira de
+                Recursos Humanos.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag" data-pt="Estatística" data-en="Statistics">Estatística</li>
+                <li class="tag" data-pt="RH" data-en="HR">RH</li>
+                <li class="tag" data-pt="Pesquisa" data-en="Research">Pesquisa</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-period">abr/2007 — ago/2010</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Consultor Técnico" data-en="Technical Consultant">Consultor Técnico</h3>
+              <p class="timeline-org">FIA · Guia GPTW / Você S.A.</p>
+              <p class="timeline-desc"
+                 data-pt="Análise de bases com 200.000+ empregados e 500+ empresas por edição do Guia das Melhores Empresas. Elaboração de relatórios, artigos e apresentações para empresas participantes."
+                 data-en="Analysis of databases with 200,000+ employees and 500+ companies per edition of the Best Companies Guide. Preparation of reports, articles, and presentations for participating companies.">
+                Análise de bases com 200.000+ empregados e 500+ empresas por edição do Guia das
+                Melhores Empresas. Elaboração de relatórios, artigos e apresentações para empresas
+                participantes.
+              </p>
+              <ul class="tags tags-sm">
+                <li class="tag">GPTW</li>
+                <li class="tag" data-pt="200k+ empregados" data-en="200k+ employees">200k+ empregados</li>
+                <li class="tag" data-pt="Relatórios" data-en="Reports">Relatórios</li>
+                <li class="tag" data-pt="Pesquisa" data-en="Research">Pesquisa</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==================== PESQUISAS ==================== -->
+    <section id="pesquisas" class="section section-alt" aria-labelledby="pesquisas-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Pesquisas" data-en="Research">Pesquisas</p>
+        <h2 id="pesquisas-title" class="section-title" data-pt="Projetos realizados e em desenvolvimento" data-en="Completed and ongoing projects">Projetos realizados e em desenvolvimento</h2>
+        <p class="section-subtitle"
+           data-pt="Pesquisa em hospitalidade organizacional e People Analytics."
+           data-en="Research in organizational hospitality and People Analytics.">
+          Pesquisa em hospitalidade organizacional e People Analytics.
+        </p>
+
         <div class="cards-grid">
-          <article class="card achievement-card">
-            <div class="card-icon" aria-hidden="true">🧭</div>
-            <!-- EDITÁVEL: ajuste os números -->
-            <h3 class="metric">+10 anos</h3>
-            <p class="card-lead">Metodologia de avaliação desenvolvida</p>
-            <p class="card-desc">
-              Construção de uma abordagem própria para avaliar a hospitalidade, refinada ao
-              longo de anos de prática e aplicação em contextos reais.
+          <!-- Sistema A -->
+          <article class="card project-card system-card">
+            <div class="card-icon" aria-hidden="true">👤</div>
+            <h3 class="project-title">Sistema de Avaliação de Hospitalidade Individual</h3>
+            <p class="card-desc"
+               data-pt="Instrumento para diagnóstico da hospitalidade percebida no nível do indivíduo. Deriva do trabalho de análise verbatim do HospGap, traduzindo relatos e percepções em indicadores claros sobre como cada pessoa é acolhida — ou não — em sua organização."
+               data-en="An instrument for diagnosing perceived hospitality at the individual level. Derived from the HospGap verbatim analysis work, translating accounts and perceptions into clear indicators of how each person is welcomed — or not — in their organization.">
+              Instrumento para diagnóstico da hospitalidade percebida no nível do indivíduo. Deriva do
+              trabalho de análise verbatim do HospGap, traduzindo relatos e percepções em indicadores
+              claros sobre como cada pessoa é acolhida — ou não — em sua organização.
             </p>
+            <ul class="tags tags-sm">
+              <li class="tag" data-pt="Diagnóstico Individual" data-en="Individual Diagnosis">Diagnóstico Individual</li>
+              <li class="tag">HospGap</li>
+              <li class="tag">Verbatim</li>
+            </ul>
+            <a href="https://rdgcdasilva.github.io/Insurance/hospitality-app/avaliacao-hospitalidade.html" class="card-link" target="_blank" rel="noopener" data-pt="Acessar sistema →" data-en="Open system →">Acessar sistema →</a>
           </article>
 
-          <article class="card achievement-card">
-            <div class="card-icon" aria-hidden="true">🏢</div>
-            <!-- EDITÁVEL: ajuste os números -->
-            <h3 class="metric">+25</h3>
-            <p class="card-lead">Sistemas implantados em organizações</p>
-            <p class="card-desc">
-              Implantação de sistemas de avaliação em diferentes organizações, adaptando
-              indicadores à cultura e aos objetivos de cada equipe.
+          <!-- Sistema B -->
+          <article class="card project-card system-card">
+            <div class="card-icon" aria-hidden="true">🏛️</div>
+            <h3 class="project-title">Sistema de Avaliação de Hospitalidade Organizacional</h3>
+            <p class="card-desc"
+               data-pt="Mapeamento da hospitalidade organizacional a partir de dados públicos (Indeed/Glassdoor + Reclame Aqui). Operacionaliza o constructo HospGap como um sistema de indicadores mensuráveis, permitindo o diagnóstico comparativo entre empresas e setores."
+               data-en="Mapping of organizational hospitality from public data (Indeed/Glassdoor + Reclame Aqui). It operationalizes the HospGap construct as a system of measurable indicators, enabling comparative diagnosis across companies and sectors.">
+              Mapeamento da hospitalidade organizacional a partir de dados públicos
+              (Indeed/Glassdoor + Reclame Aqui). Operacionaliza o constructo HospGap como um sistema de
+              indicadores mensuráveis, permitindo o diagnóstico comparativo entre empresas e setores.
             </p>
+            <ul class="tags tags-sm">
+              <li class="tag" data-pt="Dados Públicos" data-en="Public Data">Dados Públicos</li>
+              <li class="tag">NLP</li>
+              <li class="tag" data-pt="Diagnóstico Organizacional" data-en="Organizational Diagnosis">Diagnóstico Organizacional</li>
+            </ul>
+            <a href="https://rdgcdasilva.github.io/Insurance/mapeamento-hospitalidade.html" class="card-link" target="_blank" rel="noopener" data-pt="Acessar sistema →" data-en="Open system →">Acessar sistema →</a>
           </article>
 
-          <article class="card achievement-card">
-            <div class="card-icon" aria-hidden="true">📈</div>
-            <!-- EDITÁVEL: ajuste os números -->
-            <h3 class="metric">+30%</h3>
-            <p class="card-lead">Melhoria em indicadores de experiência</p>
-            <p class="card-desc">
-              Evolução mensurável nos indicadores de experiência do cliente após a adoção de
-              ciclos estruturados de avaliação e feedback.
+          <!-- NotebookLM -->
+          <article class="card project-card system-card">
+            <div class="card-icon" aria-hidden="true">📓</div>
+            <h3 class="project-title" data-pt="NotebookLM — IA &amp; Hospitalidade" data-en="NotebookLM — AI &amp; Hospitality">NotebookLM — IA &amp; Hospitalidade</h3>
+            <p class="card-desc"
+               data-pt="Notebook interativo no NotebookLM que reúne fontes e materiais sobre a aplicação de IA na hospitalidade, permitindo consultar, resumir e explorar o conteúdo com o apoio da IA."
+               data-en="An interactive NotebookLM notebook that gathers sources and materials on applying AI in hospitality, letting you query, summarize, and explore the content with AI support.">
+              Notebook interativo no NotebookLM que reúne fontes e materiais sobre a aplicação de IA na
+              hospitalidade, permitindo consultar, resumir e explorar o conteúdo com o apoio da IA.
             </p>
+            <ul class="tags tags-sm">
+              <li class="tag">NotebookLM</li>
+              <li class="tag" data-pt="IA" data-en="AI">IA</li>
+              <li class="tag" data-pt="Hospitalidade" data-en="Hospitality">Hospitalidade</li>
+            </ul>
+            <a href="https://notebooklm.google.com/notebook/81388b34-b7b8-45eb-931b-df4f539cfa5c" class="card-link" target="_blank" rel="noopener" data-pt="Abrir no NotebookLM →" data-en="Open in NotebookLM →">Abrir no NotebookLM →</a>
+            <div class="card-complement">
+              <p class="card-complement-desc"
+                 data-pt="Guia prático de IA com Claude para profissionais de hotéis, restaurantes, bares e A&amp;B, da operação ao atendimento — sem exigir conhecimento técnico prévio."
+                 data-en="A practical guide to AI with Claude for professionals in hotels, restaurants, bars, and F&amp;B, from operations to guest service — requiring no prior technical knowledge.">
+                Guia prático de IA com Claude para profissionais de hotéis, restaurantes, bares e A&amp;B,
+                da operação ao atendimento — sem exigir conhecimento técnico prévio.
+              </p>
+              <a href="assets/guia-ia-hospitalidade-ab.pdf" class="card-sublink" target="_blank" rel="noopener" data-pt="Material complementar: Guia de IA para Profissionais de A&amp;B (PDF)" data-en="Complementary material: AI Guide for F&amp;B Professionals (PDF)">Material complementar: Guia de IA para Profissionais de A&amp;B (PDF)</a>
+            </div>
           </article>
 
-          <article class="card achievement-card">
-            <div class="card-icon" aria-hidden="true">🤝</div>
-            <!-- EDITÁVEL: ajuste os números -->
-            <h3 class="metric">+500</h3>
-            <p class="card-lead">Profissionais avaliados e desenvolvidos</p>
-            <p class="card-desc">
-              Aplicação de avaliações individuais que orientaram planos de desenvolvimento e
-              fortaleceram a cultura de acolhimento.
+          <!-- Guia de IA para Pequenas Empresas -->
+          <article class="card project-card system-card">
+            <div class="card-icon" aria-hidden="true">📘</div>
+            <h3 class="project-title" data-pt="Guia Fácil de IA para Pequenas Empresas" data-en="Easy AI Guide for Small Businesses">Guia Fácil de IA para Pequenas Empresas</h3>
+            <p class="card-desc"
+               data-pt="Guia prático e sem jargão que ensina pequenos empreendedores a usar IA com o Claude no dia a dia — dos primeiros passos à construção de um 'segundo cérebro' que organiza o conhecimento do negócio e automatiza tarefas."
+               data-en="A practical, jargon-free guide that teaches small-business owners to use AI with Claude day to day — from the first steps to building a 'second brain' that organizes business knowledge and automates tasks.">
+              Guia prático e sem jargão que ensina pequenos empreendedores a usar IA com o Claude no dia a
+              dia — dos primeiros passos à construção de um 'segundo cérebro' que organiza o conhecimento
+              do negócio e automatiza tarefas.
             </p>
+            <ul class="tags tags-sm">
+              <li class="tag" data-pt="IA" data-en="AI">IA</li>
+              <li class="tag" data-pt="Pequenas Empresas" data-en="Small Business">Pequenas Empresas</li>
+              <li class="tag">Claude</li>
+            </ul>
+            <a href="assets/guia-ia-pequenas-empresas.pdf" class="card-link" target="_blank" rel="noopener" data-pt="Baixar guia (PDF) →" data-en="Download guide (PDF) →">Baixar guia (PDF) →</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ==================== PROJETOS ==================== -->
-    <section id="projetos" class="section" aria-labelledby="projetos-title">
+    <!-- ==================== PUBLICAÇÕES ==================== -->
+    <section id="publicacoes" class="section" aria-labelledby="publicacoes-title">
       <div class="container">
-        <p class="section-eyebrow">Projetos</p>
-        <h2 id="projetos-title" class="section-title">Trabalhos em destaque</h2>
-        <div class="cards-grid">
-          <!-- Projeto principal 1 -->
-          <article class="card project-card">
-            <div class="card-icon" aria-hidden="true">👤</div>
-            <h3 class="project-title">Sistema de Avaliação de Hospitalidade Individual</h3>
-            <p class="card-desc">
-              Ferramenta voltada a mensurar o desempenho e o comportamento de cada profissional
-              em situações de acolhimento. A partir de critérios claros e observáveis, o sistema
-              gera diagnósticos individuais que apoiam o autoconhecimento e o desenvolvimento de
-              competências. O resultado é um caminho objetivo para reconhecer talentos e orientar
-              a evolução de cada pessoa.
-            </p>
-            <ul class="tags tags-sm">
-              <li class="tag">Rubricas de Avaliação</li>
-              <li class="tag">Feedback Estruturado</li>
-              <li class="tag">Indicadores Individuais</li>
-            </ul>
-            <a href="#" class="card-link">Saiba mais →</a>
-          </article>
+        <p class="section-eyebrow" data-pt="Publicações" data-en="Publications">Publicações</p>
+        <h2 id="publicacoes-title" class="section-title" data-pt="Livros, artigos &amp; capítulos" data-en="Books, articles &amp; chapters">Livros, artigos &amp; capítulos</h2>
+        <p class="section-subtitle"
+           data-pt="Produção científica em gestão de pessoas, hospitalidade organizacional, comportamento organizacional e people analytics."
+           data-en="Scientific output in people management, organizational hospitality, organizational behavior, and people analytics.">
+          Produção científica em gestão de pessoas, hospitalidade organizacional, comportamento
+          organizacional e people analytics.
+        </p>
 
-          <!-- Projeto principal 2 -->
-          <article class="card project-card">
-            <div class="card-icon" aria-hidden="true">🏛️</div>
-            <h3 class="project-title">Sistema de Avaliação de Hospitalidade Organizacional</h3>
-            <p class="card-desc">
-              Solução para diagnosticar a maturidade de uma organização no acolhimento de clientes
-              e colaboradores. Combinando indicadores de processos, ambiente e cultura, o sistema
-              revela pontos fortes e oportunidades de melhoria em nível institucional. Com isso,
-              gestores passam a tomar decisões embasadas e a acompanhar a evolução ao longo do tempo.
-            </p>
-            <ul class="tags tags-sm">
-              <li class="tag">Diagnóstico Organizacional</li>
-              <li class="tag">Painéis de Indicadores</li>
-              <li class="tag">Melhoria Contínua</li>
-            </ul>
-            <a href="#" class="card-link">Saiba mais →</a>
-          </article>
+        <div class="pub-group">
+          <h3 class="pub-group-title" data-pt="Livros" data-en="Books">Livros</h3>
+          <ul class="pub-list">
+            <li class="pub-item">
+              <span class="pub-year">2019</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://www.amazon.com.br/Inova%C3%A7%C3%A3o-Comprometimento-Administra%C3%A7%C3%A3o-Empresas-Pessoas/dp/8568552919" target="_blank" rel="noopener">Inovação e Comprometimento na Administração de Empresas e Pessoas</a></p>
+                <p class="pub-meta">Silva, R. C.; Veloso, E.; Trevisan, L. — Estação das Letras e Cores · São Paulo · 229p. · ISBN: 978-85-68552-91-9</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2017</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://www.amazon.com.br/Gest%C3%A3o-organizacional-Universit%C3%A1ria-Rodrigo-Cunha-ebook/dp/B07X7JKG91" target="_blank" rel="noopener">Gestão Organizacional</a></p>
+                <p class="pub-meta">Silva, R. C. — Editora Senac · São Paulo · 147p.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-          <!-- EDITÁVEL: adicione seus próprios projetos -->
-          <article class="card project-card project-placeholder">
-            <div class="card-icon" aria-hidden="true">✨</div>
-            <h3 class="project-title">Seu próximo projeto</h3>
-            <p class="card-desc">
-              Espaço reservado para descrever outro trabalho relevante. Conte o objetivo, a
-              abordagem utilizada e os resultados alcançados em duas ou três frases.
-            </p>
-            <ul class="tags tags-sm">
-              <li class="tag">Tecnologia</li>
-              <li class="tag">Método</li>
-            </ul>
-            <a href="#" class="card-link">Saiba mais →</a>
-          </article>
+        <div class="pub-group">
+          <h3 class="pub-group-title" data-pt="Artigos Internacionais (seleção)" data-en="International Articles (selection)">Artigos Internacionais (seleção)</h3>
+          <ul class="pub-list">
+            <li class="pub-item">
+              <span class="pub-year">2025</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://periodicos.uninove.br/gep/article/view/26987" target="_blank" rel="noopener">Relationship between Hospitality Organizational Culture and Consumer Satisfaction in Resolving Problems</a></p>
+                <p class="pub-meta">Lima et al. — Corresponding author: R. C. Silva — Revista de Gestão e Projetos (GeP) · v.16, p.154–181 · 2025</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2024</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://doi.org/10.1007/s13132-023-01616-y" target="_blank" rel="noopener">Chefs' communities of practice for managing innovations in the Tourism and Hospitality sectors</a></p>
+                <p class="pub-meta">Oliveira, P.; Ferreira, L.; Silva, R. C.; Oliveira, S. L. I.; Spinola, M. M. — Journal of the Knowledge Economy · v.15 · 2024</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2022</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://www.redalyc.org/journal/2610/261073312003/261073312003.pdf" target="_blank" rel="noopener">Análise de Conteúdo dos Fatores que Levam à Inovação no Setor de Gastronomia</a></p>
+                <p class="pub-meta">Oliveira, P. S. G. de; Da Silva, L. F.; Silva, R. C. da; Spinola, M. de M. — Turismo: Visão e Ação · v.24, p.449–468 · 2022</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2021</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://periodicos.uninove.br/gep/article/view/20641" target="_blank" rel="noopener">A relação entre liderança e o engajamento dos profissionais no segmento de serviços de alimentação em Bares e Restaurantes (foodservice)</a></p>
+                <p class="pub-meta">Banderó, F. A.; Da Silva, R. C.; De Castro Padilha Filho, M. R.; Gonçalves de Oliveira, P. S.; Alves, C. A. — Revista de Gestão e Projetos (GeP) · v.12, p.121–142 · 2021</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2020</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://doi.org/10.1108/MRJIAM-02-2019-0910" target="_blank" rel="noopener">Leadership and Performance of Millennial Generation in Brazilian Companies</a></p>
+                <p class="pub-meta">Silva, R. C. — Management Research · v.18, p.245–261 · 2020</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2020</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://doi.org/10.1504/IJBEX.2020.107580" target="_blank" rel="noopener">The Influence of Technologic Payment Adoption in Satisfaction</a></p>
+                <p class="pub-meta">Silva, R. C. et al. — International Journal of Business Excellence · v.21 · 2020</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2018</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://doi.org/10.1142/S0219877018500426" target="_blank" rel="noopener">World Class Manufacturing Operations Management: Scale Development and LHEMI Model Proposition</a></p>
+                <p class="pub-meta">Silva, R. C. et al. — International Journal of Innovation and Technology Management (World Scientific) · v.15, n.5 · 2018</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2017</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://www.periodicosibepes.org.br/index.php/recadm/article/view/2347" target="_blank" rel="noopener">Generations and Commitment in Different Brazilian Human Resource Management Contexts</a></p>
+                <p class="pub-meta">Silva, R. C.; Dutra, J. S.; Veloso, E.; Trevisan, L. — RECADM · v.16, n.1, p.5–24 · 2017</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2015</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://doi.org/10.1080/10978526.2015.987041" target="_blank" rel="noopener">Conditions for Service Climate in Brazilian Organizations</a></p>
+                <p class="pub-meta">Silva, R. C. et al. — Latin American Business Review · v.16 · 2015</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2015</span>
+              <div class="pub-body">
+                <p class="pub-title"><a class="pub-link" href="https://doi.org/10.1108/MRJIAM-12-2013-0537" target="_blank" rel="noopener">Generational Perceptions and Their Influences on Organizational Commitment</a></p>
+                <p class="pub-meta">Silva, R. C. et al. — Management Research · v.13 · 2015</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-          <!-- EDITÁVEL: adicione seus próprios projetos -->
-          <article class="card project-card project-placeholder">
-            <div class="card-icon" aria-hidden="true">🧩</div>
-            <h3 class="project-title">Outro projeto de destaque</h3>
-            <p class="card-desc">
-              Utilize este cartão como modelo para apresentar consultorias, pesquisas ou
-              iniciativas nas quais você atuou. Ajuste os textos e as tags conforme o contexto.
-            </p>
-            <ul class="tags tags-sm">
-              <li class="tag">Consultoria</li>
-              <li class="tag">Pesquisa</li>
-            </ul>
-            <a href="#" class="card-link">Saiba mais →</a>
-          </article>
+        <div class="pub-group">
+          <h3 class="pub-group-title" data-pt="Working Papers (2026)" data-en="Working Papers (2026)">Working Papers (2026)</h3>
+          <ul class="pub-list">
+            <li class="pub-item">
+              <span class="pub-year">2026</span>
+              <div class="pub-body">
+                <p class="pub-title">HospGap — The Hospitality Gap: Organizational Hypocrisy in Brazilian Service Firms</p>
+                <p class="pub-meta">Silva, R. C. et al. (lead author) — 212 relatos verbatim · 9 empresas · 5 setores · Em submissão</p>
+              </div>
+            </li>
+            <li class="pub-item">
+              <span class="pub-year">2026</span>
+              <div class="pub-body">
+                <p class="pub-title">Mapping Hospitality in Organizations through Open Web Data</p>
+                <p class="pub-meta">Silva, R. C. et al. (lead author) — Framework de indicadores · Indeed + Reclame Aqui · Em submissão</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -222,55 +540,35 @@
     <!-- ==================== CONTATO ==================== -->
     <section id="contato" class="section section-alt" aria-labelledby="contato-title">
       <div class="container">
-        <p class="section-eyebrow">Contato</p>
-        <h2 id="contato-title" class="section-title">Vamos conversar</h2>
-        <p class="contato-intro">
-          Interessado em avaliar a hospitalidade da sua equipe ou organização? Entre em contato
-          pelos canais abaixo.
+        <p class="section-eyebrow" data-pt="Contato" data-en="Contact">Contato</p>
+        <h2 id="contato-title" class="section-title" data-pt="Contato &amp; links acadêmicos" data-en="Contact &amp; academic links">Contato &amp; links acadêmicos</h2>
+        <p class="contato-intro"
+           data-pt="Para colaborações de pesquisa, orientações, palestras ou consultoria em People Analytics e hospitalidade organizacional, encontre-me pelos canais abaixo."
+           data-en="For research collaborations, advising, talks, or consulting in People Analytics and organizational hospitality, reach me through the channels below.">
+          Para colaborações de pesquisa, orientações, palestras ou consultoria em People Analytics e
+          hospitalidade organizacional, encontre-me pelos canais abaixo.
         </p>
 
-        <div class="contato-grid">
-          <ul class="contato-links">
-            <!-- EDITÁVEL -->
-            <li>
-              <a href="mailto:seu-email@exemplo.com" class="contato-link">
-                <span class="contato-icon" aria-hidden="true">✉️</span>
-                <span><strong>E-mail</strong><br>seu-email@exemplo.com</span>
-              </a>
-            </li>
-            <!-- EDITÁVEL -->
-            <li>
-              <a href="https://linkedin.com/in/seu-perfil" class="contato-link" target="_blank" rel="noopener">
-                <span class="contato-icon" aria-hidden="true">💼</span>
-                <span><strong>LinkedIn</strong><br>linkedin.com/in/seu-perfil</span>
-              </a>
-            </li>
-            <!-- EDITÁVEL -->
-            <li>
-              <a href="https://github.com/rdgcdasilva" class="contato-link" target="_blank" rel="noopener">
-                <span class="contato-icon" aria-hidden="true">💻</span>
-                <span><strong>GitHub</strong><br>github.com/rdgcdasilva</span>
-              </a>
-            </li>
-          </ul>
-
-          <!-- Formulário simples (não funcional).
-               EDITÁVEL: para funcionar, é necessário um backend ou serviço de formulários
-               (ex.: Formspree, Netlify Forms) que processe o envio. -->
-          <form class="contato-form" aria-label="Formulário de contato" onsubmit="return false;">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name">
-
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="voce@exemplo.com" autocomplete="email">
-
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como posso ajudar?"></textarea>
-
-            <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-            <p class="form-note">Este formulário é ilustrativo e precisa de um backend para envio.</p>
-          </form>
-        </div>
+        <ul class="contato-links contato-links-grid">
+          <li>
+            <a href="http://lattes.cnpq.br/1501183548567950" class="contato-link" target="_blank" rel="noopener">
+              <span class="contato-icon" aria-hidden="true">📄</span>
+              <span><strong>Lattes CNPq</strong><br>1501183548567950</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/rodrigo-cunha-da-silva-3ab280203" class="contato-link" target="_blank" rel="noopener">
+              <span class="contato-icon" aria-hidden="true">💼</span>
+              <span><strong>LinkedIn</strong><br>rodrigo-cunha-da-silva</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:rdgcdasilva@gmail.com" class="contato-link">
+              <span class="contato-icon" aria-hidden="true">✉️</span>
+              <span><strong data-pt="E-mail" data-en="Email">E-mail</strong><br>rdgcdasilva@gmail.com</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
   </main>
@@ -278,8 +576,8 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="year">2026</span> Rodrigo da Silva. Todos os direitos reservados.</p>
-      <a href="#topo" class="footer-top">Voltar ao topo ↑</a>
+      <p>&copy; <span id="year">2026</span> <span data-pt="Rodrigo Cunha da Silva. Todos os direitos reservados." data-en="Rodrigo Cunha da Silva. All rights reserved.">Rodrigo Cunha da Silva. Todos os direitos reservados.</span></p>
+      <a href="#topo" class="footer-top" data-pt="Voltar ao topo ↑" data-en="Back to top ↑">Voltar ao topo ↑</a>
     </div>
   </footer>
 
