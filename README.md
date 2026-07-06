@@ -10,6 +10,9 @@ de build. Basta abrir o arquivo `index.html` no navegador para visualizá-lo —
 
 ## Recursos
 
+- Site **bilíngue (PT/EN)**: o conteúdo tem versão em português (padrão) e em inglês, alternadas por um
+  botão de idioma na barra de navegação. A escolha é salva no navegador (localStorage) e restaurada nas
+  próximas visitas, ajustando também o atributo `lang` do documento.
 - Layout responsivo (mobile-first) e acessível.
 - Alternância de tema **claro/escuro**, com preferência salva no navegador (localStorage) e respeito à
   configuração do sistema na primeira visita.
@@ -17,8 +20,7 @@ de build. Basta abrir o arquivo `index.html` no navegador para visualizá-lo —
 
 ## Seções
 
-- **Início (Hero)** — identidade, tagline e destaques (badges).
-- **Indicadores** — métricas em destaque (fontes, páginas de wiki, patentes, anos de experiência).
+- **Início (Hero)** — identidade, tagline e chamadas para ação.
 - **Sobre** — trajetória da gestão de pessoas à hospitalidade organizacional.
 - **Formação** — formação acadêmica (timeline) e certificações.
 - **Carreira** — trajetória profissional em timeline.
@@ -56,7 +58,7 @@ Depois acesse `http://localhost:8000` no navegador.
 .
 ├── index.html    # Estrutura e conteúdo do site (todas as seções)
 ├── styles.css    # Estilos, paleta de cores e responsividade (temas claro/escuro)
-├── script.js     # Tema, ano do rodapé, menu mobile e destaque de navegação
+├── script.js     # Tema, idioma (PT/EN), ano do rodapé, menu mobile e destaque de navegação
 └── README.md     # Este arquivo
 ```
 

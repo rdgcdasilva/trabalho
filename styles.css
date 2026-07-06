@@ -140,6 +140,25 @@ img { max-width: 100%; display: block; }
 }
 .theme-toggle:hover { transform: translateY(-1px); background: var(--primary-050); }
 
+.lang-toggle {
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.lang-toggle:hover { transform: translateY(-1px); background: var(--primary-050); color: var(--primary); }
+
 /* Hamburger (mobile) */
 .nav-toggle { display: none; }
 .nav-hamburger {
@@ -229,26 +248,6 @@ img { max-width: 100%; display: block; }
 
 .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-.hero-badges {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  max-width: 680px;
-  margin: 0 auto 28px;
-}
-.hero-badge {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  box-shadow: var(--shadow-sm);
-}
-
 /* ---------- Seções ---------- */
 .section { padding: clamp(60px, 9vw, 96px) 0; }
 .section-alt { background: var(--bg-alt); }
@@ -274,37 +273,6 @@ img { max-width: 100%; display: block; }
   max-width: 720px;
   margin-bottom: 40px;
 }
-
-/* ---------- Stats / Highlights ---------- */
-.section-stats { padding-top: clamp(40px, 6vw, 64px); padding-bottom: clamp(40px, 6vw, 64px); }
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 26px 22px;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-}
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
-}
-.stat-number {
-  font-size: clamp(2.2rem, 5vw, 2.8rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--primary);
-  margin-bottom: 8px;
-}
-.stat-label { color: var(--text-muted); font-size: 0.95rem; }
 
 /* ---------- Timeline (Formação / Carreira) ---------- */
 .timeline {
