@@ -393,6 +393,28 @@ img { max-width: 100%; display: block; }
 .about-text p { margin-bottom: 16px; color: var(--text-muted); font-size: 1.05rem; }
 .about-text p:last-child { margin-bottom: 0; }
 
+.about-video {
+  margin: 36px auto 0;
+  max-width: 640px;
+  text-align: center;
+}
+.about-video-player {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  background: #000;
+}
+.about-video-caption {
+  margin-top: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 .skills-title { font-size: 1.1rem; margin-bottom: 16px; }
 
 .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
