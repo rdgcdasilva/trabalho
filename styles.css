@@ -481,6 +481,26 @@ img { max-width: 100%; display: block; }
 }
 .card-link:hover { color: var(--accent-600); transform: translateX(3px); }
 
+/* Bloco de material complementar dentro de um cartão */
+.card-complement {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.card-complement-desc {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  margin-bottom: 8px;
+}
+.card-sublink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.card-sublink:hover { color: var(--primary-600); transform: translateX(2px); }
+
 .project-placeholder { border-style: dashed; }
 
 /* ---------- Contato ---------- */
