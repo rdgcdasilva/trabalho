@@ -27,7 +27,6 @@ de build. Basta abrir o arquivo `index.html` no navegador para visualizá-lo —
 - **Pesquisas** — projetos de investigação, incluindo os dois sistemas de avaliação de hospitalidade
   (Individual e Organizacional), working papers, artigo publicado, bolsa UAM, base de conhecimento e patente.
 - **Publicações** — livros, artigos internacionais e working papers.
-- **Artigos Publicados** — artigos e trabalhos publicados destacados em cards.
 - **Contato** — links acadêmicos (ORCID, Lattes CNPq, Web of Science) e contatos.
 
 ## Editar os campos pendentes (EDITÁVEL)
