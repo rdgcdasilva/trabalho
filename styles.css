@@ -514,6 +514,25 @@ img { max-width: 100%; display: block; }
 
 .project-placeholder { border-style: dashed; }
 
+/* ---------- Artigos publicados ---------- */
+.artigo { display: flex; flex-direction: column; }
+.artigo-titulo { font-size: 1.14rem; line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.01em; }
+.artigo-autores { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 4px; }
+.artigo-veiculo { font-size: 0.92rem; font-style: italic; color: var(--text-muted); margin-bottom: 14px; }
+.artigo-ano {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-050);
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
+}
+.artigo-link { margin-top: auto; }
+
 /* ---------- Contato ---------- */
 .contato-intro { color: var(--text-muted); max-width: 560px; margin-bottom: 34px; font-size: 1.05rem; }
 
