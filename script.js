@@ -578,12 +578,106 @@
     ScrollTrigger.refresh();
   }
 
+  /* ---------- Backdrop de vídeo do capítulo no MOBILE ----------
+     Diferente do desktop (scrub por scroll, que é "janky" no celular), aqui
+     o clipe roda como pano de fundo AUTOPLAY, MUDO e em LOOP (playsinline),
+     suave em telas pequenas. O pôster (atributo poster + canvas por baixo)
+     garante 1º paint instantâneo e fallback se o vídeo não puder tocar.
+
+     Performance: NADA é baixado até o capítulo se aproximar da viewport. Um
+     IntersectionObserver (rootMargin ~200px) ativa os <source> (data-src→src),
+     dá load()+play() ao entrar e pause() ao sair — poupando bateria/CPU e
+     mantendo só 1–2 vídeos tocando por vez. */
+  function initChapterVideoMobile(chapter) {
+    if (!chapter || !chapter.section) return;
+    var vid = chapter.section.querySelector('video[data-chapter-video]');
+    if (!vid) return;
+    chapter.video = vid;
+
+    // Backdrop mudo, em loop, inline — requisitos de autoplay em mobile.
+    vid.muted = true;
+    vid.defaultMuted = true;
+    vid.loop = true;
+    vid.playsInline = true;
+    vid.setAttribute('muted', '');
+    vid.setAttribute('loop', '');
+    vid.setAttribute('playsinline', '');
+    vid.setAttribute('autoplay', '');
+    vid.removeAttribute('controls');
+
+    chapter._srcActivated = false;
+    function activateSources() {
+      if (chapter._srcActivated) return;
+      var sources = vid.querySelectorAll('source[data-src]');
+      var activated = false;
+      Array.prototype.forEach.call(sources, function (s) {
+        if (!s.getAttribute('src')) { s.setAttribute('src', s.getAttribute('data-src')); activated = true; }
+      });
+      if (activated || sources.length) {
+        chapter._srcActivated = true;
+        vid.preload = 'auto';
+        try { vid.load(); } catch (e) {}
+      }
+    }
+
+    // Só revela o vídeo quando há um quadro decodificado (evita frame preto);
+    // o poster/canvas por baixo cobre qualquer intervalo até aqui.
+    var reveal = function () {
+      if (!chapter.video) return;
+      vid.classList.add('is-on');
+      chapter.section.classList.add('chapter-video-on');
+    };
+    vid.addEventListener('loadeddata', reveal);
+    vid.addEventListener('playing', reveal);
+    // Erro (nenhum <source> decodificável): mantém o poster estático.
+    vid.addEventListener('error', function () {
+      vid.classList.remove('is-on');
+      chapter.section.classList.remove('chapter-video-on');
+    });
+
+    chapter._mobilePlay = function () {
+      activateSources();
+      try {
+        var pr = vid.play();
+        // Autoplay bloqueado → mantém o poster (canvas) por baixo, sem quadro preto.
+        if (pr && pr.catch) pr.catch(function () {});
+      } catch (e) {}
+    };
+    chapter._mobilePause = function () {
+      try { vid.pause(); } catch (e) {}
+    };
+  }
+
+  function initMobileVideoBackdrops() {
+    CHAPTERS.forEach(initChapterVideoMobile);
+
+    if (!('IntersectionObserver' in window)) {
+      // Sem IO: ativa todos (degradação graciosa; ainda mudo/loop/inline).
+      CHAPTERS.forEach(function (ch) { if (ch._mobilePlay) ch._mobilePlay(); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var ch = e.target._chapterRef;
+        if (!ch) return;
+        if (e.isIntersecting) { if (ch._mobilePlay) ch._mobilePlay(); }
+        else { if (ch._mobilePause) ch._mobilePause(); }
+      });
+    }, { rootMargin: '200px 0px 200px 0px', threshold: 0.01 });
+    CHAPTERS.forEach(function (ch) {
+      if (ch.section && ch.video) { ch.section._chapterRef = ch; io.observe(ch.section); }
+    });
+  }
+
   /* ---------- Modo LEVE (mobile) ---------- */
   function initLight() {
     root.classList.add('light-stage');
     collectChapters();
     renderPosterAll();
     initContentFades();
+    // Backdrops animados (autoplay/loop, lazy-load). reduced-motion nunca chega
+    // aqui (vai para initStatic), então respeitamos a preferência do usuário.
+    initMobileVideoBackdrops();
     window.addEventListener('resize', debounce(renderPosterAll, 250));
   }
 
