@@ -49,6 +49,16 @@
     <section class="chapter" id="cap-hero" data-chapter="hero" aria-labelledby="hero-title">
       <div class="chapter-pin">
         <canvas class="chapter-canvas" data-canvas="hero" aria-hidden="true"></canvas>
+        <!-- Backdrop cinematográfico do Hero: clipe gerado no Higgsfield.
+             O src é injetado por JS APENAS no modo cinematográfico (desktop),
+             fazendo scrub de video.currentTime pelo progresso do scroll.
+             No mobile/reduced-motion o poster estático permanece (não carrega o vídeo). -->
+        <video class="hero-video" data-hero-video
+               poster="assets/frames/hero/poster.png"
+               muted playsinline preload="none" aria-hidden="true">
+          <source data-src="assets/video/hero.mp4" type="video/mp4">
+          <source data-src="assets/video/hero.webm" type="video/webm">
+        </video>
         <div class="chapter-scrim" aria-hidden="true"></div>
         <!-- Motivo: figura profissional genérica (silhueta placeholder) -->
         <div class="hero-figure" aria-hidden="true">

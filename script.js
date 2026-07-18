@@ -393,6 +393,100 @@
     els.forEach(function (el) { el.classList.add('in-view-fade'); io.observe(el); });
   }
 
+  /* ---------- Backdrop de vídeo do Hero (clipe Higgsfield) ----------
+     Só é chamado no modo cinematográfico (desktop). Injeta o src (o HTML usa
+     data-src + preload=none para não baixar em mobile/reduced-motion) e faz
+     SCRUB: dirige video.currentTime pelo progresso (0→duração) do ScrollTrigger
+     do Hero. Se os metadados não carregarem ou o vídeo falhar, cai no poster
+     (canvas por baixo) — nunca um quadro em branco. */
+  function initHeroVideo(chapter) {
+    if (!chapter || chapter.id !== 'hero') return;
+    var vid = document.querySelector('video[data-hero-video]');
+    if (!vid) return;
+    chapter.video = vid;
+    chapter.videoReady = false;
+    chapter.videoDuration = 0;
+
+    vid.muted = true;
+    vid.defaultMuted = true;
+    vid.playsInline = true;
+    vid.setAttribute('playsinline', '');
+    vid.loop = false;
+    chapter.videoLoop = false;
+
+    // Fallback: se o scrub não funcionar (host sem suporte a Range → vídeo não
+    // "seekable", ou seek travado), toca em loop mudo. Garante movimento
+    // cinematográfico em qualquer hospedagem, sem quadro preto.
+    function startLoopFallback() {
+      if (chapter.videoLoop || !chapter.video) return;
+      chapter.videoLoop = true;
+      try {
+        vid.loop = true;
+        vid.muted = true;
+        vid.currentTime = 0;
+        var pr = vid.play();
+        if (pr && pr.catch) pr.catch(function () {});
+      } catch (e) {}
+    }
+
+    vid.addEventListener('loadedmetadata', function () {
+      chapter.videoDuration = (isFinite(vid.duration) && vid.duration > 0) ? vid.duration : 6;
+      chapter.videoReady = true;
+      try { vid.pause(); vid.currentTime = 0; } catch (e) {}
+    });
+    // Só revela o vídeo quando há um quadro decodificado (evita frame preto);
+    // o poster/canvas por baixo cobre qualquer intervalo até aqui.
+    var reveal = function () {
+      if (!chapter.video) return;
+      root.classList.add('hero-video-on');
+      if (typeof chapter.videoScrub === 'function') chapter.videoScrub(chapter.progress || 0);
+    };
+    vid.addEventListener('loadeddata', reveal);
+    vid.addEventListener('seeked', reveal);
+    // Erro só dispara quando NENHUM <source> é decodificável: mantém o poster.
+    vid.addEventListener('error', function () {
+      root.classList.remove('hero-video-on');
+      chapter.videoReady = false;
+      chapter.video = null;
+    });
+
+    // Scrub: currentTime dirigido pelo progresso do scroll. Se o primeiro seek
+    // significativo não "pegar" (host sem Range), aciona o loop mudo.
+    chapter.videoScrub = function (p) {
+      if (chapter.videoLoop || !chapter.videoReady || !chapter.video) return;
+      var d = chapter.videoDuration || vid.duration || 0;
+      if (!d) return;
+      var pp = Math.max(0, Math.min(1, p || 0));
+      var target = Math.min(d - 0.04, pp * d);
+      if (target < 0) target = 0;
+      // Sonda de seekability: no 1º scrub relevante, confere 600ms depois se o
+      // currentTime realmente avançou; se não, cai para o loop mudo.
+      if (target > 0.2 && !chapter._seekProbed) {
+        chapter._seekProbed = true;
+        setTimeout(function () {
+          if (!chapter.videoLoop && chapter.video && (vid.currentTime || 0) < 0.05) {
+            startLoopFallback();
+          }
+        }, 600);
+      }
+      if (Math.abs((vid.currentTime || 0) - target) > 0.015) {
+        try { vid.currentTime = target; } catch (e) {}
+      }
+    };
+
+    // Inicia o download só agora (desktop cinematográfico): ativa os <source>
+    // (mp4 preferido; webm como alternativa de codec) trocando data-src→src.
+    var sources = vid.querySelectorAll('source[data-src]');
+    var activated = false;
+    Array.prototype.forEach.call(sources, function (s) {
+      if (!s.getAttribute('src')) { s.setAttribute('src', s.getAttribute('data-src')); activated = true; }
+    });
+    if (activated) {
+      vid.preload = 'auto';
+      try { vid.load(); } catch (e) {}
+    }
+  }
+
   /* ---------- Modo CINEMATOGRÁFICO completo ---------- */
   function initCinematic() {
     root.classList.add('cinematic-on');
@@ -410,6 +504,9 @@
     CHAPTERS.forEach(function (ch) { if (ch.canvas) sizeCanvas(ch); });
     startRenderLoop();
 
+    // Backdrop de vídeo do Hero (scrub por scroll). Só no desktop cinematográfico.
+    CHAPTERS.forEach(function (ch) { if (ch.id === 'hero') initHeroVideo(ch); });
+
     CHAPTERS.forEach(function (ch, index) {
       if (!ch.section) return;
       var pin = ch.section.querySelector('.chapter-pin');
@@ -424,7 +521,11 @@
         pin: pin,
         anticipatePin: 1,
         onToggle: function (self) { ch.visible = self.isActive; },
-        onUpdate: function (self) { ch.progress = self.progress; }
+        onUpdate: function (self) {
+          ch.progress = self.progress;
+          // Hero: dirige o currentTime do vídeo pelo progresso do scroll.
+          if (ch.videoScrub) ch.videoScrub(self.progress);
+        }
       });
 
       // Entrada do texto: por TEMPO (gsap.from), legível assim que o capítulo
