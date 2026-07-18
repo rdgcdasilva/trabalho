@@ -275,6 +275,31 @@ img { max-width: 100%; display: block; }
 #cap-final .chapter-title { max-width: 18ch; margin-left: auto; }
 #cap-final .chapter-lead { max-width: 46ch; margin-left: auto; }
 #cap-final .hero-cta { justify-content: flex-end; }
+/* Ensaio de fecho (substitui o CTA repetido). Alinhado à direita, sobre o
+   espaço negativo/scrim, com largura contida para caber no quadro. */
+#cap-final .final-essay { max-width: 52ch; margin-left: auto; margin-top: 26px; }
+.final-essay-kicker {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.final-essay-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.final-essay-text {
+  font-size: clamp(1rem, 1.9vw, 1.16rem);
+  line-height: 1.6;
+  color: var(--text);
+  text-shadow: 0 1px 12px rgba(18, 19, 26, 0.7);
+}
 /* Scrim enviesado para a direita: reforça a legibilidade sob o texto
    sem escurecer demais a figura à esquerda. Mantém o tom grafite/âmbar. */
 #cap-final .chapter-scrim {
@@ -647,6 +672,7 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
   #cap-final .chapter-title,
   #cap-final .chapter-lead { margin-left: 0; max-width: 100%; }
   #cap-final .hero-cta { justify-content: flex-start; }
+  #cap-final .final-essay { margin-left: 0; max-width: 100%; }
 
   .nav-hamburger { display: flex; }
   .nav-links {
