@@ -111,7 +111,7 @@
        e remova o id da lista abaixo (o motor ignora capítulos sem canvas).
      ============================================================ */
   var CHAPTERS = [
-    { id: 'hero',        title: 'O que move as pessoas',    framesDir: 'assets/frames/hero/',        frameCount: 0, accent: '#f5b301' },
+    { id: 'hero',        title: 'O que move as pessoas',    framesDir: 'assets/frames/hero/',        frameCount: 0, accent: '#f5b301', poster: 'assets/frames/hero/poster.png' },
     { id: 'fluxo',       title: 'Workforce Design & Dados', framesDir: 'assets/frames/fluxo/',       frameCount: 0, accent: '#f5b301' },
     { id: 'acolhimento', title: 'Hospitalidade Org.',       framesDir: 'assets/frames/acolhimento/', frameCount: 0, accent: '#f6c343' },
     { id: 'rigor',       title: 'Pesquisa & Conhecimento',  framesDir: 'assets/frames/rigor/',       frameCount: 0, accent: '#f5b301' },
@@ -235,16 +235,67 @@
     return true;
   }
 
+  // Imagem-pôster real (ex.: referência gerada no Higgsfield) como base do
+  // capítulo, com um scrim grafite/âmbar cinematográfico por cima para manter
+  // o título branco legível — e com o brilho âmbar + motivo estrutural fazendo
+  // "scrub" com o progresso, preservando a animação sobre a foto.
+  function renderPosterBackdrop(ctx, w, h, p, chapter, t) {
+    var accent = chapter.accent || '#f5b301';
+    // 1. imagem real (cover)
+    drawFrameImage(ctx, w, h, chapter.posterImg);
+    // 2. scrim grafite p/ legibilidade (mais denso à esquerda, onde fica o texto)
+    var g = ctx.createLinearGradient(0, 0, w * 0.55, h);
+    g.addColorStop(0, 'rgba(10,11,16,0.62)');
+    g.addColorStop(0.5, 'rgba(12,13,20,0.34)');
+    g.addColorStop(1, 'rgba(10,11,16,0.20)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+    // 3. brilho âmbar em movimento (scrub visível sobre a imagem)
+    var gx = w * (0.12 + p * 0.72);
+    var gy = h * (0.72 - Math.sin(p * Math.PI) * 0.28) + Math.sin(t * 0.5) * 6;
+    var rad = Math.max(w, h) * (0.34 + p * 0.26);
+    var rg = ctx.createRadialGradient(gx, gy, 0, gx, gy, rad);
+    rg.addColorStop(0, hexA(accent, 0.12 + p * 0.10));
+    rg.addColorStop(0.5, hexA(accent, 0.03));
+    rg.addColorStop(1, hexA(accent, 0));
+    ctx.fillStyle = rg;
+    ctx.fillRect(0, 0, w, h);
+    // 4. motivo estrutural (scrub), discreto sobre a foto
+    ctx.save();
+    ctx.globalAlpha = 0.4;
+    drawMotif(ctx, w, h, p, accent, t);
+    ctx.restore();
+    // 5. grão
+    if (noiseTile) {
+      ctx.save();
+      ctx.globalAlpha = 0.035;
+      var pat = ctx.createPattern(noiseTile, 'repeat');
+      if (pat) { ctx.fillStyle = pat; ctx.fillRect(0, 0, w, h); }
+      ctx.restore();
+    }
+    // 6. vinheta
+    var vg = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.2, w / 2, h / 2, Math.max(w, h) * 0.78);
+    vg.addColorStop(0, 'rgba(0,0,0,0)');
+    vg.addColorStop(1, 'rgba(0,0,0,0.5)');
+    ctx.fillStyle = vg;
+    ctx.fillRect(0, 0, w, h);
+  }
+
   function renderChapter(chapter, t) {
     var cv = chapter.canvas, ctx = chapter.ctx;
     if (!cv || !ctx) return;
     var w = cv.width, h = cv.height;
     var p = Math.max(0, Math.min(1, chapter.progress || 0));
-    // Caminho de vídeo/quadros gerados (drop-in). Fallback: placeholder.
+    // Caminho de vídeo/quadros gerados (drop-in). Fallback: pôster real → placeholder.
     if (chapter.useFrames && chapter.frames && chapter.frameCount > 0) {
       var idx = Math.round(p * (chapter.frameCount - 1));
       var img = chapter.frames[idx];
       if (img && img.complete && drawFrameImage(ctx, w, h, img)) return;
+    }
+    // Pôster real (imagem de referência) como base + scrim cinematográfico.
+    if (chapter.posterImg && chapter.posterImg.complete && chapter.posterImg.naturalWidth) {
+      renderPosterBackdrop(ctx, w, h, p, chapter, t);
+      return;
     }
     renderPlaceholder(ctx, w, h, p, chapter, t);
   }
@@ -263,6 +314,23 @@
       img.src = chapter.framesDir + name;
       chapter.frames.push(img);
     }
+  }
+
+  // Carrega uma imagem-pôster real para o capítulo (base do canvas). Ao concluir,
+  // re-renderiza o capítulo para que os modos de desenho único (leve/estático)
+  // também exibam a imagem, e sinaliza o CSS para ocultar a silhueta-placeholder.
+  function initPosterLoader(chapter) {
+    if (!chapter.poster) return;
+    var img = new Image();
+    img.onload = function () {
+      chapter.posterImg = img;
+      root.classList.add('hero-has-poster');
+      if (chapter.canvas && chapter.ctx) {
+        try { sizeCanvas(chapter); renderChapter(chapter, performance.now() / 1000); } catch (e) {}
+      }
+    };
+    img.onerror = function () { chapter.posterImg = null; };
+    img.src = chapter.poster;
   }
 
   function sizeCanvas(chapter) {
@@ -285,6 +353,7 @@
       ch.progress = ch.id === 'hero' ? 0.12 : 0.5; // poster inicial agradável
       ch.visible = false;
       initFrameLoader(ch);
+      initPosterLoader(ch);
     });
   }
 

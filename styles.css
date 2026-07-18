@@ -246,6 +246,9 @@ img { max-width: 100%; display: block; }
   filter: drop-shadow(0 0 40px rgba(245,179,1,0.15));
 }
 @media (max-width: 820px) { .hero-figure { opacity: 0.45; right: -4%; width: 60vw; } }
+/* Com a imagem de referência real carregada, a figura real vem do canvas:
+   a silhueta-placeholder é ocultada para não competir com a foto. */
+html.hero-has-poster .hero-figure { display: none; }
 
 .chapter-kicker {
   text-transform: uppercase;
