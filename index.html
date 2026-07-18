@@ -24,68 +24,108 @@
 
       <ul class="nav-links">
         <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
-        <li><a href="#formacao" data-pt="Formação" data-en="Education">Formação</a></li>
         <li><a href="#carreira" data-pt="Carreira" data-en="Career">Carreira</a></li>
         <li><a href="#pesquisas" data-pt="Projetos" data-en="Projects">Projetos</a></li>
         <li><a href="#publicacoes" data-pt="Publicações" data-en="Publications">Publicações</a></li>
+        <li><a href="#servicos" data-pt="Serviços" data-en="Services">Serviços</a></li>
         <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
         <li>
           <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
         </li>
-        <li>
-          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">
-            <span class="theme-icon" aria-hidden="true">🌙</span>
-          </button>
+        <li class="nav-cta-li">
+          <a href="#contato" class="btn btn-primary btn-sm nav-cta" data-pt="Vamos conversar" data-en="Let's talk">Vamos conversar</a>
         </li>
       </ul>
     </nav>
   </header>
 
+  <!-- Barra de progresso da jornada de scroll -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
   <main>
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-content">
-        <p class="hero-eyebrow" data-pt="Pesquisa · Hospitalidade · People Analytics" data-en="Research · Hospitality · People Analytics">Pesquisa · Hospitalidade · People Analytics</p>
-        <h1 id="hero-title">Rodrigo Cunha da Silva</h1>
-        <p class="hero-tagline"
-           data-pt="Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP, e Especialista de Workforce Design na EDP."
-           data-en="Professor in the Graduate Program in Hospitality (UAM), PhD and Post-Doctorate in Business Administration from USP, and Workforce Design Specialist at EDP.">
-          Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP,
-          e Especialista de Workforce Design na EDP.
-        </p>
-        <p class="hero-intro"
-           data-pt="Meu trabalho integra governança, hospitalidade e análise de dados para revelar o que move as pessoas nas organizações."
-           data-en="My work integrates governance, hospitality, and data analysis to reveal what drives people in organizations.">
-          Meu trabalho integra governança, hospitalidade e análise de dados para revelar o que move as pessoas nas organizações.
-        </p>
-        <div class="hero-cta">
-          <a href="#pesquisas" class="btn btn-primary" data-pt="Ver pesquisas" data-en="View research">Ver pesquisas</a>
-          <a href="#contato" class="btn btn-ghost" data-pt="Entrar em contato" data-en="Get in touch">Entrar em contato</a>
+    <!-- ============================================================
+         CAPÍTULO 1 — HERO · "O que move as pessoas"
+         ============================================================ -->
+    <section class="chapter" id="cap-hero" data-chapter="hero" aria-labelledby="hero-title">
+      <div class="chapter-pin">
+        <canvas class="chapter-canvas" data-canvas="hero" aria-hidden="true"></canvas>
+        <div class="chapter-scrim" aria-hidden="true"></div>
+        <!-- Motivo: figura profissional genérica (silhueta placeholder) -->
+        <div class="hero-figure" aria-hidden="true">
+          <svg viewBox="0 0 200 260" width="100%" height="100%" preserveAspectRatio="xMidYMax meet">
+            <defs>
+              <linearGradient id="figGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f5b301" stop-opacity="0.30"/>
+                <stop offset="1" stop-color="#f5b301" stop-opacity="0.03"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="52" r="34" fill="url(#figGrad)"/>
+            <path d="M28 260 C28 176 60 132 100 132 C140 132 172 176 172 260 Z" fill="url(#figGrad)"/>
+          </svg>
+        </div>
+        <div class="chapter-overlay hero-overlay container">
+          <p class="chapter-kicker reveal" data-pt="Capítulo 01 · O que move as pessoas" data-en="Chapter 01 · What drives people">Capítulo 01 · O que move as pessoas</p>
+          <p class="hero-eyebrow reveal" data-pt="Pesquisa · Hospitalidade · People Analytics" data-en="Research · Hospitality · People Analytics">Pesquisa · Hospitalidade · People Analytics</p>
+          <h1 id="hero-title" class="reveal">Rodrigo Cunha da Silva</h1>
+          <p class="hero-tagline reveal"
+             data-pt="Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP, e Especialista de Workforce Design na EDP."
+             data-en="Professor in the Graduate Program in Hospitality (UAM), PhD and Post-Doctorate in Business Administration from USP, and Workforce Design Specialist at EDP.">
+            Professor no PPG em Hospitalidade (UAM), Doutor e Pós-Doutor em Administração pela USP,
+            e Especialista de Workforce Design na EDP.
+          </p>
+          <p class="hero-intro reveal"
+             data-pt="Meu trabalho integra governança, hospitalidade e análise de dados para revelar o que move as pessoas nas organizações."
+             data-en="My work integrates governance, hospitality, and data analysis to reveal what drives people in organizations.">
+            Meu trabalho integra governança, hospitalidade e análise de dados para revelar o que move as pessoas nas organizações.
+          </p>
+          <div class="hero-cta reveal">
+            <a href="#fluxo" class="btn btn-primary" data-pt="Ver trajetória" data-en="See the journey">Ver trajetória</a>
+            <a href="#contato" class="btn btn-ghost" data-pt="Vamos conversar" data-en="Let's talk">Vamos conversar</a>
+          </div>
+          <p class="scroll-hint reveal" aria-hidden="true" data-pt="role para começar ↓" data-en="scroll to begin ↓">role para começar ↓</p>
         </div>
       </div>
     </section>
 
-    <!-- ==================== SOBRE ==================== -->
-    <section id="sobre" class="section" aria-labelledby="sobre-title">
+    <!-- ============================================================
+         CAPÍTULO 2 — FLUXO · Workforce Design & Dados
+         ============================================================ -->
+    <section class="chapter" id="fluxo" data-chapter="fluxo" aria-labelledby="fluxo-title">
+      <div class="chapter-pin">
+        <canvas class="chapter-canvas" data-canvas="fluxo" aria-hidden="true"></canvas>
+        <div class="chapter-scrim" aria-hidden="true"></div>
+        <div class="chapter-overlay container">
+          <p class="chapter-kicker reveal" data-pt="Capítulo 02 · Fluxo" data-en="Chapter 02 · Flow">Capítulo 02 · Fluxo</p>
+          <h2 id="fluxo-title" class="chapter-title reveal" data-pt="Workforce Design &amp; Dados" data-en="Workforce Design &amp; Data">Workforce Design &amp; Dados</h2>
+          <p class="chapter-lead reveal"
+             data-pt="Pessoas e dados dispersos ganham estrutura: da governança à decisão, transformo ruído em indicadores claros."
+             data-en="Scattered people and data gain structure: from governance to decision, I turn noise into clear indicators.">
+            Pessoas e dados dispersos ganham estrutura: da governança à decisão, transformo ruído em indicadores claros.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo real — EDP / People Analytics -->
+    <section id="sobre-dados" class="section" aria-labelledby="dados-title">
       <div class="container">
-        <p class="section-eyebrow" data-pt="Sobre" data-en="About">Sobre</p>
-        <h2 id="sobre-title" class="section-title"
-            data-pt="Da gestão de pessoas à hospitalidade organizacional"
-            data-en="From people management to organizational hospitality">Da gestão de pessoas à hospitalidade organizacional</h2>
+        <p class="section-eyebrow" data-pt="Workforce Design" data-en="Workforce Design">Workforce Design</p>
+        <h2 id="dados-title" class="section-title"
+            data-pt="Da força de trabalho à decisão orientada por dados"
+            data-en="From workforce to data-driven decisions">Da força de trabalho à decisão orientada por dados</h2>
         <div class="about-grid">
           <div class="about-text">
-            <p data-pt="Sou especialista em workforce design e professor pesquisador em hospitalidade organizacional. Minha trajetória é marcada pela integração entre rigor acadêmico e aplicação prática."
-               data-en="I am a workforce design specialist and a research professor in organizational hospitality. My career is marked by the integration of academic rigor and practical application.">
-              Sou especialista em workforce design e professor pesquisador em hospitalidade
-              organizacional. Minha trajetória é marcada pela integração entre rigor acadêmico e
-              aplicação prática.
+            <p data-pt="Na EDP Energias do Brasil, lidero projetos de Workforce Design e Data Governance, com foco na otimização de estratégias de força de trabalho por meio de governança e análise de dados. Desenvolvo soluções que ampliam a eficiência e causam impacto estratégico na companhia."
+               data-en="At EDP Energias do Brasil, I lead Workforce Design and Data Governance projects, focusing on optimizing workforce strategies through governance and data analysis. I build solutions that enhance efficiency and deliver strategic impact to the company.">
+              Na EDP Energias do Brasil, lidero projetos de Workforce Design e Data Governance, com foco na
+              otimização de estratégias de força de trabalho por meio de governança e análise de dados.
+              Desenvolvo soluções que ampliam a eficiência e causam impacto estratégico na companhia.
             </p>
-            <p data-pt="Como Professor Titular do PPG em Hospitalidade da Universidade Anhembi Morumbi, oriento mestrandos e doutorandos que investigam como as organizações acolhem — ou excluem — seus funcionários e clientes. Minha tese central: a hospitalidade não é ornamento, é estrutura. No contexto empresarial lidero projetos de Workforce Design e Data Governance na EDP."
-               data-en="As a Full Professor in the Graduate Program in Hospitality at Universidade Anhembi Morumbi, I supervise master's and doctoral students investigating how organizations welcome — or exclude — their employees and customers. My central thesis: hospitality is not ornament, it is structure. In the corporate world, I lead Workforce Design and Data Governance projects at EDP.">
-              Como Professor Titular do PPG em Hospitalidade da Universidade Anhembi Morumbi, oriento
-              mestrandos e doutorandos que investigam como as organizações acolhem — ou excluem — seus
-              funcionários e clientes. Minha tese central: a hospitalidade não é ornamento, é estrutura.
-              No contexto empresarial lidero projetos de Workforce Design e Data Governance na EDP.
+            <p data-pt="Ao longo da carreira, construí modelos preditivos de turnover e absenteísmo, dashboards de gestão de pessoas e previsões de demanda — sempre traduzindo grandes volumes de dados em indicadores acionáveis para a liderança."
+               data-en="Throughout my career, I have built predictive models of turnover and absenteeism, people-management dashboards, and demand forecasts — always translating large volumes of data into actionable indicators for leadership.">
+              Ao longo da carreira, construí modelos preditivos de turnover e absenteísmo, dashboards de
+              gestão de pessoas e previsões de demanda — sempre traduzindo grandes volumes de dados em
+              indicadores acionáveis para a liderança.
             </p>
           </div>
           <div class="about-skills" aria-labelledby="skills-title">
@@ -104,61 +144,11 @@
             </ul>
           </div>
         </div>
-
-        <figure class="about-video">
-          <video class="about-video-player" controls preload="metadata" playsinline>
-            <source src="assets/video-rodrigo.mp4" type="video/mp4">
-            <span data-pt="Seu navegador não suporta vídeo." data-en="Your browser does not support video.">Seu navegador não suporta vídeo.</span>
-          </video>
-          <figcaption class="about-video-caption" data-pt="Apresentação" data-en="Introduction">Apresentação</figcaption>
-        </figure>
       </div>
     </section>
 
-    <!-- ==================== FORMAÇÃO ==================== -->
-    <section id="formacao" class="section section-alt" aria-labelledby="formacao-title">
-      <div class="container">
-        <p class="section-eyebrow" data-pt="Formação" data-en="Education">Formação</p>
-        <h2 id="formacao-title" class="section-title" data-pt="Formação acadêmica" data-en="Academic background">Formação acadêmica</h2>
-
-        <ol class="timeline" aria-label="Formação acadêmica">
-          <li class="timeline-item">
-            <div class="timeline-period">2016–2018</div>
-            <div class="timeline-body">
-              <h3 class="timeline-role" data-pt="Pós-Doutorado em Administração" data-en="Postdoctoral Research in Business Administration">Pós-Doutorado em Administração</h3>
-              <p class="timeline-org">FEA — Universidade de São Paulo (USP)</p>
-            </div>
-          </li>
-          <li class="timeline-item">
-            <div class="timeline-period">2010–2013</div>
-            <div class="timeline-body">
-              <h3 class="timeline-role" data-pt="Doutorado Direto em Administração" data-en="Direct Doctorate in Business Administration">Doutorado Direto em Administração</h3>
-              <p class="timeline-org">FEA — USP</p>
-            </div>
-          </li>
-          <li class="timeline-item">
-            <div class="timeline-period">2004–2007</div>
-            <div class="timeline-body">
-              <h3 class="timeline-role" data-pt="Graduação em Administração" data-en="Bachelor's Degree in Business Administration">Graduação em Administração</h3>
-              <p class="timeline-org">Universidade Cidade de São Paulo (UNICID)</p>
-            </div>
-          </li>
-        </ol>
-
-        <div class="cert-block">
-          <h3 class="skills-title" data-pt="Extensão &amp; Certificações" data-en="Extension &amp; Certifications">Extensão &amp; Certificações</h3>
-          <ul class="tags">
-            <li class="tag" data-pt="People Analytics — FIA (2019)" data-en="People Analytics — FIA (2019)">People Analytics — FIA (2019)</li>
-            <li class="tag" data-pt="Análise de Big Data via ML — FIA (2018)" data-en="Big Data Analysis via ML — FIA (2018)">Análise de Big Data via ML — FIA (2018)</li>
-            <li class="tag" data-pt="Python para Data Science — Udemy (2019)" data-en="Python for Data Science — Udemy (2019)">Python para Data Science — Udemy (2019)</li>
-            <li class="tag" data-pt="Power BI — Udemy (2020)" data-en="Power BI — Udemy (2020)">Power BI — Udemy (2020)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== CARREIRA ==================== -->
-    <section id="carreira" class="section" aria-labelledby="carreira-title">
+    <!-- Conteúdo real — Carreira (7 entradas, todas preservadas) -->
+    <section id="carreira" class="section section-alt" aria-labelledby="carreira-title">
       <div class="container">
         <p class="section-eyebrow" data-pt="Carreira" data-en="Career">Carreira</p>
         <h2 id="carreira-title" class="section-title" data-pt="Trajetória profissional" data-en="Professional path">Trajetória profissional</h2>
@@ -308,15 +298,72 @@
       </div>
     </section>
 
-    <!-- ==================== PESQUISAS ==================== -->
+    <!-- ============================================================
+         CAPÍTULO 3 — ACOLHIMENTO · Hospitalidade Organizacional
+         ============================================================ -->
+    <section class="chapter" id="acolhimento" data-chapter="acolhimento" aria-labelledby="acolhimento-title">
+      <div class="chapter-pin">
+        <canvas class="chapter-canvas" data-canvas="acolhimento" aria-hidden="true"></canvas>
+        <div class="chapter-scrim" aria-hidden="true"></div>
+        <div class="chapter-overlay container">
+          <p class="chapter-kicker reveal" data-pt="Capítulo 03 · Acolhimento" data-en="Chapter 03 · Welcome">Capítulo 03 · Acolhimento</p>
+          <h2 id="acolhimento-title" class="chapter-title reveal" data-pt="Hospitalidade Organizacional" data-en="Organizational Hospitality">Hospitalidade Organizacional</h2>
+          <p class="chapter-quote reveal"
+             data-pt="“A hospitalidade não é ornamento, é estrutura.”"
+             data-en="“Hospitality is not ornament, it is structure.”">“A hospitalidade não é ornamento, é estrutura.”</p>
+          <p class="chapter-lead reveal"
+             data-pt="Um espaço frio pode se tornar acolhedor. Investigo como as organizações acolhem — ou excluem — pessoas e clientes."
+             data-en="A cold space can become welcoming. I investigate how organizations welcome — or exclude — people and customers.">
+            Um espaço frio pode se tornar acolhedor. Investigo como as organizações acolhem — ou excluem — pessoas e clientes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo real — Sobre / tese / vídeo -->
+    <section id="sobre" class="section" aria-labelledby="sobre-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Sobre" data-en="About">Sobre</p>
+        <h2 id="sobre-title" class="section-title"
+            data-pt="Da gestão de pessoas à hospitalidade organizacional"
+            data-en="From people management to organizational hospitality">Da gestão de pessoas à hospitalidade organizacional</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p data-pt="Sou especialista em workforce design e professor pesquisador em hospitalidade organizacional. Minha trajetória é marcada pela integração entre rigor acadêmico e aplicação prática."
+               data-en="I am a workforce design specialist and a research professor in organizational hospitality. My career is marked by the integration of academic rigor and practical application.">
+              Sou especialista em workforce design e professor pesquisador em hospitalidade
+              organizacional. Minha trajetória é marcada pela integração entre rigor acadêmico e
+              aplicação prática.
+            </p>
+            <p data-pt="Como Professor Titular do PPG em Hospitalidade da Universidade Anhembi Morumbi, oriento mestrandos e doutorandos que investigam como as organizações acolhem — ou excluem — seus funcionários e clientes. Minha tese central: a hospitalidade não é ornamento, é estrutura. No contexto empresarial lidero projetos de Workforce Design e Data Governance na EDP."
+               data-en="As a Full Professor in the Graduate Program in Hospitality at Universidade Anhembi Morumbi, I supervise master's and doctoral students investigating how organizations welcome — or exclude — their employees and customers. My central thesis: hospitality is not ornament, it is structure. In the corporate world, I lead Workforce Design and Data Governance projects at EDP.">
+              Como Professor Titular do PPG em Hospitalidade da Universidade Anhembi Morumbi, oriento
+              mestrandos e doutorandos que investigam como as organizações acolhem — ou excluem — seus
+              funcionários e clientes. Minha tese central: a hospitalidade não é ornamento, é estrutura.
+              No contexto empresarial lidero projetos de Workforce Design e Data Governance na EDP.
+            </p>
+          </div>
+          <figure class="about-video">
+            <video class="about-video-player" controls preload="metadata" playsinline>
+              <source src="assets/video-rodrigo.mp4" type="video/mp4">
+              <span data-pt="Seu navegador não suporta vídeo." data-en="Your browser does not support video.">Seu navegador não suporta vídeo.</span>
+            </video>
+            <figcaption class="about-video-caption" data-pt="Apresentação" data-en="Introduction">Apresentação</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo real — Projetos / Pesquisas -->
     <section id="pesquisas" class="section section-alt" aria-labelledby="pesquisas-title">
       <div class="container">
         <p class="section-eyebrow" data-pt="Pesquisas" data-en="Research">Pesquisas</p>
         <h2 id="pesquisas-title" class="section-title" data-pt="Projetos realizados e em desenvolvimento" data-en="Completed and ongoing projects">Projetos realizados e em desenvolvimento</h2>
         <p class="section-subtitle"
-           data-pt="Pesquisa em hospitalidade organizacional e People Analytics."
-           data-en="Research in organizational hospitality and People Analytics.">
-          Pesquisa em hospitalidade organizacional e People Analytics.
+           data-pt="Pesquisa em hospitalidade organizacional e People Analytics. O projeto HospGap analisa 212 relatos verbatim de 9 empresas em 5 setores."
+           data-en="Research in organizational hospitality and People Analytics. The HospGap project analyzes 212 verbatim accounts from 9 companies across 5 sectors.">
+          Pesquisa em hospitalidade organizacional e People Analytics. O projeto HospGap analisa 212
+          relatos verbatim de 9 empresas em 5 setores.
         </p>
 
         <div class="cards-grid">
@@ -407,8 +454,69 @@
       </div>
     </section>
 
-    <!-- ==================== PUBLICAÇÕES ==================== -->
-    <section id="publicacoes" class="section" aria-labelledby="publicacoes-title">
+    <!-- ============================================================
+         CAPÍTULO 4 — RIGOR · Pesquisa & Conhecimento
+         ============================================================ -->
+    <section class="chapter" id="rigor" data-chapter="rigor" aria-labelledby="rigor-title">
+      <div class="chapter-pin">
+        <canvas class="chapter-canvas" data-canvas="rigor" aria-hidden="true"></canvas>
+        <div class="chapter-scrim" aria-hidden="true"></div>
+        <div class="chapter-overlay container">
+          <p class="chapter-kicker reveal" data-pt="Capítulo 04 · Rigor" data-en="Chapter 04 · Rigor">Capítulo 04 · Rigor</p>
+          <h2 id="rigor-title" class="chapter-title reveal" data-pt="Pesquisa &amp; Conhecimento" data-en="Research &amp; Knowledge">Pesquisa &amp; Conhecimento</h2>
+          <p class="chapter-lead reveal"
+             data-pt="Método construído camada a camada: da USP à docência, dos livros aos artigos internacionais e working papers."
+             data-en="Method built layer by layer: from USP to teaching, from books to international articles and working papers.">
+            Método construído camada a camada: da USP à docência, dos livros aos artigos internacionais e working papers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo real — Formação -->
+    <section id="formacao" class="section" aria-labelledby="formacao-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Formação" data-en="Education">Formação</p>
+        <h2 id="formacao-title" class="section-title" data-pt="Formação acadêmica" data-en="Academic background">Formação acadêmica</h2>
+
+        <ol class="timeline" aria-label="Formação acadêmica">
+          <li class="timeline-item">
+            <div class="timeline-period">2016–2018</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Pós-Doutorado em Administração" data-en="Postdoctoral Research in Business Administration">Pós-Doutorado em Administração</h3>
+              <p class="timeline-org">FEA — Universidade de São Paulo (USP)</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-period">2010–2013</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Doutorado Direto em Administração" data-en="Direct Doctorate in Business Administration">Doutorado Direto em Administração</h3>
+              <p class="timeline-org">FEA — USP</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-period">2004–2007</div>
+            <div class="timeline-body">
+              <h3 class="timeline-role" data-pt="Graduação em Administração" data-en="Bachelor's Degree in Business Administration">Graduação em Administração</h3>
+              <p class="timeline-org">Universidade Cidade de São Paulo (UNICID)</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="cert-block">
+          <h3 class="skills-title" data-pt="Extensão &amp; Certificações" data-en="Extension &amp; Certifications">Extensão &amp; Certificações</h3>
+          <ul class="tags">
+            <li class="tag" data-pt="People Analytics — FIA (2019)" data-en="People Analytics — FIA (2019)">People Analytics — FIA (2019)</li>
+            <li class="tag" data-pt="Análise de Big Data via ML — FIA (2018)" data-en="Big Data Analysis via ML — FIA (2018)">Análise de Big Data via ML — FIA (2018)</li>
+            <li class="tag" data-pt="Python para Data Science — Udemy (2019)" data-en="Python for Data Science — Udemy (2019)">Python para Data Science — Udemy (2019)</li>
+            <li class="tag" data-pt="Power BI — Udemy (2020)" data-en="Power BI — Udemy (2020)">Power BI — Udemy (2020)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo real — Publicações -->
+    <section id="publicacoes" class="section section-alt" aria-labelledby="publicacoes-title">
       <div class="container">
         <p class="section-eyebrow" data-pt="Publicações" data-en="Publications">Publicações</p>
         <h2 id="publicacoes-title" class="section-title" data-pt="Livros, artigos &amp; capítulos" data-en="Books, articles &amp; chapters">Livros, artigos &amp; capítulos</h2>
@@ -537,7 +645,104 @@
       </div>
     </section>
 
-    <!-- ==================== CONTATO ==================== -->
+    <!-- ============================================================
+         SERVIÇOS — construído somente a partir de conteúdo real
+         ============================================================ -->
+    <section id="servicos" class="section" aria-labelledby="servicos-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Serviços" data-en="Services">Serviços</p>
+        <h2 id="servicos-title" class="section-title" data-pt="Como posso colaborar" data-en="How I can help">Como posso colaborar</h2>
+        <p class="section-subtitle"
+           data-pt="Frentes de trabalho que unem rigor acadêmico e aplicação prática — em pesquisa, dados e hospitalidade organizacional."
+           data-en="Areas of work that unite academic rigor and practical application — in research, data, and organizational hospitality.">
+          Frentes de trabalho que unem rigor acadêmico e aplicação prática — em pesquisa, dados e
+          hospitalidade organizacional.
+        </p>
+
+        <div class="cards-grid">
+          <article class="card service-card">
+            <div class="card-icon" aria-hidden="true">📊</div>
+            <h3 class="project-title" data-pt="Consultoria em People Analytics" data-en="People Analytics Consulting">Consultoria em People Analytics</h3>
+            <p class="card-desc"
+               data-pt="Modelos preditivos de turnover e absenteísmo, dashboards de gestão de pessoas e indicadores para decisão — traduzindo dados de RH em estratégia."
+               data-en="Predictive models of turnover and absenteeism, people-management dashboards, and decision indicators — turning HR data into strategy.">
+              Modelos preditivos de turnover e absenteísmo, dashboards de gestão de pessoas e indicadores
+              para decisão — traduzindo dados de RH em estratégia.
+            </p>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon" aria-hidden="true">🏛️</div>
+            <h3 class="project-title" data-pt="Diagnóstico de Hospitalidade Organizacional" data-en="Organizational Hospitality Diagnosis">Diagnóstico de Hospitalidade Organizacional</h3>
+            <p class="card-desc"
+               data-pt="Avaliação da hospitalidade no nível individual e organizacional com os dois sistemas de avaliação (HospGap), revelando como a organização acolhe pessoas e clientes."
+               data-en="Assessment of hospitality at the individual and organizational level with the two evaluation systems (HospGap), revealing how the organization welcomes people and customers.">
+              Avaliação da hospitalidade no nível individual e organizacional com os dois sistemas de
+              avaliação (HospGap), revelando como a organização acolhe pessoas e clientes.
+            </p>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon" aria-hidden="true">🧭</div>
+            <h3 class="project-title" data-pt="Workforce Design &amp; Data Governance" data-en="Workforce Design &amp; Data Governance">Workforce Design &amp; Data Governance</h3>
+            <p class="card-desc"
+               data-pt="Projetos de otimização de estratégias de força de trabalho por meio de governança e análise de dados, ampliando eficiência e impacto estratégico."
+               data-en="Projects to optimize workforce strategies through governance and data analysis, enhancing efficiency and strategic impact.">
+              Projetos de otimização de estratégias de força de trabalho por meio de governança e análise
+              de dados, ampliando eficiência e impacto estratégico.
+            </p>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon" aria-hidden="true">🎤</div>
+            <h3 class="project-title" data-pt="Palestras &amp; Formação" data-en="Talks &amp; Training">Palestras &amp; Formação</h3>
+            <p class="card-desc"
+               data-pt="Palestras e formações em People Analytics, métodos quantitativos em RH e hospitalidade organizacional — a partir de mais de uma década de docência em MBA (FIA)."
+               data-en="Talks and training in People Analytics, quantitative methods in HR, and organizational hospitality — drawing on over a decade of MBA teaching (FIA).">
+              Palestras e formações em People Analytics, métodos quantitativos em RH e hospitalidade
+              organizacional — a partir de mais de uma década de docência em MBA (FIA).
+            </p>
+          </article>
+
+          <article class="card service-card">
+            <div class="card-icon" aria-hidden="true">🎓</div>
+            <h3 class="project-title" data-pt="Orientação Acadêmica &amp; Mentoria" data-en="Academic Supervision &amp; Mentoring">Orientação Acadêmica &amp; Mentoria</h3>
+            <p class="card-desc"
+               data-pt="Orientação de mestrandos e doutorandos e mentoria de pesquisa em hospitalidade organizacional e gestão de pessoas, no PPG em Hospitalidade da UAM."
+               data-en="Supervision of master's and doctoral students and research mentoring in organizational hospitality and people management, at UAM's Graduate Program in Hospitality.">
+              Orientação de mestrandos e doutorandos e mentoria de pesquisa em hospitalidade organizacional
+              e gestão de pessoas, no PPG em Hospitalidade da UAM.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CAPÍTULO 5 — IMPACTO / FINAL
+         ============================================================ -->
+    <section class="chapter" id="cap-final" data-chapter="final" aria-labelledby="final-title">
+      <div class="chapter-pin">
+        <canvas class="chapter-canvas" data-canvas="final" aria-hidden="true"></canvas>
+        <div class="chapter-scrim" aria-hidden="true"></div>
+        <div class="chapter-overlay container">
+          <p class="chapter-kicker reveal" data-pt="Capítulo 05 · Impacto" data-en="Chapter 05 · Impact">Capítulo 05 · Impacto</p>
+          <h2 id="final-title" class="chapter-title reveal"
+              data-pt="O que move as pessoas nas organizações"
+              data-en="What drives people in organizations">O que move as pessoas nas organizações</h2>
+          <p class="chapter-lead reveal"
+             data-pt="Governança, hospitalidade e dados a serviço de organizações mais humanas e eficientes."
+             data-en="Governance, hospitality, and data serving more human and efficient organizations.">
+            Governança, hospitalidade e dados a serviço de organizações mais humanas e eficientes.
+          </p>
+          <div class="hero-cta reveal">
+            <a href="#contato" class="btn btn-primary" data-pt="Vamos conversar" data-en="Let's talk">Vamos conversar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteúdo real — Contato -->
     <section id="contato" class="section" aria-labelledby="contato-title">
       <div class="container">
         <p class="section-eyebrow" data-pt="Contato" data-en="Contact">Contato</p>
@@ -569,6 +774,11 @@
             </a>
           </li>
         </ul>
+
+        <div class="contato-final-cta">
+          <a href="https://linkedin.com/in/rodrigo-cunha-da-silva-3ab280203" class="btn btn-primary" target="_blank" rel="noopener" data-pt="Conectar no LinkedIn" data-en="Connect on LinkedIn">Conectar no LinkedIn</a>
+          <a href="mailto:rdgcdasilva@gmail.com" class="btn btn-ghost" data-pt="Enviar e-mail" data-en="Send an email">Enviar e-mail</a>
+        </div>
       </div>
     </section>
   </main>
@@ -581,6 +791,10 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Bibliotecas vendorizadas localmente (offline-friendly) -->
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
