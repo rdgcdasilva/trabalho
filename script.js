@@ -112,10 +112,10 @@
      ============================================================ */
   var CHAPTERS = [
     { id: 'hero',        title: 'O que move as pessoas',    framesDir: 'assets/frames/hero/',        frameCount: 0, accent: '#f5b301', poster: 'assets/frames/hero/poster.png' },
-    { id: 'fluxo',       title: 'Workforce Design & Dados', framesDir: 'assets/frames/fluxo/',       frameCount: 0, accent: '#f5b301' },
-    { id: 'acolhimento', title: 'Hospitalidade Org.',       framesDir: 'assets/frames/acolhimento/', frameCount: 0, accent: '#f6c343' },
-    { id: 'rigor',       title: 'Pesquisa & Conhecimento',  framesDir: 'assets/frames/rigor/',       frameCount: 0, accent: '#f5b301' },
-    { id: 'final',       title: 'Impacto',                  framesDir: 'assets/frames/final/',       frameCount: 0, accent: '#f6c343' }
+    { id: 'fluxo',       title: 'Workforce Design & Dados', framesDir: 'assets/frames/fluxo/',       frameCount: 0, accent: '#f5b301', poster: 'assets/frames/fluxo/poster.png' },
+    { id: 'acolhimento', title: 'Hospitalidade Org.',       framesDir: 'assets/frames/acolhimento/', frameCount: 0, accent: '#f6c343', poster: 'assets/frames/acolhimento/poster.png' },
+    { id: 'rigor',       title: 'Pesquisa & Conhecimento',  framesDir: 'assets/frames/rigor/',       frameCount: 0, accent: '#f5b301', poster: 'assets/frames/rigor/poster.png' },
+    { id: 'final',       title: 'Impacto',                  framesDir: 'assets/frames/final/',       frameCount: 0, accent: '#f6c343', poster: 'assets/frames/final/poster.png' }
   ];
 
   /* ============================================================
@@ -393,15 +393,19 @@
     els.forEach(function (el) { el.classList.add('in-view-fade'); io.observe(el); });
   }
 
-  /* ---------- Backdrop de vídeo do Hero (clipe Higgsfield) ----------
+  /* ---------- Backdrop de vídeo do capítulo (clipe Higgsfield) ----------
      Só é chamado no modo cinematográfico (desktop). Injeta o src (o HTML usa
      data-src + preload=none para não baixar em mobile/reduced-motion) e faz
      SCRUB: dirige video.currentTime pelo progresso (0→duração) do ScrollTrigger
-     do Hero. Se os metadados não carregarem ou o vídeo falhar, cai no poster
-     (canvas por baixo) — nunca um quadro em branco. */
-  function initHeroVideo(chapter) {
-    if (!chapter || chapter.id !== 'hero') return;
-    var vid = document.querySelector('video[data-hero-video]');
+     do capítulo. Se os metadados não carregarem ou o vídeo falhar, cai no poster
+     (canvas por baixo) — nunca um quadro em branco.
+
+     O MESMO padrão do Hero é replicado para todos os capítulos com vídeo
+     (fluxo, acolhimento, rigor, final): cada <video data-chapter-video> vive
+     dentro da própria seção e é dirigido pelo progresso do seu ScrollTrigger. */
+  function initChapterVideo(chapter) {
+    if (!chapter || !chapter.section) return;
+    var vid = chapter.section.querySelector('video[data-chapter-video]');
     if (!vid) return;
     chapter.video = vid;
     chapter.videoReady = false;
@@ -438,14 +442,16 @@
     // o poster/canvas por baixo cobre qualquer intervalo até aqui.
     var reveal = function () {
       if (!chapter.video) return;
-      root.classList.add('hero-video-on');
+      vid.classList.add('is-on');
+      if (chapter.section) chapter.section.classList.add('chapter-video-on');
       if (typeof chapter.videoScrub === 'function') chapter.videoScrub(chapter.progress || 0);
     };
     vid.addEventListener('loadeddata', reveal);
     vid.addEventListener('seeked', reveal);
     // Erro só dispara quando NENHUM <source> é decodificável: mantém o poster.
     vid.addEventListener('error', function () {
-      root.classList.remove('hero-video-on');
+      vid.classList.remove('is-on');
+      if (chapter.section) chapter.section.classList.remove('chapter-video-on');
       chapter.videoReady = false;
       chapter.video = null;
     });
@@ -504,8 +510,10 @@
     CHAPTERS.forEach(function (ch) { if (ch.canvas) sizeCanvas(ch); });
     startRenderLoop();
 
-    // Backdrop de vídeo do Hero (scrub por scroll). Só no desktop cinematográfico.
-    CHAPTERS.forEach(function (ch) { if (ch.id === 'hero') initHeroVideo(ch); });
+    // Backdrop de vídeo por capítulo (scrub por scroll). Só no desktop
+    // cinematográfico. Cada capítulo que tiver um <video data-chapter-video>
+    // dentro da sua seção passa a ter o clipe dirigido pelo scroll.
+    CHAPTERS.forEach(function (ch) { initChapterVideo(ch); });
 
     CHAPTERS.forEach(function (ch, index) {
       if (!ch.section) return;

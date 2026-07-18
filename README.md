@@ -15,12 +15,13 @@ localmente** (sem dependência de CDN em tempo de execução — funciona offlin
 
 - **GSAP 3** + **ScrollTrigger** — animações e *pin/scrub* dirigidos pelo scroll.
 - **Lenis** — *smooth scroll* sincronizado com o ScrollTrigger (via `gsap.ticker`).
-- **Canvas com scrub por progresso** — cada capítulo tem um `<canvas>` de tela cheia,
-  *pinado* enquanto o capítulo rola, cujo desenho é dirigido pelo progresso do scroll
-  (0→1). Enquanto os clipes gerados não existem, um **renderizador-placeholder** desenha
-  um gradiente cinematográfico grafite→âmbar que faz *scrub* visível para frente e para
-  trás, com grão, vinheta e um motivo de pontos que se **estruturam** em grade conforme o
-  progresso.
+- **Vídeo cinematográfico com scrub por scroll** — no desktop, cada capítulo embarca um
+  clipe gerado (Higgsfield) cujo `currentTime` é dirigido pelo progresso do scroll (0→1),
+  *pinado* enquanto o capítulo rola. Por baixo do vídeo há um `<canvas>` de tela cheia com
+  o *poster* real do capítulo; se o vídeo falhar (ou em mobile/reduced-motion), o canvas
+  garante a imagem estática — nunca um quadro em branco. Como última rede de segurança, um
+  **renderizador-placeholder** desenha um gradiente grafite→âmbar com grão, vinheta e um
+  motivo de pontos que se **estruturam** em grade conforme o progresso.
 
 As bibliotecas ficam em `assets/vendor/`:
 
@@ -67,48 +68,70 @@ textos com atributos `data-pt`/`data-en`; a escolha é salva no navegador (local
 
 ## Como inserir os vídeos gerados
 
-Toda a integração está preparada em `script.js`, no array de configuração `CHAPTERS`:
+> **Status:** todos os **cinco** capítulos cinematográficos já embarcam clipes reais
+> gerados no **Higgsfield (Cinema Studio Video 3.0)** — Hero, Fluxo, Acolhimento, Rigor e
+> Impacto/Final. Cada clipe é uma peça publicitária fotorrealista (~6 s, 1080p, 16:9, sem
+> áudio), com uma figura profissional genérica **sem rosto**, na mesma casa grafite + âmbar,
+> em continuidade de cena. Os arquivos ficam em `assets/video/<id>.mp4` (+ `.webm`) e o
+> *poster* estático em `assets/frames/<id>/poster.png`. O placeholder de canvas segue
+> presente apenas como rede de segurança (nunca aparece um quadro em branco).
+
+O array de configuração `CHAPTERS` em `script.js` referencia o *poster* real de cada
+capítulo:
 
 ```js
 var CHAPTERS = [
-  { id: 'hero',        framesDir: 'assets/frames/hero/',        frameCount: 0, accent: '#f5b301' },
-  { id: 'fluxo',       framesDir: 'assets/frames/fluxo/',       frameCount: 0, accent: '#f5b301' },
-  { id: 'acolhimento', framesDir: 'assets/frames/acolhimento/', frameCount: 0, accent: '#f6c343' },
-  { id: 'rigor',       framesDir: 'assets/frames/rigor/',       frameCount: 0, accent: '#f5b301' },
-  { id: 'final',       framesDir: 'assets/frames/final/',       frameCount: 0, accent: '#f6c343' }
+  { id: 'hero',        framesDir: 'assets/frames/hero/',        frameCount: 0, accent: '#f5b301', poster: 'assets/frames/hero/poster.png' },
+  { id: 'fluxo',       framesDir: 'assets/frames/fluxo/',       frameCount: 0, accent: '#f5b301', poster: 'assets/frames/fluxo/poster.png' },
+  { id: 'acolhimento', framesDir: 'assets/frames/acolhimento/', frameCount: 0, accent: '#f6c343', poster: 'assets/frames/acolhimento/poster.png' },
+  { id: 'rigor',       framesDir: 'assets/frames/rigor/',       frameCount: 0, accent: '#f5b301', poster: 'assets/frames/rigor/poster.png' },
+  { id: 'final',       framesDir: 'assets/frames/final/',       frameCount: 0, accent: '#f6c343', poster: 'assets/frames/final/poster.png' }
 ];
 ```
 
-### Opção A — sequência de quadros (recomendada, mantém o *scrub*)
+### Como o clipe é integrado (padrão do Hero, replicado em cada capítulo)
 
-1. Extraia os quadros do clipe gerado (ex.: com o Higgsfield), usando o `id` do capítulo:
-
-   ```bash
-   ffmpeg -i cap-fluxo.mp4 -vf fps=24 assets/frames/fluxo/%04d.jpg
-   ```
-
-2. Os arquivos devem ficar em `assets/frames/<id>/0001.jpg`, `0002.jpg`, ...
-3. Ajuste `frameCount` do capítulo para o total de quadros extraídos.
-
-O *loader* tenta carregar `assets/frames/<id>/0001.jpg`; se existir, o canvas passa a
-desenhar o quadro correspondente ao progresso do scroll. Se não existir, cai
-automaticamente no renderizador-placeholder — ou seja, é seguro configurar um capítulo
-por vez.
-
-### Opção B — vídeo simples (sem *scrub* por quadro)
-
-Troque, no `index.html`, o `<canvas data-canvas="<id>">` do capítulo por um `<video>`:
+No `index.html`, dentro do `.chapter-pin`, cada capítulo tem — sobre o `<canvas>` de
+poster e sob o *scrim* + texto — um `<video>` com `data-chapter-video`:
 
 ```html
-<video class="chapter-canvas" src="assets/clips/<id>.mp4"
-       muted loop playsinline autoplay preload="auto"></video>
+<video class="chapter-video" data-chapter-video
+       poster="assets/frames/<id>/poster.png"
+       muted playsinline preload="none" aria-hidden="true">
+  <source data-src="assets/video/<id>.mp4" type="video/mp4">
+  <source data-src="assets/video/<id>.webm" type="video/webm">
+</video>
 ```
 
-e remova esse `id` do array `CHAPTERS` (o motor ignora capítulos sem canvas).
+- **Desktop (modo cinematográfico):** o JS ativa os `<source>` (`data-src` → `src`) só neste
+  modo e faz **scrub** — dirige `video.currentTime` pelo progresso (0→duração) do
+  ScrollTrigger daquele capítulo. Quando um quadro é decodificado, o vídeo recebe a classe
+  `is-on` e cobre o canvas-poster (que fica oculto via `.chapter.chapter-video-on`).
+- **Fallback de hospedagem sem `Range`:** se o *seek* não "pegar", o clipe passa a tocar em
+  **loop mudo** — garante movimento sem quadro preto.
+- **Mobile / `prefers-reduced-motion`:** o vídeo **não** é baixado (`preload=none` e os
+  `data-src` não são ativados); permanece o **poster estático** desenhado no canvas.
 
-> **Status:** os quadros/clipes gerados ainda **não** foram produzidos (dependem do
-> servidor de geração de mídia Higgsfield). Até lá, os capítulos usam o
-> placeholder cinematográfico.
+### Como os clipes foram processados
+
+Cada clipe gerado é baixado (CloudFront) e processado com `ffmpeg`:
+
+```bash
+# MP4 com faststart + keyframes densos (scrub suave)
+ffmpeg -i clipe.mp4 -c:v libx264 -crf 21 -g 12 -keyint_min 12 -sc_threshold 0 \
+       -pix_fmt yuv420p -an -movflags +faststart assets/video/<id>.mp4
+# Alternativa WebM (VP9) com keyframes densos
+ffmpeg -i clipe.mp4 -c:v libvpx-vp9 -b:v 0 -crf 34 -g 12 -an assets/video/<id>.webm
+# Poster estático
+ffmpeg -ss 3 -i clipe.mp4 -frames:v 1 -q:v 2 assets/frames/<id>/poster.png
+```
+
+### Alternativa histórica — sequência de quadros
+
+O *loader* de quadros continua disponível: se existir `assets/frames/<id>/0001.jpg`,
+`0002.jpg`, ... e `frameCount` for ajustado, o canvas desenha o quadro correspondente ao
+progresso (útil para hospedagens sem suporte a *seek* de vídeo). O vídeo `data-chapter-video`
+tem precedência quando presente.
 
 ## Como visualizar localmente
 
@@ -127,7 +150,8 @@ Depois acesse `http://localhost:8000`.
 ├── script.js           # Motor de scroll, canvas + CHAPTERS, idioma (PT/EN), fallbacks
 ├── assets/
 │   ├── vendor/         # GSAP, ScrollTrigger e Lenis (vendorizados localmente)
-│   ├── frames/         # (drop-in) quadros dos clipes gerados: <id>/0001.jpg ...
+│   ├── video/          # clipes cinematográficos por capítulo: <id>.mp4 + <id>.webm
+│   ├── frames/         # posters dos capítulos (<id>/poster.png) e quadros opcionais
 │   ├── video-rodrigo.mp4
 │   ├── guia-ia-hospitalidade-ab.pdf
 │   └── guia-ia-pequenas-empresas.pdf

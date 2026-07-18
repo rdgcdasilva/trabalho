@@ -53,7 +53,7 @@
              O src é injetado por JS APENAS no modo cinematográfico (desktop),
              fazendo scrub de video.currentTime pelo progresso do scroll.
              No mobile/reduced-motion o poster estático permanece (não carrega o vídeo). -->
-        <video class="hero-video" data-hero-video
+        <video class="hero-video chapter-video" data-chapter-video
                poster="assets/frames/hero/poster.png"
                muted playsinline preload="none" aria-hidden="true">
           <source data-src="assets/video/hero.mp4" type="video/mp4">
@@ -103,6 +103,15 @@
     <section class="chapter" id="fluxo" data-chapter="fluxo" aria-labelledby="fluxo-title">
       <div class="chapter-pin">
         <canvas class="chapter-canvas" data-canvas="fluxo" aria-hidden="true"></canvas>
+        <!-- Backdrop cinematográfico: clipe gerado no Higgsfield. src injetado por
+             JS apenas no modo cinematográfico (desktop), com scrub de currentTime
+             pelo progresso do scroll. Mobile/reduced-motion mantêm o poster. -->
+        <video class="chapter-video" data-chapter-video
+               poster="assets/frames/fluxo/poster.png"
+               muted playsinline preload="none" aria-hidden="true">
+          <source data-src="assets/video/fluxo.mp4" type="video/mp4">
+          <source data-src="assets/video/fluxo.webm" type="video/webm">
+        </video>
         <div class="chapter-scrim" aria-hidden="true"></div>
         <div class="chapter-overlay container">
           <p class="chapter-kicker reveal" data-pt="Capítulo 02 · Fluxo" data-en="Chapter 02 · Flow">Capítulo 02 · Fluxo</p>
@@ -314,6 +323,13 @@
     <section class="chapter" id="acolhimento" data-chapter="acolhimento" aria-labelledby="acolhimento-title">
       <div class="chapter-pin">
         <canvas class="chapter-canvas" data-canvas="acolhimento" aria-hidden="true"></canvas>
+        <!-- Backdrop cinematográfico: clipe gerado no Higgsfield (scrub por scroll). -->
+        <video class="chapter-video" data-chapter-video
+               poster="assets/frames/acolhimento/poster.png"
+               muted playsinline preload="none" aria-hidden="true">
+          <source data-src="assets/video/acolhimento.mp4" type="video/mp4">
+          <source data-src="assets/video/acolhimento.webm" type="video/webm">
+        </video>
         <div class="chapter-scrim" aria-hidden="true"></div>
         <div class="chapter-overlay container">
           <p class="chapter-kicker reveal" data-pt="Capítulo 03 · Acolhimento" data-en="Chapter 03 · Welcome">Capítulo 03 · Acolhimento</p>
@@ -470,6 +486,13 @@
     <section class="chapter" id="rigor" data-chapter="rigor" aria-labelledby="rigor-title">
       <div class="chapter-pin">
         <canvas class="chapter-canvas" data-canvas="rigor" aria-hidden="true"></canvas>
+        <!-- Backdrop cinematográfico: clipe gerado no Higgsfield (scrub por scroll). -->
+        <video class="chapter-video" data-chapter-video
+               poster="assets/frames/rigor/poster.png"
+               muted playsinline preload="none" aria-hidden="true">
+          <source data-src="assets/video/rigor.mp4" type="video/mp4">
+          <source data-src="assets/video/rigor.webm" type="video/webm">
+        </video>
         <div class="chapter-scrim" aria-hidden="true"></div>
         <div class="chapter-overlay container">
           <p class="chapter-kicker reveal" data-pt="Capítulo 04 · Rigor" data-en="Chapter 04 · Rigor">Capítulo 04 · Rigor</p>
@@ -734,6 +757,14 @@
     <section class="chapter" id="cap-final" data-chapter="final" aria-labelledby="final-title">
       <div class="chapter-pin">
         <canvas class="chapter-canvas" data-canvas="final" aria-hidden="true"></canvas>
+        <!-- Backdrop cinematográfico: clipe gerado no Higgsfield (scrub por scroll).
+             Termina em quadro estável com espaço livre à direita para o CTA. -->
+        <video class="chapter-video" data-chapter-video
+               poster="assets/frames/final/poster.png"
+               muted playsinline preload="none" aria-hidden="true">
+          <source data-src="assets/video/final.mp4" type="video/mp4">
+          <source data-src="assets/video/final.webm" type="video/webm">
+        </video>
         <div class="chapter-scrim" aria-hidden="true"></div>
         <div class="chapter-overlay container">
           <p class="chapter-kicker reveal" data-pt="Capítulo 05 · Impacto" data-en="Chapter 05 · Impact">Capítulo 05 · Impacto</p>

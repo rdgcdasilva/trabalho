@@ -215,10 +215,13 @@ img { max-width: 100%; display: block; }
   display: block;
   z-index: 0;
 }
-/* Backdrop de vídeo do Hero (clipe Higgsfield). Fica sobre o canvas-poster,
+/* Backdrop de vídeo do capítulo (clipe Higgsfield). Fica sobre o canvas-poster,
    abaixo do scrim e do texto. Oculto até o vídeo estar pronto (evita frame
-   preto); se falhar, o canvas-poster por baixo garante a imagem estática. */
-.hero-video {
+   preto); se falhar, o canvas-poster por baixo garante a imagem estática.
+   O mesmo padrão vale para o Hero e para os capítulos fluxo/acolhimento/
+   rigor/final — cada um tem seu próprio <video data-chapter-video>. */
+.hero-video,
+.chapter-video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -230,9 +233,10 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
   transition: opacity 0.7s ease;
 }
-html.hero-video-on .hero-video { opacity: 1; }
-/* Com o vídeo ativo, o canvas-poster do Hero fica oculto (o vídeo o cobre). */
-html.hero-video-on #cap-hero .chapter-canvas { opacity: 0; }
+.hero-video.is-on,
+.chapter-video.is-on { opacity: 1; }
+/* Com o vídeo ativo, o canvas-poster daquele capítulo fica oculto (o vídeo o cobre). */
+.chapter.chapter-video-on .chapter-canvas { opacity: 0; }
 
 .chapter-scrim {
   position: absolute;
