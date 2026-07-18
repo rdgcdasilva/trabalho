@@ -3,7 +3,7 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches:
-      - claude/slack-session-6o1u10
+      - claude/slack-session-e68n7h
   workflow_dispatch:
 
 permissions:
