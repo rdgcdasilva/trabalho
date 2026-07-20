@@ -87,6 +87,52 @@
     }
   }
 
+  /* ---------- Formulário de lead (isca gratuita) ----------
+     Site estático (sem back-end). O envio real depende de conectar um
+     provedor (Brevo/MailerLite/Formspree) na action do <form>. Enquanto a
+     action continuar sendo o placeholder, NÃO simulamos um envio: validamos
+     no cliente e avisamos que o formulário ainda não está conectado — evitando
+     navegar para uma URL inválida (e mantendo zero erros de console). */
+  function initLeadForm() {
+    var form = document.getElementById('lead-form');
+    if (!form) return;
+    var status = document.getElementById('lead-status');
+    var email = document.getElementById('lead-email');
+    var lang = function () { return root.getAttribute('lang') === 'en' ? 'en' : 'pt'; };
+
+    function say(msg, isError) {
+      if (!status) return;
+      status.hidden = false;
+      status.textContent = msg;
+      status.classList.toggle('lead-status-error', !!isError);
+    }
+
+    form.addEventListener('submit', function (e) {
+      // Validação client-side graciosa (o atributo required cobre o e-mail).
+      var valid = email && email.value && /.+@.+\..+/.test(email.value);
+      if (!valid) {
+        e.preventDefault();
+        if (email) email.classList.add('lead-invalid');
+        say(lang() === 'en'
+          ? 'Please enter a valid email to receive the guide.'
+          : 'Informe um e-mail válido para receber o guia.', true);
+        if (email) email.focus();
+        return;
+      }
+      if (email) email.classList.remove('lead-invalid');
+
+      // Se a action ainda é o placeholder, não envie (evita URL inválida).
+      var action = form.getAttribute('action') || '';
+      if (action.indexOf('__COLE_AQUI') !== -1 || action === '') {
+        e.preventDefault();
+        say(lang() === 'en'
+          ? 'Form not connected yet — plug your Brevo/MailerLite/Formspree endpoint into the form action.'
+          : 'Formulário ainda não conectado — insira o endpoint do Brevo/MailerLite/Formspree na action do formulário.', true);
+      }
+      // Se a action for real, o navegador envia normalmente (POST).
+    });
+  }
+
   /* ============================================================
      2. CONFIGURAÇÃO DOS CAPÍTULOS  (drop-in de vídeo aqui)
      ------------------------------------------------------------
@@ -702,6 +748,7 @@
     setYear();
     initScrollSpy();
     initMobileMenu();
+    initLeadForm();
     var langBtn = document.getElementById('lang-toggle');
     if (langBtn) langBtn.addEventListener('click', toggleLang);
 

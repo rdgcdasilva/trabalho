@@ -45,10 +45,12 @@ canvas + texto sobreposto) se alternam com **seções de conteúdo real**:
    (os 2 sistemas de avaliação de hospitalidade, NotebookLM e os guias de IA).
 4. **Capítulo 04 — Rigor · Pesquisa & Conhecimento** → **Formação** e **Publicações**
    (livros, artigos publicados e working papers de 2026 — HospGap).
-5. **Serviços** — consultoria em People Analytics, diagnóstico de hospitalidade
-   organizacional, Workforce Design & Data Governance, palestras/formação e orientação
-   acadêmica/mentoria.
-6. **Capítulo 05 — Impacto / Final** → **Contato** (Lattes, LinkedIn, e-mail) e CTA final.
+5. **Serviços** (reposicionado, foco acadêmico/independente) — palestras, aulas &
+   formação; guias & curso de IA aplicada; diagnóstico de hospitalidade (hotelaria,
+   food service, varejo, serviços); e People Analytics & métodos quantitativos.
+6. **Produtos & Relatórios** (`#produtos`) — infoprodutos pagos (Hotmart) e a isca
+   gratuita com formulário de lead (`#guia-gratis`). Ver a seção **Monetização**.
+7. **Capítulo 05 — Impacto / Final** → **Contato** (Lattes, LinkedIn, e-mail) e CTA final.
 
 O site é **bilíngue (PT/EN)**: o botão de idioma na barra de navegação alterna todos os
 textos com atributos `data-pt`/`data-en`; a escolha é salva no navegador (localStorage).
@@ -153,10 +155,64 @@ Depois acesse `http://localhost:8000`.
 │   ├── video/          # clipes cinematográficos por capítulo: <id>.mp4 + <id>.webm
 │   ├── frames/         # posters dos capítulos (<id>/poster.png) e quadros opcionais
 │   ├── video-rodrigo.mp4
-│   ├── guia-ia-hospitalidade-ab.pdf
-│   └── guia-ia-pequenas-empresas.pdf
+│   └── guia-ia-pequenas-empresas.pdf   # isca gratuita (entregue via formulário)
 └── README.md
 ```
+
+## Monetização
+
+O site tem uma camada de monetização de caráter **acadêmico e independente**
+(sem relação com o vínculo empregatício do autor — ver disclaimer no rodapé e na
+seção **Produtos**). Todos os preços, links de checkout e a action do formulário
+estão marcados com `<!-- EDITÁVEL -->` no `index.html` para o dono plugar valores
+reais.
+
+### Produtos pagos (Hotmart — substituir placeholders)
+
+Na seção **Produtos & Relatórios** (`#produtos`):
+
+| Produto | Preço (placeholder) | Link de checkout (placeholder Hotmart) |
+| --- | --- | --- |
+| Guia de IA para Hospitalidade & A&B | `R$ 97` | `https://pay.hotmart.com/SEU-LINK-DO-GUIA` |
+| Relatório de Hospitalidade — Individual | `R$ 147` | `https://pay.hotmart.com/SEU-LINK-RELATORIO-INDIVIDUAL` |
+| Relatório de Hospitalidade — Organizacional | `R$ 497` | `https://pay.hotmart.com/SEU-LINK-RELATORIO-ORGANIZACIONAL` |
+
+Os **relatórios** seguem o fluxo *responda o instrumento → adquira o relatório*:
+apontam para os sistemas de avaliação existentes
+(`avaliacao-hospitalidade.html` e `mapeamento-hospitalidade.html`) e entregam um
+relatório que combina **(1)** o resultado das respostas ao instrumento e **(2)**
+uma varredura da avaliação de clientes e funcionários sobre o grau de
+hospitalidade da empresa.
+
+> O guia pago **substitui** o antigo PDF público
+> `assets/guia-ia-hospitalidade-ab.pdf`, que foi **removido dos assets** (o
+> arquivo permanece no histórico do git; o histórico não foi reescrito).
+
+### Isca gratuita + formulário de lead (`#guia-gratis`)
+
+O **Guia Fácil de IA para Pequenas Empresas** é gratuito, mas liberado **somente
+após o envio de um formulário de lead** (não há mais download direto na UI). O
+formulário coleta nome, e-mail (obrigatório), telefone/WhatsApp, empresa, cargo,
+setor, um consentimento de contato e uma linha de LGPD.
+
+Como é um site estático (GitHub Pages, sem back-end), o formulário está **pronto
+para plugar** um provedor. **Recomendado: Brevo** (plano gratuito):
+
+1. Crie o formulário/lista no Brevo e cole a URL de action em
+   `action="__COLE_AQUI_A_URL_DO_FORMULARIO_BREVO__"` no `index.html`.
+2. Confira se os `name=` batem (NOME, EMAIL, TELEFONE, EMPRESA, CARGO, SETOR,
+   CONSENTIMENTO_CONTATO).
+3. Configure a **automação** para: (a) **entregar o PDF** do guia
+   (`assets/guia-ia-pequenas-empresas.pdf` ou anexo hospedado), (b) **double
+   opt-in** e (c) **notificar o lead** para `rdgcdasilva@gmail.com`.
+
+**Alternativas:** **MailerLite** (formulário embarcado + automação equivalente)
+ou **Formspree** (`action="https://formspree.io/f/SEU_ID"`, `_autoresponse` para
+entregar o guia; a notificação chega em `rdgcdasilva@gmail.com`). As instruções
+completas estão em um comentário HTML no bloco `#guia-gratis`.
+
+> Para gating mais rígido, **não** exponha o PDF publicamente — entregue-o apenas
+> pela automação de e-mail.
 
 ## Restauração / backup
 
