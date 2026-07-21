@@ -532,6 +532,8 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 }
 /* Serviços tem 4 cartões: grade 2x2 no desktop evita um cartão órfão sozinho numa 3ª linha */
 #servicos .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Produtos tem 4 cartões: grade 2x2 no desktop evita um cartão órfão sozinho numa 2ª linha */
+#produtos .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -789,6 +791,7 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 @media (max-width: 820px) {
   .about-grid { grid-template-columns: 1fr; gap: 28px; }
   #servicos .cards-grid { grid-template-columns: 1fr; }
+  #produtos .cards-grid { grid-template-columns: 1fr; }
   .hero-overlay, .chapter-overlay { text-align: left; }
 
   /* No mobile o clipe final ocupa a tela toda: o texto/CTA volta a ser
