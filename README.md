@@ -163,8 +163,8 @@ Depois acesse `http://localhost:8000`.
 
 O site tem uma camada de monetização de caráter **acadêmico e independente**
 (sem relação com o vínculo empregatício do autor — ver disclaimer no rodapé e na
-seção **Produtos**). A action do formulário de lead está marcada com
-`<!-- EDITÁVEL -->` no `index.html` para o dono plugar o provedor real.
+seção **Produtos**). O formulário de lead está conectado ao **Formspree**
+(`https://formspree.io/f/mvzeqdwk`) no `index.html`.
 
 ### Produtos pagos (aquisição via Contato)
 
@@ -197,24 +197,26 @@ após o envio de um formulário de lead** (não há mais download direto na UI).
 formulário coleta nome, e-mail (obrigatório), telefone/WhatsApp, empresa, cargo,
 setor, um consentimento de contato e uma linha de LGPD.
 
-Como é um site estático (GitHub Pages, sem back-end), o formulário está **pronto
-para plugar** um provedor. **Recomendado: Brevo** (plano gratuito):
+Como é um site estático (GitHub Pages, sem back-end), o formulário está
+**conectado ao [Formspree](https://formspree.io)**:
 
-1. Crie o formulário/lista no Brevo e cole a URL de action em
-   `action="__COLE_AQUI_A_URL_DO_FORMULARIO_BREVO__"` no `index.html`.
-2. Confira se os `name=` batem (NOME, EMAIL, TELEFONE, EMPRESA, CARGO, SETOR,
-   CONSENTIMENTO_CONTATO).
-3. Configure a **automação** para: (a) **entregar o PDF** do guia
-   (`assets/guia-ia-pequenas-empresas.pdf` ou anexo hospedado), (b) **double
-   opt-in** e (c) **notificar o lead** para `rdgcdasilva@gmail.com`.
+- `action="https://formspree.io/f/mvzeqdwk"`, `method="POST"`. Os campos usam os
+  `name=` `nome`, `email`, `telefone`, `empresa`, `cargo`, `setor` e
+  `quer_contato` (o Formspree os usa como rótulos; `email` vira o *reply-to*).
+  Há ainda um campo oculto `_subject` (assunto do e-mail) e um honeypot
+  anti-spam `_gotcha`.
+- **Aprimoramento progressivo:** com JavaScript, o `script.js` intercepta o
+  envio e faz um `fetch` (AJAX). **No sucesso, o site oculta o formulário e
+  libera o download do guia gratuito** (`assets/guia-ia-pequenas-empresas.pdf`)
+  em um botão bilíngue. No erro, mostra uma mensagem e mantém o formulário para
+  nova tentativa. Sem JavaScript, o `<form>` envia por POST nativo ao Formspree
+  normalmente.
+- O Formspree **encaminha cada lead por e-mail** para `rdgcdasilva@gmail.com`.
 
-**Alternativas:** **MailerLite** (formulário embarcado + automação equivalente)
-ou **Formspree** (`action="https://formspree.io/f/SEU_ID"`, `_autoresponse` para
-entregar o guia; a notificação chega em `rdgcdasilva@gmail.com`). As instruções
-completas estão em um comentário HTML no bloco `#guia-gratis`.
-
-> Para gating mais rígido, **não** exponha o PDF publicamente — entregue-o apenas
-> pela automação de e-mail.
+> **Primeira ativação:** no **primeiro envio real**, o Formspree envia um e-mail
+> de **confirmação** para o dono do formulário. É preciso **confirmar/ativar** o
+> formulário uma única vez para que os leads passem a ser entregues. Esse passo
+> só pode ser concluído pelo dono, no site publicado.
 
 ## Restauração / backup
 

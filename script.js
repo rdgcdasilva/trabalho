@@ -88,15 +88,18 @@
   }
 
   /* ---------- Formulário de lead (isca gratuita) ----------
-     Site estático (sem back-end). O envio real depende de conectar um
-     provedor (Brevo/MailerLite/Formspree) na action do <form>. Enquanto a
-     action continuar sendo o placeholder, NÃO simulamos um envio: validamos
-     no cliente e avisamos que o formulário ainda não está conectado — evitando
-     navegar para uma URL inválida (e mantendo zero erros de console). */
+     Site estático (sem back-end). O formulário está conectado ao Formspree
+     (action="https://formspree.io/f/mvzeqdwk"). Aprimoramento progressivo:
+       - Com JS: intercepta o submit, valida o e-mail e envia via fetch (AJAX).
+         No sucesso, oculta o formulário e revela o DOWNLOAD do guia gratuito.
+         No erro, mostra mensagem bilíngue e mantém o formulário para nova tentativa.
+       - Sem JS: o <form> envia por POST nativo ao Formspree normalmente.
+     Tudo embrulhado em try/catch para nunca gerar erros de console. */
   function initLeadForm() {
     var form = document.getElementById('lead-form');
     if (!form) return;
     var status = document.getElementById('lead-status');
+    var success = document.getElementById('lead-success');
     var email = document.getElementById('lead-email');
     var lang = function () { return root.getAttribute('lang') === 'en' ? 'en' : 'pt'; };
 
@@ -105,6 +108,17 @@
       status.hidden = false;
       status.textContent = msg;
       status.classList.toggle('lead-status-error', !!isError);
+    }
+
+    function showSuccess() {
+      // Oculta o formulário e revela a mensagem de sucesso + botão de download.
+      form.hidden = true;
+      form.style.display = 'none';
+      if (status) { status.hidden = true; status.textContent = ''; }
+      if (success) {
+        success.hidden = false;
+        try { success.focus && success.focus(); } catch (e) {}
+      }
     }
 
     form.addEventListener('submit', function (e) {
@@ -121,15 +135,36 @@
       }
       if (email) email.classList.remove('lead-invalid');
 
-      // Se a action ainda é o placeholder, não envie (evita URL inválida).
       var action = form.getAttribute('action') || '';
-      if (action.indexOf('__COLE_AQUI') !== -1 || action === '') {
-        e.preventDefault();
+      // Sem fetch (navegador muito antigo): deixa o POST nativo acontecer.
+      if (!window.fetch || !action) return;
+
+      // Aprimoramento progressivo: envia via AJAX e revela o guia no sucesso.
+      e.preventDefault();
+      say(lang() === 'en' ? 'Sending…' : 'Enviando…', false);
+      try {
+        fetch(action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+          if (res && res.ok) {
+            showSuccess();
+          } else {
+            say(lang() === 'en'
+              ? 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.'
+              : 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.', true);
+          }
+        }).catch(function () {
+          say(lang() === 'en'
+            ? 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.'
+            : 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.', true);
+        });
+      } catch (err) {
         say(lang() === 'en'
-          ? 'Form not connected yet — plug your Brevo/MailerLite/Formspree endpoint into the form action.'
-          : 'Formulário ainda não conectado — insira o endpoint do Brevo/MailerLite/Formspree na action do formulário.', true);
+          ? 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.'
+          : 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.', true);
       }
-      // Se a action for real, o navegador envia normalmente (POST).
     });
   }
 

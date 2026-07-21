@@ -722,6 +722,22 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 .lead-status { margin-top: 12px; font-size: 0.9rem; font-weight: 600; color: var(--accent); }
 .lead-status.lead-status-error { color: #e88; }
 
+.lead-success {
+  border: 1px solid var(--accent);
+  background: var(--accent-050);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+.lead-success-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.lead-success-desc { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 18px; }
+.lead-download { display: inline-block; }
+
 @media (max-width: 820px) {
   .lead-block { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
   .lead-form { grid-template-columns: 1fr; }

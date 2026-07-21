@@ -898,59 +898,57 @@
 
           <!--
             ============================================================
-            COMO CONECTAR O FORMULÁRIO (site estático — sem back-end)
+            FORMULÁRIO CONECTADO AO FORMSPREE (site estático — sem back-end)
             ============================================================
-            RECOMENDADO: Brevo (plano gratuito). Passos:
-              1. Crie uma lista/contato no Brevo e um formulário (ou use a API de
-                 "Double opt-in").
-              2. Copie a URL de action do formulário Brevo e cole em action=""
-                 abaixo (substituindo __COLE_AQUI_A_URL_DO_FORMULARIO_BREVO__).
-                 Confira os name= dos campos batem com os do Brevo (NOME, EMAIL,
-                 TELEFONE/SMS, EMPRESA, CARGO, SETOR, CONSENTIMENTO).
-              3. Configure uma AUTOMAÇÃO no Brevo para: (a) enviar o PDF do guia
-                 (assets/guia-ia-pequenas-empresas.pdf ou anexo hospedado) ao novo
-                 contato; (b) ativar DOUBLE OPT-IN (confirmação de e-mail); e
-                 (c) enviar um e-mail de NOTIFICAÇÃO do lead para rdgcdasilva@gmail.com.
-            ALTERNATIVAS:
-              - MailerLite: crie um formulário embarcado, use sua action URL e uma
-                automação equivalente (entrega do PDF + double opt-in + notificação).
-              - Formspree: action="https://formspree.io/f/SEU_ID", method="POST";
-                use _autoresponse para entregar o link do guia e o e-mail do form
-                chega em rdgcdasilva@gmail.com como notificação.
-            OBS. GATING: para gating mais rígido, NÃO exponha o PDF publicamente —
-            entregue-o apenas pela automação de e-mail (Brevo/MailerLite/Formspree).
+            O formulário envia para o endpoint do Formspree do dono:
+              action="https://formspree.io/f/mvzeqdwk"  method="POST"
+
+            Como funciona:
+              - Com JavaScript: o envio é feito via fetch (AJAX). No sucesso, o
+                formulário é ocultado e o site libera o DOWNLOAD do guia gratuito
+                (assets/guia-ia-pequenas-empresas.pdf). Progressive enhancement.
+              - Sem JavaScript: o <form> envia normalmente (POST nativo) para o
+                Formspree, que encaminha o lead por e-mail para rdgcdasilva@gmail.com.
+              - Campos ocultos: _subject define o assunto do e-mail; _gotcha é um
+                honeypot anti-spam (deve ficar vazio).
+
+            IMPORTANTE (1ª ativação): no PRIMEIRO envio real, o Formspree envia um
+            e-mail de confirmação para o dono do formulário; é preciso confirmar/
+            ativar o formulário uma única vez para os leads passarem a chegar.
             ============================================================
           -->
-          <!-- EDITÁVEL: conecte seu formulário Brevo (ou MailerLite/Formspree). Configure a automação para (a) enviar o PDF do guia e (b) te notificar o lead -->
-          <form class="lead-form" id="lead-form" action="__COLE_AQUI_A_URL_DO_FORMULARIO_BREVO__" method="POST" novalidate>
+          <form class="lead-form" id="lead-form" action="https://formspree.io/f/mvzeqdwk" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Novo lead — Guia gratuito (site)">
+            <!-- Honeypot anti-spam: deve permanecer vazio (oculto para humanos) -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <div class="lead-field">
               <label for="lead-nome" data-pt="Nome" data-en="Name">Nome</label>
-              <input type="text" id="lead-nome" name="NOME" autocomplete="name">
+              <input type="text" id="lead-nome" name="nome" autocomplete="name">
             </div>
             <div class="lead-field">
               <label for="lead-email" data-pt="E-mail *" data-en="Email *">E-mail *</label>
-              <input type="email" id="lead-email" name="EMAIL" autocomplete="email" required>
+              <input type="email" id="lead-email" name="email" autocomplete="email" required>
             </div>
             <div class="lead-field">
               <label for="lead-tel" data-pt="Telefone / WhatsApp" data-en="Phone / WhatsApp">Telefone / WhatsApp</label>
-              <input type="tel" id="lead-tel" name="TELEFONE" autocomplete="tel">
+              <input type="tel" id="lead-tel" name="telefone" autocomplete="tel">
             </div>
             <div class="lead-field">
               <label for="lead-empresa" data-pt="Empresa" data-en="Company">Empresa</label>
-              <input type="text" id="lead-empresa" name="EMPRESA" autocomplete="organization">
+              <input type="text" id="lead-empresa" name="empresa" autocomplete="organization">
             </div>
             <div class="lead-field">
               <label for="lead-cargo" data-pt="Cargo / Função (opcional)" data-en="Role (optional)">Cargo / Função (opcional)</label>
-              <input type="text" id="lead-cargo" name="CARGO" autocomplete="organization-title">
+              <input type="text" id="lead-cargo" name="cargo" autocomplete="organization-title">
             </div>
             <div class="lead-field">
               <label for="lead-setor" data-pt="Setor / Segmento (opcional)" data-en="Industry (optional)">Setor / Segmento (opcional)</label>
-              <input type="text" id="lead-setor" name="SETOR">
+              <input type="text" id="lead-setor" name="setor">
             </div>
 
             <div class="lead-field lead-field-full lead-consent">
               <label class="lead-check">
-                <input type="checkbox" id="lead-contato" name="CONSENTIMENTO_CONTATO" value="sim">
+                <input type="checkbox" id="lead-contato" name="quer_contato" value="sim">
                 <span data-pt="Gostaria que Rodrigo entrasse em contato para explicar o guia e oferecer uma consultoria de IA para implantá-lo." data-en="I'd like Rodrigo to get in touch to explain the guide and offer AI consulting to implement it.">Gostaria que Rodrigo entrasse em contato para explicar o guia e oferecer uma consultoria de IA para implantá-lo.</span>
               </label>
             </div>
@@ -973,6 +971,13 @@
               <p class="lead-status" id="lead-status" role="status" aria-live="polite" hidden></p>
             </div>
           </form>
+
+          <!-- Mensagem de SUCESSO + download do guia (revelada por JS após envio via fetch) -->
+          <div class="lead-success" id="lead-success" role="status" aria-live="polite" hidden>
+            <p class="lead-success-title" data-pt="Obrigado! Seu guia está pronto." data-en="Thank you! Your guide is ready.">Obrigado! Seu guia está pronto.</p>
+            <p class="lead-success-desc" data-pt="Clique no botão abaixo para baixar o Guia Fácil de IA para Pequenas Empresas." data-en="Click the button below to download the Easy AI Guide for Small Businesses.">Clique no botão abaixo para baixar o Guia Fácil de IA para Pequenas Empresas.</p>
+            <a class="btn btn-primary lead-download" href="assets/guia-ia-pequenas-empresas.pdf" target="_blank" rel="noopener" download data-pt="Baixar o guia gratuito" data-en="Download the free guide">Baixar o guia gratuito</a>
+          </div>
         </div>
 
         <p class="offers-disclaimer"
