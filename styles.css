@@ -325,6 +325,13 @@ img { max-width: 100%; display: block; }
    a silhueta-placeholder é ocultada para não competir com a foto. */
 html.hero-has-poster .hero-figure { display: none; }
 
+/* Opção A: fundos limpos sem pessoas. Oculta a silhueta-figura do Hero e
+   mantém os <video> dos capítulos inertes/ocultos (nenhuma figura aparece);
+   o fundo visível é apenas o placeholder-gradiente grafite→âmbar. */
+html.clean-placeholder .hero-figure { display: none; }
+html.clean-placeholder .hero-video,
+html.clean-placeholder .chapter-video { display: none; }
+
 .chapter-kicker {
   text-transform: uppercase;
   letter-spacing: 3px;

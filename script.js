@@ -156,6 +156,9 @@
                 muted loop playsinline autoplay preload="auto"></video>
        e remova o id da lista abaixo (o motor ignora capítulos sem canvas).
      ============================================================ */
+  // Opção A: fundos limpos sem pessoas. Trocar para false quando os clipes de ambiente vazio (sem figuras) estiverem prontos.
+  var USE_CLEAN_PLACEHOLDER = true;
+
   var CHAPTERS = [
     { id: 'hero',        title: 'O que move as pessoas',    framesDir: 'assets/frames/hero/',        frameCount: 0, accent: '#f5b301', poster: 'assets/frames/hero/poster.png' },
     { id: 'fluxo',       title: 'Workforce Design & Dados', framesDir: 'assets/frames/fluxo/',       frameCount: 0, accent: '#f5b301', poster: 'assets/frames/fluxo/poster.png' },
@@ -366,6 +369,9 @@
   // re-renderiza o capítulo para que os modos de desenho único (leve/estático)
   // também exibam a imagem, e sinaliza o CSS para ocultar a silhueta-placeholder.
   function initPosterLoader(chapter) {
+    // Opção A: fundos limpos sem pessoas — não carrega nenhum pôster (todos
+    // contêm a figura). Mantém o placeholder-gradiente como fundo do capítulo.
+    if (USE_CLEAN_PLACEHOLDER) return;
     if (!chapter.poster) return;
     var img = new Image();
     img.onload = function () {
@@ -450,6 +456,9 @@
      (fluxo, acolhimento, rigor, final): cada <video data-chapter-video> vive
      dentro da própria seção e é dirigido pelo progresso do seu ScrollTrigger. */
   function initChapterVideo(chapter) {
+    // Opção A: fundos limpos sem pessoas — não ativa/toca nenhum vídeo (todos
+    // contêm a figura). O <video> fica inerte (preload=none, sem src).
+    if (USE_CLEAN_PLACEHOLDER) return;
     if (!chapter || !chapter.section) return;
     var vid = chapter.section.querySelector('video[data-chapter-video]');
     if (!vid) return;
@@ -695,6 +704,9 @@
   }
 
   function initMobileVideoBackdrops() {
+    // Opção A: fundos limpos sem pessoas — no mobile também não ativa/toca
+    // nenhum vídeo. Mantém apenas os placeholders-gradiente já renderizados.
+    if (USE_CLEAN_PLACEHOLDER) return;
     CHAPTERS.forEach(initChapterVideoMobile);
 
     if (!('IntersectionObserver' in window)) {
@@ -744,6 +756,9 @@
      5. BOOT
      ============================================================ */
   function boot() {
+    // Opção A: fundos limpos sem pessoas — sinaliza o CSS para ocultar a
+    // silhueta-figura do Hero e os <video> inertes dos capítulos.
+    if (USE_CLEAN_PLACEHOLDER) root.classList.add('clean-placeholder');
     initLang();
     setYear();
     initScrollSpy();
