@@ -534,6 +534,8 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 #servicos .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 /* Produtos tem 4 cartões: grade 2x2 no desktop evita um cartão órfão sozinho numa 2ª linha */
 #produtos .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Projetos tem 3 cartões: grade de 3 colunas no desktop mantém uma linha única sem órfão */
+#pesquisas .cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -792,6 +794,7 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
   .about-grid { grid-template-columns: 1fr; gap: 28px; }
   #servicos .cards-grid { grid-template-columns: 1fr; }
   #produtos .cards-grid { grid-template-columns: 1fr; }
+  #pesquisas .cards-grid { grid-template-columns: 1fr; }
   .hero-overlay, .chapter-overlay { text-align: left; }
 
   /* No mobile o clipe final ocupa a tela toda: o texto/CTA volta a ser
