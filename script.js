@@ -187,8 +187,8 @@
      consentimento — e você pode remover este banner e o bloco GA abaixo.
      ============================================================ */
   var CONSENT_KEY = 'rs-analytics-consent';
-  // EDITÁVEL: substitua G-XXXXXXXXXX pelo seu ID do Google Analytics (GA4)
-  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  // ID real do Google Analytics 4 (GA4) do site.
+  var GA_MEASUREMENT_ID = 'G-3XJ5YN4QRW';
   var gaLoaded = false;
 
   function loadGA() {
