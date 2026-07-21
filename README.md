@@ -163,19 +163,21 @@ Depois acesse `http://localhost:8000`.
 
 O site tem uma camada de monetização de caráter **acadêmico e independente**
 (sem relação com o vínculo empregatício do autor — ver disclaimer no rodapé e na
-seção **Produtos**). Todos os preços, links de checkout e a action do formulário
-estão marcados com `<!-- EDITÁVEL -->` no `index.html` para o dono plugar valores
-reais.
+seção **Produtos**). A action do formulário de lead está marcada com
+`<!-- EDITÁVEL -->` no `index.html` para o dono plugar o provedor real.
 
-### Produtos pagos (Hotmart — substituir placeholders)
+### Produtos pagos (aquisição via Contato)
 
-Na seção **Produtos & Relatórios** (`#produtos`):
+Na seção **Produtos & Relatórios** (`#produtos`), os produtos pagos **não** exibem
+preço nem usam checkout do Hotmart. Cada card traz um único CTA
+**"Fale comigo para adquirir"** (`Get in touch to purchase`) que leva à seção
+**Contato** (`#contato`), onde o interessado fala diretamente com o autor para
+adquirir. Os produtos pagos são:
 
-| Produto | Preço (placeholder) | Link de checkout (placeholder Hotmart) |
-| --- | --- | --- |
-| Guia de IA para Hospitalidade & A&B | `R$ 97` | `https://pay.hotmart.com/SEU-LINK-DO-GUIA` |
-| Relatório de Hospitalidade — Individual | `R$ 147` | `https://pay.hotmart.com/SEU-LINK-RELATORIO-INDIVIDUAL` |
-| Relatório de Hospitalidade — Organizacional | `R$ 497` | `https://pay.hotmart.com/SEU-LINK-RELATORIO-ORGANIZACIONAL` |
+- Guia de IA para Hospitalidade & A&B
+- Formação: IA para Alavancar a Carreira
+- Relatório de Hospitalidade — Individual
+- Relatório de Hospitalidade — Organizacional
 
 Os **relatórios** seguem o fluxo *responda o instrumento → adquira o relatório*:
 apontam para os sistemas de avaliação existentes
