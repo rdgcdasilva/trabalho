@@ -134,6 +134,81 @@
   }
 
   /* ============================================================
+     1b. CONSENTIMENTO DE ANALYTICS (LGPD) + carregamento do GA4
+     ------------------------------------------------------------
+     O Google Analytics 4 só é carregado APÓS o consentimento explícito
+     do usuário ("Aceitar"). A escolha é salva em localStorage e respeitada
+     em visitas futuras (o banner não reaparece). Sem consentimento — ou com
+     "Recusar" — o GA NÃO é carregado (nenhum cookie de análise é gravado).
+
+     Dependency-free: não quebra se o ID-placeholder permanecer — o gtag com um
+     ID falso simplesmente não reporta (sem erros que travem a página).
+
+     >>> ALTERNATIVA SEM COOKIES (Plausible) <<<
+     Se preferir métricas sem cookies e sem banner de consentimento, use o
+     Plausible Analytics (https://plausible.io): basta uma única tag
+     <script defer data-domain="SEU_DOMINIO" src="https://plausible.io/js/script.js"></script>
+     no <head>. Ele não usa cookies nem coleta dados pessoais — dispensando o
+     consentimento — e você pode remover este banner e o bloco GA abaixo.
+     ============================================================ */
+  var CONSENT_KEY = 'rs-analytics-consent';
+  // EDITÁVEL: substitua G-XXXXXXXXXX pelo seu ID do Google Analytics (GA4)
+  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  var gaLoaded = false;
+
+  function loadGA() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    // Injeta dinamicamente o snippet gtag oficial do GA4.
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_MEASUREMENT_ID);
+    // Se a rede/ID falhar, apenas ignora — não quebra a página.
+    s.onerror = function () {};
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+  }
+
+  function initConsent() {
+    var banner = document.getElementById('consent-banner');
+    if (!banner) return;
+
+    var choice = null;
+    try { choice = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+
+    if (choice === 'accepted') { loadGA(); return; } // já consentiu: carrega, sem mostrar banner
+    if (choice === 'declined') { return; }           // já recusou: não carrega nem mostra
+
+    // Sem decisão ainda (primeira visita): mostra o banner.
+    banner.hidden = false;
+    // reflow → garante a transição de entrada (slide-up)
+    void banner.offsetHeight;
+    banner.classList.add('is-visible');
+
+    function close() {
+      banner.classList.remove('is-visible');
+      banner.hidden = true;
+    }
+
+    var accept = document.getElementById('consent-accept');
+    var decline = document.getElementById('consent-decline');
+
+    if (accept) accept.addEventListener('click', function () {
+      try { localStorage.setItem(CONSENT_KEY, 'accepted'); } catch (e) {}
+      loadGA();
+      close();
+    });
+    if (decline) decline.addEventListener('click', function () {
+      try { localStorage.setItem(CONSENT_KEY, 'declined'); } catch (e) {}
+      close();
+    });
+  }
+
+  /* ============================================================
      2. CONFIGURAÇÃO DOS CAPÍTULOS  (drop-in de vídeo aqui)
      ------------------------------------------------------------
      Cada capítulo tem um <canvas data-canvas="<id>">. Enquanto não
@@ -761,6 +836,7 @@
     if (USE_CLEAN_PLACEHOLDER) root.classList.add('clean-placeholder');
     initLang();
     setYear();
+    initConsent();
     initScrollSpy();
     initMobileMenu();
     initLeadForm();

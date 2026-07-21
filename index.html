@@ -444,7 +444,7 @@
           <!-- Sistema A -->
           <article class="card project-card system-card">
             <div class="card-icon" aria-hidden="true">👤</div>
-            <h3 class="project-title">Sistema de Avaliação de Hospitalidade Individual</h3>
+            <h3 class="project-title" data-pt="Sistema de Avaliação de Hospitalidade Individual" data-en="Individual Hospitality Assessment System">Sistema de Avaliação de Hospitalidade Individual</h3>
             <p class="card-desc"
                data-pt="Voltado ao próprio profissional: oferece um olhar sobre como ele está nessa competência de hospitalidade — como acolhe e é percebido no dia a dia. Instrumento para diagnóstico da hospitalidade percebida no nível do indivíduo. Deriva do trabalho de análise verbatim do HospGap, traduzindo relatos e percepções em indicadores claros sobre como cada pessoa é acolhida — ou não — em sua organização."
                data-en="Aimed at the professional themselves: it offers a lens on how they stand in this hospitality competency — how they welcome and are perceived day to day. An instrument for diagnosing perceived hospitality at the individual level. Derived from the HospGap verbatim analysis work, translating accounts and perceptions into clear indicators of how each person is welcomed — or not — in their organization.">
@@ -465,7 +465,7 @@
           <!-- Sistema B -->
           <article class="card project-card system-card">
             <div class="card-icon" aria-hidden="true">🏛️</div>
-            <h3 class="project-title">Sistema de Avaliação de Hospitalidade Organizacional</h3>
+            <h3 class="project-title" data-pt="Sistema de Avaliação de Hospitalidade Organizacional" data-en="Organizational Hospitality Assessment System">Sistema de Avaliação de Hospitalidade Organizacional</h3>
             <p class="card-desc"
                data-pt="Voltado a dirigentes de empresas que querem conhecer o posicionamento da organização no modelo de hospitalidade organizacional desenvolvido por Rodrigo, e como ela se situa em relação aos concorrentes e ao setor em que atua. Mapeamento da hospitalidade organizacional a partir de dados públicos (Indeed/Glassdoor + Reclame Aqui). Operacionaliza o constructo HospGap como um sistema de indicadores mensuráveis, permitindo o diagnóstico comparativo entre empresas e setores."
                data-en="Aimed at company executives who want to understand the organization's positioning within Rodrigo's organizational hospitality model, and how it stands relative to competitors and its sector. Mapping of organizational hospitality from public data (Indeed/Glassdoor + Reclame Aqui). It operationalizes the HospGap construct as a system of measurable indicators, enabling comparative diagnosis across companies and sectors.">
@@ -1086,6 +1086,30 @@
       </p>
     </div>
   </footer>
+
+  <!-- ==================== BANNER DE CONSENTIMENTO (LGPD · cookies/analytics) ====================
+       Barra inferior on-brand (grafite + âmbar). Aparece na primeira visita; a
+       escolha ("Aceitar"/"Recusar") fica salva em localStorage e é respeitada
+       nas próximas visitas. O Google Analytics (GA4) só é carregado após
+       "Aceitar" — ver initConsent() em script.js. -->
+  <div class="consent-banner" id="consent-banner" role="dialog"
+       aria-label="Aviso de cookies e analytics" aria-live="polite" hidden>
+    <div class="consent-inner">
+      <p class="consent-text"
+         data-pt="Usamos cookies de análise (Google Analytics) para entender, de forma agregada, como o site é usado. Eles só são ativados com o seu consentimento. Saiba mais na &lt;a class=&quot;consent-link&quot; href=&quot;privacidade.html&quot;&gt;Política de Privacidade&lt;/a&gt;."
+         data-en="We use analytics cookies (Google Analytics) to understand, in aggregate, how the site is used. They are only activated with your consent. Learn more in our &lt;a class=&quot;consent-link&quot; href=&quot;privacidade.html&quot;&gt;Privacy Policy&lt;/a&gt;.">
+        Usamos cookies de análise (Google Analytics) para entender, de forma agregada, como o site é
+        usado. Eles só são ativados com o seu consentimento. Saiba mais na
+        <a class="consent-link" href="privacidade.html">Política de Privacidade</a>.
+      </p>
+      <div class="consent-actions">
+        <button type="button" class="btn btn-ghost btn-sm" id="consent-decline"
+                data-pt="Recusar" data-en="Decline">Recusar</button>
+        <button type="button" class="btn btn-primary btn-sm" id="consent-accept"
+                data-pt="Aceitar" data-en="Accept">Aceitar</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Bibliotecas vendorizadas localmente (offline-friendly) -->
   <script src="assets/vendor/gsap.min.js" defer></script>
