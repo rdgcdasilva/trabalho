@@ -231,7 +231,9 @@ git checkout backup-pre-cinematic
 
 O site é publicado gratuitamente via GitHub Pages e está disponível em:
 
-**https://rdgcdasilva.github.io/trabalho/**
+**https://www.rodrigocunhadasilva.com.br/**
+
+Também acessível pela URL do projeto no GitHub Pages: https://rdgcdasilva.github.io/trabalho/
 
 Como não há etapa de build, nenhuma configuração adicional é necessária: os arquivos na
 raiz do repositório são servidos diretamente.
