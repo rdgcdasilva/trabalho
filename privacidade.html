@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Política de Privacidade e aviso de LGPD do site de Rodrigo Cunha da Silva. Como os dados coletados pelo formulário do guia gratuito são usados e quais são os seus direitos.">
+  <title>Política de Privacidade · Rodrigo Cunha da Silva</title>
+  <link rel="canonical" href="https://rdgcdasilva.github.io/trabalho/privacidade.html">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <style>
+    /* Página estática de política — reaproveita os tokens de styles.css */
+    .policy-header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(160%) blur(12px);
+      -webkit-backdrop-filter: saturate(160%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-header-inner {
+      max-width: var(--maxw); margin: 0 auto;
+      height: var(--nav-h); padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .policy-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 600; color: var(--accent);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .policy-back:hover { color: var(--accent-600); transform: translateX(-2px); }
+    .policy-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .policy-main { padding: clamp(48px, 8vw, 84px) 0 clamp(60px, 9vw, 100px); }
+    .policy-wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+    .policy-kicker {
+      text-transform: uppercase; letter-spacing: 2px;
+      font-size: 0.76rem; font-weight: 700; color: var(--accent); margin-bottom: 10px;
+    }
+    .policy-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08;
+      letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px;
+    }
+    .policy-updated { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 8px; }
+    .policy-lang-note {
+      color: var(--text-muted); font-size: 0.92rem;
+      border-left: 3px solid var(--accent); background: var(--accent-020);
+      padding: 12px 16px; border-radius: var(--radius-sm); margin-top: 20px;
+    }
+    .policy-section {
+      margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--border);
+    }
+    .policy-section:first-of-type { border-top: none; }
+    .policy-lang-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.4vw, 2rem); letter-spacing: -0.02em;
+      color: var(--accent); margin-bottom: 6px;
+    }
+    .policy-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.6vw, 1.5rem); letter-spacing: -0.01em;
+      color: var(--text); margin: 34px 0 12px;
+    }
+    .policy-wrap p { color: var(--text-muted); font-size: 1.02rem; margin-bottom: 14px; }
+    .policy-wrap ul { list-style: none; margin: 0 0 14px; padding: 0; }
+    .policy-wrap ul li {
+      color: var(--text-muted); font-size: 1.02rem;
+      padding: 6px 0 6px 22px; position: relative;
+    }
+    .policy-wrap ul li::before {
+      content: ""; position: absolute; left: 2px; top: 15px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .policy-wrap a.inline-link {
+      color: var(--accent); border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .policy-wrap a.inline-link:hover { border-bottom-color: var(--accent); }
+    .policy-wrap strong { color: var(--text); }
+    .policy-footer {
+      background: var(--bg-2); border-top: 1px solid var(--border);
+      padding: 26px 0; text-align: center;
+    }
+    .policy-footer p { color: var(--text-muted); font-size: 0.9rem; }
+    .policy-footer a { color: var(--accent); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="policy-header">
+    <div class="policy-header-inner">
+      <a href="index.html" class="policy-back" aria-label="Voltar ao site">
+        <span aria-hidden="true">←</span>
+        <span>Voltar ao site · Back to site</span>
+      </a>
+      <span class="policy-brand">
+        <span class="brand-mark" aria-hidden="true">RC</span>
+        <span class="brand-text">Rodrigo Cunha da Silva</span>
+      </span>
+    </div>
+  </header>
+
+  <main class="policy-main">
+    <div class="policy-wrap">
+      <p class="policy-kicker">LGPD · Lei nº 13.709/2018</p>
+      <h1 class="policy-h1">Política de Privacidade · Privacy Policy</h1>
+      <p class="policy-updated"><strong>Última atualização / Last updated:</strong> 21 de julho de 2026 (2026-07-21)</p>
+      <p class="policy-lang-note">
+        Este documento está disponível em português e em inglês. Role para ler as duas versões. ·
+        This document is available in Portuguese and English. Scroll to read both versions.
+      </p>
+
+      <!-- ==================== PORTUGUÊS ==================== -->
+      <section class="policy-section" lang="pt-BR" aria-labelledby="pt-title">
+        <h2 class="policy-lang-title" id="pt-title">Português</h2>
+
+        <p>
+          Esta Política de Privacidade descreve como os dados pessoais coletados neste site
+          (<a class="inline-link" href="https://rdgcdasilva.github.io/trabalho/">rdgcdasilva.github.io/trabalho</a>)
+          são tratados, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).
+          Trata-se de um site pessoal e estático, de caráter acadêmico e independente.
+        </p>
+
+        <h3 class="policy-h2">1. Controlador e contato</h3>
+        <p>
+          O responsável pelo tratamento dos dados (controlador) é <strong>Rodrigo Cunha da Silva</strong>.
+          Para qualquer questão relativa a esta política ou aos seus dados, entre em contato pelo e-mail
+          <a class="inline-link" href="mailto:rdgcdasilva@gmail.com">rdgcdasilva@gmail.com</a>.
+        </p>
+
+        <h3 class="policy-h2">2. Quais dados são coletados</h3>
+        <p>
+          Os dados pessoais são coletados apenas quando você preenche, de forma voluntária, o
+          formulário do guia gratuito (“Guia Fácil de IA para Pequenas Empresas”). São eles:
+        </p>
+        <ul>
+          <li><strong>Nome</strong>;</li>
+          <li><strong>E-mail</strong> (obrigatório para o envio do guia);</li>
+          <li><strong>Telefone / WhatsApp</strong> (opcional);</li>
+          <li><strong>Empresa</strong> (opcional);</li>
+          <li><strong>Cargo / função</strong> (opcional);</li>
+          <li><strong>Setor / segmento</strong> (opcional);</li>
+          <li>o registro do seu <strong>consentimento</strong>, incluindo a opção, se marcada, de ser
+            contatado por Rodrigo para explicar o guia e apresentar uma consultoria de IA.</li>
+        </ul>
+        <p>
+          O site é estático e não utiliza, atualmente, cookies próprios de rastreamento nem ferramentas
+          de analytics. Caso, no futuro, uma ferramenta de análise de acesso (por exemplo, o Google
+          Analytics) venha a ser habilitada, ela poderá coletar dados de navegação anonimizados ou
+          pseudonimizados (como páginas visitadas e dados aproximados de dispositivo), e esta política
+          será atualizada para refletir esse uso.
+        </p>
+
+        <h3 class="policy-h2">3. Finalidade e base legal</h3>
+        <p>Os dados fornecidos no formulário são utilizados para:</p>
+        <ul>
+          <li>entregar o guia gratuito por e-mail;</li>
+          <li>enviar comunicações relacionadas ao material e a conteúdos afins;</li>
+          <li>eventualmente entrar em contato sobre serviços de consultoria — <strong>somente</strong> se
+            você tiver marcado essa opção no formulário.</li>
+        </ul>
+        <p>
+          A base legal para esse tratamento é o seu <strong>consentimento</strong> (art. 7º, I, da LGPD),
+          fornecido ao enviar o formulário. Você pode revogar esse consentimento a qualquer momento.
+        </p>
+
+        <h3 class="policy-h2">4. Compartilhamento e operadores</h3>
+        <p>
+          Não vendemos nem cedemos seus dados. Para operar a lista de contatos e entregar o guia, os
+          dados podem ser armazenados e processados por uma <strong>plataforma de e-mail marketing</strong>
+          (por exemplo, Brevo ou MailerLite), que atua como operadora de dados. Caso uma ferramenta de
+          <strong>web analytics</strong> (por exemplo, Google Analytics) seja habilitada no futuro, ela
+          também atuará como operadora terceirizada. Esses provedores tratam os dados apenas para as
+          finalidades acima e conforme suas próprias políticas de privacidade.
+        </p>
+
+        <h3 class="policy-h2">5. Retenção dos dados</h3>
+        <p>
+          Seus dados são mantidos enquanto durar a relação de comunicação (por exemplo, enquanto você
+          permanecer inscrito na lista) ou até que você solicite sua exclusão ou revogue o consentimento.
+          Após isso, os dados são eliminados, ressalvadas as hipóteses de guarda exigidas por lei.
+        </p>
+
+        <h3 class="policy-h2">6. Seus direitos (LGPD)</h3>
+        <p>Nos termos da LGPD, você pode, a qualquer momento, solicitar:</p>
+        <ul>
+          <li>o <strong>acesso</strong> aos seus dados;</li>
+          <li>a <strong>correção</strong> de dados incompletos, inexatos ou desatualizados;</li>
+          <li>a <strong>exclusão</strong> (eliminação) dos seus dados;</li>
+          <li>a <strong>portabilidade</strong> dos dados;</li>
+          <li>a <strong>revogação do consentimento</strong> e o descadastramento das comunicações.</li>
+        </ul>
+        <p>
+          Para exercer qualquer um desses direitos, basta enviar um e-mail para
+          <a class="inline-link" href="mailto:rdgcdasilva@gmail.com">rdgcdasilva@gmail.com</a>.
+        </p>
+
+        <h3 class="policy-h2">7. Alterações desta política</h3>
+        <p>
+          Esta política pode ser atualizada para refletir mudanças no site ou na legislação. A data da
+          última atualização é sempre indicada no topo deste documento.
+        </p>
+      </section>
+
+      <!-- ==================== ENGLISH ==================== -->
+      <section class="policy-section" lang="en" aria-labelledby="en-title">
+        <h2 class="policy-lang-title" id="en-title">English</h2>
+
+        <p>
+          This Privacy Policy describes how the personal data collected on this website
+          (<a class="inline-link" href="https://rdgcdasilva.github.io/trabalho/">rdgcdasilva.github.io/trabalho</a>)
+          is processed, in accordance with the Brazilian General Data Protection Law
+          (LGPD — Law No. 13,709/2018). This is a personal, static website of an academic and
+          independent nature.
+        </p>
+
+        <h3 class="policy-h2">1. Controller and contact</h3>
+        <p>
+          The person responsible for processing the data (the controller) is
+          <strong>Rodrigo Cunha da Silva</strong>. For any question regarding this policy or your data,
+          please contact
+          <a class="inline-link" href="mailto:rdgcdasilva@gmail.com">rdgcdasilva@gmail.com</a>.
+        </p>
+
+        <h3 class="policy-h2">2. What data is collected</h3>
+        <p>
+          Personal data is collected only when you voluntarily fill in the free-guide form
+          (“Easy AI Guide for Small Businesses”). This includes:
+        </p>
+        <ul>
+          <li><strong>Name</strong>;</li>
+          <li><strong>Email</strong> (required to deliver the guide);</li>
+          <li><strong>Phone / WhatsApp</strong> (optional);</li>
+          <li><strong>Company</strong> (optional);</li>
+          <li><strong>Role</strong> (optional);</li>
+          <li><strong>Industry / segment</strong> (optional);</li>
+          <li>a record of your <strong>consent</strong>, including the option, if checked, to be
+            contacted by Rodrigo to explain the guide and present AI consulting.</li>
+        </ul>
+        <p>
+          The website is static and does not currently use its own tracking cookies or analytics tools.
+          If, in the future, a web analytics tool (for example, Google Analytics) is enabled, it may
+          collect anonymized or pseudonymized browsing data (such as pages visited and approximate device
+          data), and this policy will be updated to reflect that use.
+        </p>
+
+        <h3 class="policy-h2">3. Purpose and legal basis</h3>
+        <p>The data provided in the form is used to:</p>
+        <ul>
+          <li>deliver the free guide by email;</li>
+          <li>send communications related to the material and similar content;</li>
+          <li>eventually make contact about consulting services — <strong>only</strong> if you checked
+            that option in the form.</li>
+        </ul>
+        <p>
+          The legal basis for this processing is your <strong>consent</strong> (art. 7, I, of the LGPD),
+          given when you submit the form. You may withdraw this consent at any time.
+        </p>
+
+        <h3 class="policy-h2">4. Sharing and processors</h3>
+        <p>
+          We do not sell or transfer your data. To operate the contact list and deliver the guide, the
+          data may be stored and processed by an <strong>email marketing platform</strong> (for example,
+          Brevo or MailerLite), acting as a data processor. If a <strong>web analytics</strong> tool
+          (for example, Google Analytics) is enabled in the future, it will also act as a third-party
+          processor. These providers process the data only for the purposes above and in accordance with
+          their own privacy policies.
+        </p>
+
+        <h3 class="policy-h2">5. Data retention</h3>
+        <p>
+          Your data is kept for as long as the communication relationship lasts (for example, while you
+          remain subscribed to the list) or until you request its deletion or withdraw your consent.
+          After that, the data is deleted, except where retention is required by law.
+        </p>
+
+        <h3 class="policy-h2">6. Your rights (LGPD)</h3>
+        <p>Under the LGPD, you may, at any time, request:</p>
+        <ul>
+          <li><strong>access</strong> to your data;</li>
+          <li><strong>correction</strong> of incomplete, inaccurate, or outdated data;</li>
+          <li><strong>deletion</strong> of your data;</li>
+          <li><strong>portability</strong> of the data;</li>
+          <li><strong>withdrawal of consent</strong> and unsubscription from communications.</li>
+        </ul>
+        <p>
+          To exercise any of these rights, simply send an email to
+          <a class="inline-link" href="mailto:rdgcdasilva@gmail.com">rdgcdasilva@gmail.com</a>.
+        </p>
+
+        <h3 class="policy-h2">7. Changes to this policy</h3>
+        <p>
+          This policy may be updated to reflect changes to the website or to the law. The date of the
+          last update is always shown at the top of this document.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="policy-footer">
+    <div class="policy-wrap">
+      <p>
+        &copy; <span id="year">2026</span> Rodrigo Cunha da Silva ·
+        <a href="index.html">Voltar ao site · Back to site</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
