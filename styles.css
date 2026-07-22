@@ -555,8 +555,8 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 }
 /* Serviços tem 4 cartões: grade 2x2 no desktop evita um cartão órfão sozinho numa 3ª linha */
 #servicos .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-/* Produtos tem 4 cartões: grade 2x2 no desktop evita um cartão órfão sozinho numa 2ª linha */
-#produtos .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Produtos tem 5 cartões: grade fluida (auto-fit) evita órfão e distribui bem as linhas no desktop */
+#produtos .cards-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 /* Projetos tem 3 cartões: grade de 3 colunas no desktop mantém uma linha única sem órfão */
 #pesquisas .cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .card {
