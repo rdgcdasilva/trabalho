@@ -17,32 +17,56 @@
   var LANG_KEY = 'rs-lang';
 
   /* ============================================================
-     1. IDIOMA (PT / EN)  — preservado do site original
+     1. IDIOMA (PT / EN / ES)  — seletor de 3 idiomas
+     ------------------------------------------------------------
+     setLang(lang) aplica data-<lang> a todo elemento com data-pt.
+     Se o elemento não tiver data-<lang> (ex.: seções ainda sem tradução
+     em espanhol), cai graciosamente para data-pt — o site nunca fica em
+     branco. Usa innerHTML (preservado do original) porque alguns valores
+     guardam HTML escapado (links de consentimento/LGPD). O <html lang>
+     recebe pt-BR / en / es e a escolha é persistida em localStorage.
      ============================================================ */
+  var LANGS = ['pt', 'en', 'es'];
+  var HTML_LANG = { pt: 'pt-BR', en: 'en', es: 'es' };
+
+  function normalizeLang(lang) {
+    return LANGS.indexOf(lang) !== -1 ? lang : 'pt';
+  }
+  // Idioma corrente derivado do <html lang> (pt-BR→pt).
+  function currentLang() {
+    var l = root.getAttribute('lang');
+    if (l === 'en') return 'en';
+    if (l === 'es') return 'es';
+    return 'pt';
+  }
+
   function applyLang(lang) {
-    if (lang !== 'en') lang = 'pt';
-    root.setAttribute('lang', lang === 'en' ? 'en' : 'pt-BR');
-    var nodes = document.querySelectorAll('[data-pt][data-en]');
+    lang = normalizeLang(lang);
+    root.setAttribute('lang', HTML_LANG[lang]);
+    var nodes = document.querySelectorAll('[data-pt]');
     Array.prototype.forEach.call(nodes, function (el) {
       var value = el.getAttribute('data-' + lang);
+      // Fallback para português quando não houver tradução no idioma pedido.
+      if (value === null) value = el.getAttribute('data-pt');
       if (value !== null) el.innerHTML = value;
     });
-    var btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.textContent = lang === 'en' ? 'PT' : 'EN';
-      btn.setAttribute('aria-label', lang === 'en' ? 'Mudar para português' : 'Switch to English');
-    }
+    // Atualiza o seletor segmentado (PT · EN · ES).
+    var opts = document.querySelectorAll('.lang-opt');
+    Array.prototype.forEach.call(opts, function (btn) {
+      var active = btn.getAttribute('data-lang') === lang;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
   }
   function initLang() {
     var saved = null;
     try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
-    applyLang(saved === 'en' ? 'en' : 'pt');
+    applyLang(normalizeLang(saved));
   }
-  function toggleLang() {
-    var current = root.getAttribute('lang') === 'en' ? 'en' : 'pt';
-    var next = current === 'en' ? 'pt' : 'en';
-    applyLang(next);
-    try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
+  function setLang(lang) {
+    lang = normalizeLang(lang);
+    applyLang(lang);
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
     if (window.ScrollTrigger) { try { window.ScrollTrigger.refresh(); } catch (e) {} }
   }
 
@@ -101,7 +125,9 @@
     var status = document.getElementById('lead-status');
     var success = document.getElementById('lead-success');
     var email = document.getElementById('lead-email');
-    var lang = function () { return root.getAttribute('lang') === 'en' ? 'en' : 'pt'; };
+    var lang = currentLang;
+    // Seleciona a string do idioma corrente (com fallback para PT).
+    var t = function (map) { return map[lang()] || map.pt; };
 
     function say(msg, isError) {
       if (!status) return;
@@ -127,9 +153,11 @@
       if (!valid) {
         e.preventDefault();
         if (email) email.classList.add('lead-invalid');
-        say(lang() === 'en'
-          ? 'Please enter a valid email to receive the guide.'
-          : 'Informe um e-mail válido para receber o guia.', true);
+        say(t({
+          pt: 'Informe um e-mail válido para receber o guia.',
+          en: 'Please enter a valid email to receive the guide.',
+          es: 'Introduce un correo electrónico válido para recibir la guía.'
+        }), true);
         if (email) email.focus();
         return;
       }
@@ -141,7 +169,12 @@
 
       // Aprimoramento progressivo: envia via AJAX e revela o guia no sucesso.
       e.preventDefault();
-      say(lang() === 'en' ? 'Sending…' : 'Enviando…', false);
+      say(t({ pt: 'Enviando…', en: 'Sending…', es: 'Enviando…' }), false);
+      var errMsg = {
+        pt: 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.',
+        en: 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.',
+        es: 'Ocurrió un error al enviar. Inténtalo de nuevo o escribe a rdgcdasilva@gmail.com.'
+      };
       try {
         fetch(action, {
           method: 'POST',
@@ -151,19 +184,13 @@
           if (res && res.ok) {
             showSuccess();
           } else {
-            say(lang() === 'en'
-              ? 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.'
-              : 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.', true);
+            say(t(errMsg), true);
           }
         }).catch(function () {
-          say(lang() === 'en'
-            ? 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.'
-            : 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.', true);
+          say(t(errMsg), true);
         });
       } catch (err) {
-        say(lang() === 'en'
-          ? 'An error occurred while sending. Please try again or write to rdgcdasilva@gmail.com.'
-          : 'Ocorreu um erro ao enviar. Tente novamente ou escreva para rdgcdasilva@gmail.com.', true);
+        say(t(errMsg), true);
       }
     });
   }
@@ -935,8 +962,10 @@
     initScrollSpy();
     initMobileMenu();
     initLeadForm();
-    var langBtn = document.getElementById('lang-toggle');
-    if (langBtn) langBtn.addEventListener('click', toggleLang);
+    var langOpts = document.querySelectorAll('.lang-opt');
+    Array.prototype.forEach.call(langOpts, function (btn) {
+      btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
+    });
 
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var small = window.matchMedia && window.matchMedia('(max-width: 820px)').matches;

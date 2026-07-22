@@ -108,22 +108,42 @@ img { max-width: 100%; display: block; }
 .nav-links a.nav-cta:hover { color: #12131a; background: var(--accent); }
 .nav-links a.nav-cta:hover { background: var(--accent-600); }
 
-.lang-toggle {
-  display: grid; place-items: center;
-  min-width: 40px; height: 40px;
-  padding: 0 12px;
+/* Seletor de idioma segmentado (PT · EN · ES) */
+.lang-select-li { display: flex; align-items: center; }
+.lang-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
-  color: var(--text);
+}
+.lang-opt {
+  appearance: none;
+  border: 0;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
   cursor: pointer;
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.lang-toggle:hover { transform: translateY(-1px); background: var(--accent-050); color: var(--accent); }
+.lang-opt:hover { color: var(--text); background: var(--accent-050); }
+.lang-opt.is-active {
+  color: #12131a;
+  background: var(--accent);
+}
+.lang-opt:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 .nav-cta-li { display: flex; align-items: center; }
 
@@ -934,6 +954,9 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
   .nav-links a { padding: 12px; }
   .nav-cta-li { padding-top: 4px; }
   .nav-cta { text-align: center; }
+  .lang-select-li { justify-content: center; padding: 4px 0; }
+  .lang-select { width: 100%; justify-content: center; }
+  .lang-opt { flex: 1; min-width: 0; }
   .nav-toggle:checked ~ .nav-links { max-height: 460px; opacity: 1; pointer-events: auto; }
   .nav-toggle:checked ~ .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle:checked ~ .nav-hamburger span:nth-child(2) { opacity: 0; }
