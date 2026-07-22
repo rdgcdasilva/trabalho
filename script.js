@@ -837,16 +837,76 @@
     });
   }
 
-  /* ---------- Modo LEVE (mobile) ---------- */
+  /* ---------- Modo LEVE (mobile) ----------
+     O celular agora exibe o MESMO fundo animado do desktop: o placeholder
+     limpo grafite→âmbar (sem figuras/pessoas), que se MOVE conforme o scroll.
+     Em vez do pin+scrub do ScrollTrigger (pesado no celular), calculamos o
+     progresso de cada capítulo pela posição da seção na viewport e desenhamos
+     num loop rAF leve — só os capítulos visíveis renderizam. reduced-motion
+     nunca chega aqui (vai para initStatic), então respeitamos a preferência. */
   function initLight() {
     root.classList.add('light-stage');
+    // Performance: no celular capamos o DPR (telas de dpr 3 gerariam canvases
+    // enormes). 1.5 mantém nitidez suficiente sem travar o scroll.
+    DPR = Math.min(window.devicePixelRatio || 1, 1.5);
     collectChapters();
-    renderPosterAll();
+    buildNoise();
+    CHAPTERS.forEach(function (ch) { if (ch.canvas) sizeCanvas(ch); });
     initContentFades();
-    // Backdrops animados (autoplay/loop, lazy-load). reduced-motion nunca chega
-    // aqui (vai para initStatic), então respeitamos a preferência do usuário.
-    initMobileVideoBackdrops();
-    window.addEventListener('resize', debounce(renderPosterAll, 250));
+
+    // Progresso 0→1 de cada capítulo a partir da posição da seção na viewport
+    // (0 = seção entrando por baixo; 1 = seção saindo por cima). Dirige o
+    // "scrub" do gradiente sem depender do ScrollTrigger.
+    function updateProgress() {
+      var vh = window.innerHeight || 1;
+      for (var i = 0; i < CHAPTERS.length; i++) {
+        var ch = CHAPTERS[i];
+        if (!ch.section) continue;
+        var rect = ch.section.getBoundingClientRect();
+        var total = rect.height + vh;
+        var p = total > 0 ? (vh - rect.top) / total : 0;
+        ch.progress = p < 0 ? 0 : (p > 1 ? 1 : p);
+      }
+    }
+
+    // Só renderiza capítulos próximos/visíveis (poupa CPU e bateria).
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var ch = e.target._lightRef;
+          if (ch) ch.visible = e.isIntersecting;
+        });
+      }, { rootMargin: '150px 0px 150px 0px', threshold: 0.01 });
+      CHAPTERS.forEach(function (ch) {
+        ch.visible = false;
+        if (ch.section && ch.canvas) { ch.section._lightRef = ch; io.observe(ch.section); }
+      });
+    } else {
+      CHAPTERS.forEach(function (ch) { ch.visible = true; });
+    }
+
+    updateProgress();
+
+    // Loop rAF leve: o tempo (t) dá vida contínua e sutil ao gradiente; o
+    // scroll atualiza o progresso (recalculado só quando há scroll/resize,
+    // evitando getBoundingClientRect a cada quadro → sem layout thrash).
+    var scrollDirty = true;
+    function frame() {
+      if (scrollDirty) { updateProgress(); scrollDirty = false; }
+      var t = performance.now() / 1000;
+      for (var i = 0; i < CHAPTERS.length; i++) {
+        var ch = CHAPTERS[i];
+        if (ch.canvas && ch.visible) renderChapter(ch, t);
+      }
+      requestAnimationFrame(frame);
+    }
+    window.addEventListener('scroll', function () { scrollDirty = true; }, { passive: true });
+    requestAnimationFrame(frame);
+
+    window.addEventListener('resize', debounce(function () {
+      CHAPTERS.forEach(function (ch) { if (ch.canvas) sizeCanvas(ch); });
+      scrollDirty = true;
+    }, 250));
   }
 
   /* ---------- Modo ESTÁTICO (reduced-motion / sem libs) ---------- */
