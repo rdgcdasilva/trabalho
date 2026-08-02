@@ -649,9 +649,16 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 }
 .product-card .btn { align-self: flex-start; }
 
-/* ---------- Blog & Conteúdos ---------- */
+/* ---------- Conteúdos & Blog ---------- */
 /* Grade fluida: acomoda bem 3, 4 ou 5+ cartões sem órfão isolado */
-#conteudos .cards-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+#conteudos .cards-grid,
+#blog .cards-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+
+/* Cartões do Blog: reaproveitam o layout dos content-card, sem badge/filtro */
+.blog-card { display: flex; flex-direction: column; }
+.blog-card .project-title { margin-bottom: 6px; }
+.blog-card .card-desc { margin-bottom: 16px; }
+.blog-card .card-link { margin-top: auto; align-self: flex-start; }
 
 .content-filter {
   display: flex;

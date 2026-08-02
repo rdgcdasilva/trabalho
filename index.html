@@ -49,6 +49,7 @@
         <li><a href="#pesquisas" data-pt="Projetos" data-en="Projects" data-es="Proyectos">Projetos</a></li>
         <li><a href="#publicacoes" data-pt="Publicações" data-en="Publications" data-es="Publicaciones">Publicações</a></li>
         <li><a href="#conteudos" data-pt="Conteúdos" data-en="Content" data-es="Contenidos">Conteúdos</a></li>
+        <li><a href="#blog" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</a></li>
         <li><a href="#servicos" data-pt="Serviços" data-en="Services" data-es="Servicios">Serviços</a></li>
         <li><a href="#produtos" data-pt="Produtos" data-en="Products" data-es="Productos">Produtos</a></li>
         <li><a href="#contato" data-pt="Contato" data-en="Contact" data-es="Contacto">Contato</a></li>
@@ -685,8 +686,9 @@
     </section>
 
     <!-- ============================================================
-         BLOG & CONTEÚDOS — apresentações, vídeos, artigos científicos
-         e textos (blog) que o autor publica periodicamente.
+         CONTEÚDOS — apresentações, vídeos e artigos científicos que
+         o autor recomenda e disponibiliza. (O BLOG, com os textos
+         próprios, é uma seção separada logo abaixo: #blog.)
          COMO AMPLIAR: dentro de .cards-grid há TEMPLATES "copie-me"
          comentados (um por tipo). Duplique o que quiser, ajuste o
          data-category e preencha título/data/descrição/link nos três
@@ -695,12 +697,12 @@
     <section id="conteudos" class="section" aria-labelledby="conteudos-title">
       <div class="container">
         <p class="section-eyebrow" data-pt="Compartilho aqui" data-en="I share here" data-es="Comparto aquí">Compartilho aqui</p>
-        <h2 id="conteudos-title" class="section-title" data-pt="Blog &amp; Conteúdos" data-en="Blog &amp; Resources" data-es="Blog &amp; Contenidos">Blog &amp; Conteúdos</h2>
+        <h2 id="conteudos-title" class="section-title" data-pt="Conteúdos" data-en="Content" data-es="Contenidos">Conteúdos</h2>
         <p class="section-subtitle"
-           data-pt="Apresentações, vídeos, artigos científicos e textos que publico periodicamente."
-           data-en="Presentations, videos, scientific articles, and texts I publish periodically."
-           data-es="Presentaciones, vídeos, artículos científicos y textos que publico periódicamente.">
-          Apresentações, vídeos, artigos científicos e textos que publico periodicamente.
+           data-pt="Apresentações, vídeos e artigos científicos que recomendo e disponibilizo."
+           data-en="Presentations, videos, and scientific articles I recommend and share."
+           data-es="Presentaciones, vídeos y artículos científicos que recomiendo y comparto.">
+          Apresentações, vídeos e artigos científicos que recomendo e disponibilizo.
         </p>
 
         <!-- Filtro de categorias (vanilla JS: mostra/oculta cartões por data-category) -->
@@ -709,7 +711,6 @@
           <button type="button" class="content-filter-btn" data-filter="apresentacao" aria-pressed="false" data-pt="Apresentações" data-en="Presentations" data-es="Presentaciones">Apresentações</button>
           <button type="button" class="content-filter-btn" data-filter="video" aria-pressed="false" data-pt="Vídeos" data-en="Videos" data-es="Vídeos">Vídeos</button>
           <button type="button" class="content-filter-btn" data-filter="artigo-cientifico" aria-pressed="false" data-pt="Artigos científicos" data-en="Scientific articles" data-es="Artículos científicos">Artigos científicos</button>
-          <button type="button" class="content-filter-btn" data-filter="blog" aria-pressed="false" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</button>
         </div>
 
         <div class="cards-grid content-grid">
@@ -717,7 +718,8 @@
           <!-- ============================================================
                TEMPLATES "COPIE-ME" — duplique um bloco, remova o comentário
                e preencha. Mantenha o data-category correto:
-                 apresentacao | video | artigo-cientifico | blog
+                 apresentacao | video | artigo-cientifico
+               (Para posts de blog, use o template da seção #blog abaixo.)
                ============================================================
 
           == APRESENTAÇÃO ==
@@ -745,15 +747,6 @@
             <p class="content-date">Jul 2026</p>
             <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
             <a href="URL_DO_ARTIGO" class="card-link" target="_blank" rel="noopener" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
-          </article>
-
-          == BLOG (texto escrito por ele) ==
-          <article class="card content-card" data-category="blog">
-            <span class="content-badge" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</span>
-            <h3 class="project-title" data-pt="TÍTULO (PT)" data-en="TITLE (EN)" data-es="TÍTULO (ES)">TÍTULO (PT)</h3>
-            <p class="content-date">Jul 2026</p>
-            <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
-            <a href="URL_DO_POST" class="card-link" data-pt="Ler no blog →" data-en="Read on the blog →" data-es="Leer en el blog →">Ler no blog →</a>
           </article>
 
           ============================================================ -->
@@ -819,9 +812,49 @@
             <a href="#" class="card-link" target="_blank" rel="noopener" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
           </article>
 
+        </div>
+
+        <p class="content-empty" hidden data-pt="Nenhum conteúdo nesta categoria ainda." data-en="No content in this category yet." data-es="Aún no hay contenido en esta categoría.">Nenhum conteúdo nesta categoria ainda.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG — textos e reflexões escritos pelo próprio autor.
+         Seção separada dos Conteúdos (#conteudos): aqui é o feed do
+         blog, sem filtro de categorias.
+         COMO AMPLIAR: duplique o TEMPLATE "copie-me" comentado no topo
+         da grade, remova o comentário e preencha título/data/descrição/
+         link nos três idiomas (data-pt / data-en / data-es). Veja o README.
+         ============================================================ -->
+    <section id="blog" class="section section-alt" aria-labelledby="blog-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Escrevo por aqui" data-en="I write here" data-es="Escribo aquí">Escrevo por aqui</p>
+        <h2 id="blog-title" class="section-title" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</h2>
+        <p class="section-subtitle"
+           data-pt="Textos e reflexões que publico periodicamente."
+           data-en="Texts and reflections I publish periodically."
+           data-es="Textos y reflexiones que publico periódicamente.">
+          Textos e reflexões que publico periodicamente.
+        </p>
+
+        <div class="cards-grid blog-grid">
+
+          <!-- ============================================================
+               TEMPLATE "COPIE-ME" — duplique o bloco abaixo, remova o
+               comentário e preencha nos três idiomas (data-pt/en/es).
+               ============================================================
+
+          <article class="card blog-card">
+            <h3 class="project-title" data-pt="TÍTULO (PT)" data-en="TITLE (EN)" data-es="TÍTULO (ES)">TÍTULO (PT)</h3>
+            <p class="content-date">Jul 2026</p>
+            <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
+            <a href="URL_DO_POST" class="card-link" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
+          </article>
+
+          ============================================================ -->
+
           <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
-          <article class="card content-card" data-category="blog">
-            <span class="content-badge" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</span>
+          <article class="card blog-card">
             <h3 class="project-title"
                 data-pt="A hospitalidade não é ornamento, é estrutura (exemplo)"
                 data-en="Hospitality is not ornament, it is structure (example)"
@@ -833,12 +866,11 @@
                data-es="Texto de ejemplo del blog, escrito por el autor. Sustituye por el enlace de tu post real.">
               Texto de exemplo do blog, escrito pelo autor. Substitua pelo link do seu post real.
             </p>
-            <a href="#" class="card-link" data-pt="Ler no blog →" data-en="Read on the blog →" data-es="Leer en el blog →">Ler no blog →</a>
+            <a href="#" class="card-link" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
           </article>
 
           <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
-          <article class="card content-card" data-category="blog">
-            <span class="content-badge" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</span>
+          <article class="card blog-card">
             <h3 class="project-title"
                 data-pt="O que os dados revelam sobre engajamento (exemplo)"
                 data-en="What data reveals about engagement (example)"
@@ -850,12 +882,10 @@
                data-es="Segundo texto de ejemplo del blog. Duplica esta tarjeta para publicar nuevos posts. Sustituye por el enlace real.">
               Segundo texto de exemplo do blog. Duplique este cartão para publicar novos posts. Substitua pelo link real.
             </p>
-            <a href="#" class="card-link" data-pt="Ler no blog →" data-en="Read on the blog →" data-es="Leer en el blog →">Ler no blog →</a>
+            <a href="#" class="card-link" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
           </article>
 
         </div>
-
-        <p class="content-empty" hidden data-pt="Nenhum conteúdo nesta categoria ainda." data-en="No content in this category yet." data-es="Aún no hay contenido en esta categoría.">Nenhum conteúdo nesta categoria ainda.</p>
       </div>
     </section>
 

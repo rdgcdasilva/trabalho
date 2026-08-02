@@ -218,24 +218,26 @@ Como é um site estático (GitHub Pages, sem back-end), o formulário está
 > formulário uma única vez para que os leads passem a ser entregues. Esse passo
 > só pode ser concluído pelo dono, no site publicado.
 
-## Como adicionar um conteúdo no Blog
+## Como adicionar um Conteúdo ou um post de Blog
 
-A seção **Blog & Conteúdos** (`#conteudos`, entre **Publicações** e **Serviços**)
-reúne quatro tipos de conteúdo que o autor publica periodicamente:
-**Apresentações**, **Vídeos do YouTube** (recomendações), **Artigos científicos**
-(recomendações) e **textos escritos por ele (Blog)**. Um filtro de categorias
-(Todos / Apresentações / Vídeos / Artigos científicos / Blog) mostra/oculta os
-cartões via JavaScript puro (`initContentFilter` no `script.js`).
+O site tem **duas seções separadas**, ambas entre **Publicações** e **Serviços**:
 
-Para adicionar um novo item:
+- **Conteúdos** (`#conteudos`) — o que o autor **recomenda e disponibiliza**:
+  **Apresentações**, **Vídeos do YouTube** e **Artigos científicos**. Um filtro
+  de categorias (Todos / Apresentações / Vídeos / Artigos científicos) mostra/oculta
+  os cartões via JavaScript puro (`initContentFilter` no `script.js`).
+- **Blog** (`#blog`) — os **textos escritos pelo próprio autor**. É um feed único,
+  **sem filtro** de categorias.
+
+### Adicionar um Conteúdo (recomendação)
 
 1. Abra o `index.html` e localize a seção `#conteudos`. No topo da `.cards-grid`
    há um bloco de **TEMPLATES "copie-me"** comentado — um para cada tipo.
 2. **Copie o template do tipo desejado** e cole logo após ele, agora **fora** do
    comentário (cada cartão real é marcado com `<!-- EDITÁVEL: substitua pelo seu
    conteúdo real -->`).
-3. Ajuste o **`data-category`** do `<article>` para um destes valores:
-   `apresentacao` | `video` | `artigo-cientifico` | `blog` (é ele que o filtro usa).
+3. Ajuste o **`data-category`** do `<article>` para um destes três valores:
+   `apresentacao` | `video` | `artigo-cientifico` (é ele que o filtro usa).
 4. Preencha **título**, **data** (`.content-date`, ex.: `Jul 2026`), **descrição**
    e o **link/CTA** — sempre nos três idiomas via `data-pt` / `data-en` / `data-es`.
    A data pode ser igual nos três idiomas.
@@ -244,8 +246,18 @@ Para adicionar um novo item:
    comentado dentro do cartão de vídeo — troque `SEU_VIDEO_ID` e cole no cartão
    (o CSS `.video-embed` já garante o formato responsivo 16:9).
 
+### Adicionar um post de Blog
+
+1. Abra o `index.html` e localize a seção `#blog`. No topo da `.cards-grid` há um
+   único **TEMPLATE "copie-me"** comentado (`<article class="blog-card">`).
+2. **Copie o template** e cole logo após ele, **fora** do comentário (os cartões
+   reais são marcados com `<!-- EDITÁVEL: substitua pelo seu conteúdo real -->`).
+3. Preencha **título**, **data** (`.content-date`), **descrição** e o link
+   **"Ler artigo →"** — sempre nos três idiomas (`data-pt` / `data-en` / `data-es`).
+   Não há `data-category` nem badge aqui: a seção inteira é o blog.
+
 Pronto: não há build. Salve, sirva a pasta (veja abaixo) e o novo cartão aparece —
-já respeitando o filtro e a troca de idiomas.
+já respeitando o filtro (nos Conteúdos) e a troca de idiomas.
 
 ## Restauração / backup
 
