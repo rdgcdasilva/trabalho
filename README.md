@@ -218,6 +218,35 @@ Como é um site estático (GitHub Pages, sem back-end), o formulário está
 > formulário uma única vez para que os leads passem a ser entregues. Esse passo
 > só pode ser concluído pelo dono, no site publicado.
 
+## Como adicionar um conteúdo no Blog
+
+A seção **Blog & Conteúdos** (`#conteudos`, entre **Publicações** e **Serviços**)
+reúne quatro tipos de conteúdo que o autor publica periodicamente:
+**Apresentações**, **Vídeos do YouTube** (recomendações), **Artigos científicos**
+(recomendações) e **textos escritos por ele (Blog)**. Um filtro de categorias
+(Todos / Apresentações / Vídeos / Artigos científicos / Blog) mostra/oculta os
+cartões via JavaScript puro (`initContentFilter` no `script.js`).
+
+Para adicionar um novo item:
+
+1. Abra o `index.html` e localize a seção `#conteudos`. No topo da `.cards-grid`
+   há um bloco de **TEMPLATES "copie-me"** comentado — um para cada tipo.
+2. **Copie o template do tipo desejado** e cole logo após ele, agora **fora** do
+   comentário (cada cartão real é marcado com `<!-- EDITÁVEL: substitua pelo seu
+   conteúdo real -->`).
+3. Ajuste o **`data-category`** do `<article>` para um destes valores:
+   `apresentacao` | `video` | `artigo-cientifico` | `blog` (é ele que o filtro usa).
+4. Preencha **título**, **data** (`.content-date`, ex.: `Jul 2026`), **descrição**
+   e o **link/CTA** — sempre nos três idiomas via `data-pt` / `data-en` / `data-es`.
+   A data pode ser igual nos três idiomas.
+5. Para **vídeos**, o padrão é **linkar** o YouTube (`href` com a URL, `target="_blank"`
+   e um `▶` no CTA). Se preferir **embutir** o vídeo, há um template de `<div class="video-embed">`
+   comentado dentro do cartão de vídeo — troque `SEU_VIDEO_ID` e cole no cartão
+   (o CSS `.video-embed` já garante o formato responsivo 16:9).
+
+Pronto: não há build. Salve, sirva a pasta (veja abaixo) e o novo cartão aparece —
+já respeitando o filtro e a troca de idiomas.
+
 ## Restauração / backup
 
 O estado do site **antes** da transformação cinematográfica está preservado na tag git

@@ -48,6 +48,7 @@
         <li><a href="#carreira" data-pt="Carreira" data-en="Career" data-es="Carrera">Carreira</a></li>
         <li><a href="#pesquisas" data-pt="Projetos" data-en="Projects" data-es="Proyectos">Projetos</a></li>
         <li><a href="#publicacoes" data-pt="Publicações" data-en="Publications" data-es="Publicaciones">Publicações</a></li>
+        <li><a href="#conteudos" data-pt="Conteúdos" data-en="Content" data-es="Contenidos">Conteúdos</a></li>
         <li><a href="#servicos" data-pt="Serviços" data-en="Services" data-es="Servicios">Serviços</a></li>
         <li><a href="#produtos" data-pt="Produtos" data-en="Products" data-es="Productos">Produtos</a></li>
         <li><a href="#contato" data-pt="Contato" data-en="Contact" data-es="Contacto">Contato</a></li>
@@ -680,6 +681,181 @@
             </li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG & CONTEÚDOS — apresentações, vídeos, artigos científicos
+         e textos (blog) que o autor publica periodicamente.
+         COMO AMPLIAR: dentro de .cards-grid há TEMPLATES "copie-me"
+         comentados (um por tipo). Duplique o que quiser, ajuste o
+         data-category e preencha título/data/descrição/link nos três
+         idiomas (data-pt / data-en / data-es). Veja o README.
+         ============================================================ -->
+    <section id="conteudos" class="section" aria-labelledby="conteudos-title">
+      <div class="container">
+        <p class="section-eyebrow" data-pt="Compartilho aqui" data-en="I share here" data-es="Comparto aquí">Compartilho aqui</p>
+        <h2 id="conteudos-title" class="section-title" data-pt="Blog &amp; Conteúdos" data-en="Blog &amp; Resources" data-es="Blog &amp; Contenidos">Blog &amp; Conteúdos</h2>
+        <p class="section-subtitle"
+           data-pt="Apresentações, vídeos, artigos científicos e textos que publico periodicamente."
+           data-en="Presentations, videos, scientific articles, and texts I publish periodically."
+           data-es="Presentaciones, vídeos, artículos científicos y textos que publico periódicamente.">
+          Apresentações, vídeos, artigos científicos e textos que publico periodicamente.
+        </p>
+
+        <!-- Filtro de categorias (vanilla JS: mostra/oculta cartões por data-category) -->
+        <div class="content-filter" role="group" aria-label="Filtrar conteúdos por categoria">
+          <button type="button" class="content-filter-btn is-active" data-filter="todos" aria-pressed="true" data-pt="Todos" data-en="All" data-es="Todos">Todos</button>
+          <button type="button" class="content-filter-btn" data-filter="apresentacao" aria-pressed="false" data-pt="Apresentações" data-en="Presentations" data-es="Presentaciones">Apresentações</button>
+          <button type="button" class="content-filter-btn" data-filter="video" aria-pressed="false" data-pt="Vídeos" data-en="Videos" data-es="Vídeos">Vídeos</button>
+          <button type="button" class="content-filter-btn" data-filter="artigo-cientifico" aria-pressed="false" data-pt="Artigos científicos" data-en="Scientific articles" data-es="Artículos científicos">Artigos científicos</button>
+          <button type="button" class="content-filter-btn" data-filter="blog" aria-pressed="false" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</button>
+        </div>
+
+        <div class="cards-grid content-grid">
+
+          <!-- ============================================================
+               TEMPLATES "COPIE-ME" — duplique um bloco, remova o comentário
+               e preencha. Mantenha o data-category correto:
+                 apresentacao | video | artigo-cientifico | blog
+               ============================================================
+
+          == APRESENTAÇÃO ==
+          <article class="card content-card" data-category="apresentacao">
+            <span class="content-badge" data-pt="Apresentação" data-en="Presentation" data-es="Presentación">Apresentação</span>
+            <h3 class="project-title" data-pt="TÍTULO (PT)" data-en="TITLE (EN)" data-es="TÍTULO (ES)">TÍTULO (PT)</h3>
+            <p class="content-date">Jul 2026</p>
+            <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
+            <a href="URL_DA_APRESENTACAO" class="card-link" target="_blank" rel="noopener" data-pt="Ver apresentação →" data-en="View presentation →" data-es="Ver presentación →">Ver apresentação →</a>
+          </article>
+
+          == VÍDEO (YouTube) ==
+          <article class="card content-card" data-category="video">
+            <span class="content-badge" data-pt="Vídeo" data-en="Video" data-es="Vídeo">Vídeo</span>
+            <h3 class="project-title" data-pt="TÍTULO (PT)" data-en="TITLE (EN)" data-es="TÍTULO (ES)">TÍTULO (PT)</h3>
+            <p class="content-date">Jul 2026</p>
+            <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
+            <a href="https://youtube.com/watch?v=SEU_VIDEO" class="card-link" target="_blank" rel="noopener" data-pt="▶ Assistir no YouTube →" data-en="▶ Watch on YouTube →" data-es="▶ Ver en YouTube →">▶ Assistir no YouTube →</a>
+          </article>
+
+          == ARTIGO CIENTÍFICO ==
+          <article class="card content-card" data-category="artigo-cientifico">
+            <span class="content-badge" data-pt="Artigo científico" data-en="Scientific article" data-es="Artículo científico">Artigo científico</span>
+            <h3 class="project-title" data-pt="TÍTULO (PT)" data-en="TITLE (EN)" data-es="TÍTULO (ES)">TÍTULO (PT)</h3>
+            <p class="content-date">Jul 2026</p>
+            <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
+            <a href="URL_DO_ARTIGO" class="card-link" target="_blank" rel="noopener" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
+          </article>
+
+          == BLOG (texto escrito por ele) ==
+          <article class="card content-card" data-category="blog">
+            <span class="content-badge" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</span>
+            <h3 class="project-title" data-pt="TÍTULO (PT)" data-en="TITLE (EN)" data-es="TÍTULO (ES)">TÍTULO (PT)</h3>
+            <p class="content-date">Jul 2026</p>
+            <p class="card-desc" data-pt="DESCRIÇÃO (PT)" data-en="DESCRIPTION (EN)" data-es="DESCRIPCIÓN (ES)">DESCRIÇÃO (PT)</p>
+            <a href="URL_DO_POST" class="card-link" data-pt="Ler no blog →" data-en="Read on the blog →" data-es="Leer en el blog →">Ler no blog →</a>
+          </article>
+
+          ============================================================ -->
+
+          <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
+          <article class="card content-card" data-category="apresentacao">
+            <span class="content-badge" data-pt="Apresentação" data-en="Presentation" data-es="Presentación">Apresentação</span>
+            <h3 class="project-title"
+                data-pt="Apresentação: Hospitalidade Organizacional na prática (exemplo)"
+                data-en="Presentation: Organizational Hospitality in practice (example)"
+                data-es="Presentación: Hospitalidad Organizacional en la práctica (ejemplo)">Apresentação: Hospitalidade Organizacional na prática (exemplo)</h3>
+            <p class="content-date">Jul 2026</p>
+            <p class="card-desc"
+               data-pt="Slides de exemplo sobre como traduzir a tese de hospitalidade organizacional em estrutura. Substitua pelo link dos seus slides reais."
+               data-en="Example slides on turning the organizational hospitality thesis into structure. Replace with the link to your real deck."
+               data-es="Diapositivas de ejemplo sobre cómo traducir la tesis de hospitalidad organizacional en estructura. Sustituye por el enlace de tus diapositivas reales.">
+              Slides de exemplo sobre como traduzir a tese de hospitalidade organizacional em estrutura. Substitua pelo link dos seus slides reais.
+            </p>
+            <a href="#" class="card-link" data-pt="Ver apresentação →" data-en="View presentation →" data-es="Ver presentación →">Ver apresentação →</a>
+          </article>
+
+          <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
+          <!--
+            EMBED opcional do YouTube (caso prefira embutir em vez de linkar):
+            troque SEU_VIDEO_ID e cole no lugar do <p class="card-desc"> ou abaixo dele.
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+                      title="Vídeo do YouTube" loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+            </div>
+          -->
+          <article class="card content-card" data-category="video">
+            <span class="content-badge" data-pt="Vídeo" data-en="Video" data-es="Vídeo">Vídeo</span>
+            <h3 class="project-title"
+                data-pt="Vídeo recomendado: People Analytics para iniciantes (exemplo)"
+                data-en="Recommended video: People Analytics for beginners (example)"
+                data-es="Vídeo recomendado: People Analytics para principiantes (ejemplo)">Vídeo recomendado: People Analytics para iniciantes (exemplo)</h3>
+            <p class="content-date">Jun 2026</p>
+            <p class="card-desc"
+               data-pt="Recomendação de vídeo do YouTube que explica os primeiros passos em People Analytics. Substitua pelo link do vídeo real."
+               data-en="A YouTube video recommendation explaining the first steps in People Analytics. Replace with the real video link."
+               data-es="Recomendación de vídeo de YouTube que explica los primeros pasos en People Analytics. Sustituye por el enlace del vídeo real.">
+              Recomendação de vídeo do YouTube que explica os primeiros passos em People Analytics. Substitua pelo link do vídeo real.
+            </p>
+            <a href="https://youtube.com/watch?v=SEU_VIDEO" class="card-link" target="_blank" rel="noopener" data-pt="▶ Assistir no YouTube →" data-en="▶ Watch on YouTube →" data-es="▶ Ver en YouTube →">▶ Assistir no YouTube →</a>
+          </article>
+
+          <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
+          <article class="card content-card" data-category="artigo-cientifico">
+            <span class="content-badge" data-pt="Artigo científico" data-en="Scientific article" data-es="Artículo científico">Artigo científico</span>
+            <h3 class="project-title"
+                data-pt="Artigo recomendado: Hospitalidade e satisfação em serviços (exemplo)"
+                data-en="Recommended article: Hospitality and service satisfaction (example)"
+                data-es="Artículo recomendado: Hospitalidad y satisfacción en servicios (ejemplo)">Artigo recomendado: Hospitalidade e satisfação em serviços (exemplo)</h3>
+            <p class="content-date">Mai 2026</p>
+            <p class="card-desc"
+               data-pt="Recomendação de artigo científico relevante para a área. Substitua pelo DOI ou link do artigo real que deseja indicar."
+               data-en="A recommendation of a scientific article relevant to the field. Replace with the DOI or link of the real article you want to suggest."
+               data-es="Recomendación de artículo científico relevante para el área. Sustituye por el DOI o enlace del artículo real que deseas indicar.">
+              Recomendação de artigo científico relevante para a área. Substitua pelo DOI ou link do artigo real que deseja indicar.
+            </p>
+            <a href="#" class="card-link" target="_blank" rel="noopener" data-pt="Ler artigo →" data-en="Read article →" data-es="Leer artículo →">Ler artigo →</a>
+          </article>
+
+          <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
+          <article class="card content-card" data-category="blog">
+            <span class="content-badge" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</span>
+            <h3 class="project-title"
+                data-pt="A hospitalidade não é ornamento, é estrutura (exemplo)"
+                data-en="Hospitality is not ornament, it is structure (example)"
+                data-es="La hospitalidad no es ornamento, es estructura (ejemplo)">A hospitalidade não é ornamento, é estrutura (exemplo)</h3>
+            <p class="content-date">Abr 2026</p>
+            <p class="card-desc"
+               data-pt="Texto de exemplo do blog, escrito pelo autor. Substitua pelo link do seu post real."
+               data-en="Example blog post written by the author. Replace with the link to your real post."
+               data-es="Texto de ejemplo del blog, escrito por el autor. Sustituye por el enlace de tu post real.">
+              Texto de exemplo do blog, escrito pelo autor. Substitua pelo link do seu post real.
+            </p>
+            <a href="#" class="card-link" data-pt="Ler no blog →" data-en="Read on the blog →" data-es="Leer en el blog →">Ler no blog →</a>
+          </article>
+
+          <!-- EDITÁVEL: substitua pelo seu conteúdo real -->
+          <article class="card content-card" data-category="blog">
+            <span class="content-badge" data-pt="Blog" data-en="Blog" data-es="Blog">Blog</span>
+            <h3 class="project-title"
+                data-pt="O que os dados revelam sobre engajamento (exemplo)"
+                data-en="What data reveals about engagement (example)"
+                data-es="Lo que los datos revelan sobre el compromiso (ejemplo)">O que os dados revelam sobre engajamento (exemplo)</h3>
+            <p class="content-date">Mar 2026</p>
+            <p class="card-desc"
+               data-pt="Segundo texto de exemplo do blog. Duplique este cartão para publicar novos posts. Substitua pelo link real."
+               data-en="A second example blog post. Duplicate this card to publish new posts. Replace with the real link."
+               data-es="Segundo texto de ejemplo del blog. Duplica esta tarjeta para publicar nuevos posts. Sustituye por el enlace real.">
+              Segundo texto de exemplo do blog. Duplique este cartão para publicar novos posts. Substitua pelo link real.
+            </p>
+            <a href="#" class="card-link" data-pt="Ler no blog →" data-en="Read on the blog →" data-es="Leer en el blog →">Ler no blog →</a>
+          </article>
+
+        </div>
+
+        <p class="content-empty" hidden data-pt="Nenhum conteúdo nesta categoria ainda." data-en="No content in this category yet." data-es="Aún no hay contenido en esta categoría.">Nenhum conteúdo nesta categoria ainda.</p>
       </div>
     </section>
 

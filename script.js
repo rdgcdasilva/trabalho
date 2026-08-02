@@ -111,6 +111,38 @@
     }
   }
 
+  /* ---------- Filtro do Blog & Conteúdos ----------
+     Vanilla JS, sem dependências: mostra/oculta cartões por data-category.
+     "todos" mostra todos. Acessível (aria-pressed nos botões). ------------- */
+  function initContentFilter() {
+    var section = document.getElementById('conteudos');
+    if (!section) return;
+    var btns = Array.prototype.slice.call(section.querySelectorAll('.content-filter-btn'));
+    var cards = Array.prototype.slice.call(section.querySelectorAll('.content-card'));
+    var empty = section.querySelector('.content-empty');
+    if (!btns.length || !cards.length) return;
+
+    function applyFilter(filter) {
+      var shown = 0;
+      cards.forEach(function (card) {
+        var match = filter === 'todos' || card.getAttribute('data-category') === filter;
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      btns.forEach(function (b) {
+        var active = b.getAttribute('data-filter') === filter;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      if (empty) empty.hidden = shown !== 0;
+      if (window.ScrollTrigger) { try { window.ScrollTrigger.refresh(); } catch (e) {} }
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { applyFilter(b.getAttribute('data-filter')); });
+    });
+  }
+
   /* ---------- Formulário de lead (isca gratuita) ----------
      Site estático (sem back-end). O formulário está conectado ao Formspree
      (action="https://formspree.io/f/mvzeqdwk"). Aprimoramento progressivo:
@@ -961,6 +993,7 @@
     initConsent();
     initScrollSpy();
     initMobileMenu();
+    initContentFilter();
     initLeadForm();
     var langOpts = document.querySelectorAll('.lang-opt');
     Array.prototype.forEach.call(langOpts, function (btn) {
