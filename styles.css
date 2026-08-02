@@ -793,6 +793,21 @@ html.cinematic-on .reveal { will-change: opacity, transform; }
 }
 .pub-link:hover, .pub-link:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
 .pub-meta { color: var(--text-muted); font-size: 0.92rem; }
+.pub-video { margin: 12px 0 0; max-width: 480px; }
+.pub-video video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #000;
+}
+.pub-video figcaption {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
 
 /* ---------- Contato ---------- */
 .contato-intro { color: var(--text-muted); max-width: 560px; margin-bottom: 34px; font-size: 1.05rem; }
